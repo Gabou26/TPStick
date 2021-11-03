@@ -40,13 +40,17 @@ public class Third_person_mvmnt : MonoBehaviour
         
         if (controller.isGrounded)
         {
-            yvelocity = 0;
             if (Input.GetButtonDown("Jump"))
             {
                 yvelocity = jumpForce;
             }
         }
-        yvelocity += Physics.gravity.y * Time.deltaTime;
+        else
+        {
+            yvelocity += Physics.gravity.y * Time.deltaTime;
+        }
+        
+
         direction.y = yvelocity;
         controller.Move( direction * Time.deltaTime);
         
