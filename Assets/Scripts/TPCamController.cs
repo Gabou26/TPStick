@@ -6,14 +6,14 @@ public class TPCamController : MonoBehaviour
 {
     public float RotationSpeedX = 1;
     public float RotationSpeedY = 1;
-    public Transform Target;
+    public Transform Target, Player;
     float mousex, mousey;
 
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void LateUpdate()
@@ -29,5 +29,6 @@ public class TPCamController : MonoBehaviour
 
         transform.LookAt(Target);
         Target.rotation = Quaternion.Euler(mousey, mousex, 0);
+        Player.rotation = Quaternion.Euler(0, mousex, 0);
     }
 }
