@@ -7,6 +7,8 @@ public class Third_person_mvmnt : MonoBehaviour
 {
     public CharacterController controller;
 
+    [SerializeField] private Transform respawnPoint;
+
     public float speed = 6f;
     public float jumpForce;
     public float gravityScale;
@@ -16,15 +18,31 @@ public class Third_person_mvmnt : MonoBehaviour
     float turnSmoothVelocity;
 
     public Transform cam;
+    private Animator animator;
+    private CharacterController charController;
+    private CapsuleCollider capsCollider;
+    private bool dead;
 
     private void Start()
     {
-        
+        animator = GetComponent<Animator>();
+        charController = GetComponent<CharacterController>();
+        capsCollider = GetComponent<CapsuleCollider>();
+        dead = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown("left ctrl"))
+        {
+            charController.enabled = !charController.enabled;
+            capsCollider.enabled = !capsCollider.enabled;
+            animator.enabled = !animator.enabled;
+            dead = !dead;
+        }
+
+        if (dead) return;
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
@@ -58,6 +76,17 @@ public class Third_person_mvmnt : MonoBehaviour
 
         direction.y = yvelocity;
         controller.Move( direction * Time.deltaTime);
-        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Respawn"))
+        {
+            Transform location = respawnPoint.transform;
+            float rangex = Random.Range(-(location.localScale.x / 2), location.localScale.x / 2);
+            float rangez = Random.Range(-(location.localScale.z / 2), location.localScale.z / 2);
+            Vector3 spawnPoint = new Vector3(location.position.x + rangex, location.position.y, location.position.z + rangez);
+            transform.position = spawnPoint;
+        }
     }
 }
