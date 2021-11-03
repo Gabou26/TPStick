@@ -15,17 +15,22 @@ public class Third_person_mvmnt : MonoBehaviour
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
 
-    public Transform camera;
-    
-    
+    public Transform cam;
+
+    private void Start()
+    {
+        
+    }
 
     // Update is called once per frame
     void Update()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
+
+
         //Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
-        Vector3 direction = (camera.forward * vertical) + (camera.right * horizontal); 
+        Vector3 direction = (cam.forward * vertical) + (cam.right * horizontal); 
         direction.Normalize();
         direction = direction * speed;
         if (direction.magnitude >= 0.1f)
@@ -49,7 +54,7 @@ public class Third_person_mvmnt : MonoBehaviour
         {
             yvelocity += Physics.gravity.y * Time.deltaTime;
         }
-        
+
 
         direction.y = yvelocity;
         controller.Move( direction * Time.deltaTime);
