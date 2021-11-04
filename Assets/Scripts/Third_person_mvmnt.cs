@@ -63,10 +63,11 @@ public class Third_person_mvmnt : MonoBehaviour
         
         if (controller.isGrounded)
         {
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButton("Jump"))
             {
                 yvelocity = jumpForce;
             }
+            else yvelocity = 0;
         }
         else
         {
