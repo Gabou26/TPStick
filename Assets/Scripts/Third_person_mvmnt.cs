@@ -60,23 +60,27 @@ public class Third_person_mvmnt : MonoBehaviour
             
         }
 
-        
+
         if (controller.isGrounded)
         {
             if (Input.GetButton("Jump"))
             {
                 yvelocity = jumpForce;
+                //Invoke("stopVelocity", 0.6f);
             }
             else yvelocity = 0;
         }
         else
         {
-            yvelocity += Physics.gravity.y * Time.deltaTime;
+            yvelocity += Physics.gravity.y * Time.deltaTime * gravityScale;
         }
 
-
         direction.y = yvelocity;
-        controller.Move( direction * Time.deltaTime);
+        
+        //ceci enlève le jitter du saut
+        transform.position += direction * Time.deltaTime;
+        //controller.Move(direction * Time.deltaTime);
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -89,5 +93,10 @@ public class Third_person_mvmnt : MonoBehaviour
             Vector3 spawnPoint = new Vector3(location.position.x + rangex, location.position.y, location.position.z + rangez);
             transform.position = spawnPoint;
         }
+    }
+
+    private void stopVelocity()
+    {
+        yvelocity = 0;
     }
 }
