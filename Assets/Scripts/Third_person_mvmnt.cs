@@ -46,6 +46,38 @@ public class Third_person_mvmnt : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
+        if(vertical > 0)
+        {
+            animator.SetBool("IsRunning", true);
+            animator.SetBool("IsBacking", false);
+        }
+        else if(vertical < 0)
+        {
+            animator.SetBool("IsBacking", true);
+            animator.SetBool("IsRunning", false);
+        }
+        else
+        {
+            animator.SetBool("IsRunning", false);
+            animator.SetBool("IsBacking", false);
+        }
+
+        if (horizontal > 0)
+        {
+            animator.SetBool("IsRight", true);
+            animator.SetBool("IsLeft", false);
+        }
+        else if (horizontal < 0)
+        {
+            animator.SetBool("IsLeft", true);
+            animator.SetBool("IsRight", false);
+        }
+        else
+        {
+            animator.SetBool("IsRight", false);
+            animator.SetBool("IsLeft", false);
+        }
+
 
         //Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
         Vector3 direction = (cam.forward * vertical) + (cam.right * horizontal); 

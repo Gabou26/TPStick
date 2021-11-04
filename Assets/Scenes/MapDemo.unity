@@ -156,6 +156,7 @@ MonoBehaviour:
   RotationSpeedX: 1.2
   RotationSpeedY: 1
   Target: {fileID: 1565517444}
+  Player: {fileID: 643439838}
 --- !u!20 &3365650
 Camera:
   m_ObjectHideFlags: 0
@@ -1036,6 +1037,10 @@ PrefabInstance:
       propertyPath: m_UpdateMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: e57e9b8cd5e115f4f8d7736473e5c7fd, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e57e9b8cd5e115f4f8d7736473e5c7fd, type: 3}
 --- !u!1 &921317464
@@ -1815,7 +1820,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &2038094642
 AudioListener:
   m_ObjectHideFlags: 0
