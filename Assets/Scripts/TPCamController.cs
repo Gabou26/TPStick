@@ -6,14 +6,18 @@ public class TPCamController : MonoBehaviour
 {
     public float RotationSpeedX = 1;
     public float RotationSpeedY = 1;
-    public Transform Target, Player;
+    public Transform Target, Player, RagdollTarget;
+    public Transform CamFocus;
     float mousex, mousey;
+    public bool deadChar;
 
     // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        deadChar = false;
+        CamFocus = Target;
     }
 
     private void LateUpdate()
@@ -27,8 +31,8 @@ public class TPCamController : MonoBehaviour
         mousey -= Input.GetAxis("Mouse Y") * RotationSpeedY;
         mousey = Mathf.Clamp(mousey, -60, 60);
 
-        transform.LookAt(Target);
-        Target.rotation = Quaternion.Euler(mousey, mousex, 0);
-        Player.rotation = Quaternion.Euler(0, mousex, 0);
+        transform.LookAt(CamFocus);
+        CamFocus.rotation = Quaternion.Euler(mousey, mousex, 0);
+        if(!deadChar) Player.rotation = Quaternion.Euler(0, mousex, 0);
     }
 }

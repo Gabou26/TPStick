@@ -21,13 +21,15 @@ public class Third_person_mvmnt : MonoBehaviour
     private Animator animator;
     private CharacterController charController;
     private CapsuleCollider capsCollider;
-    private bool dead;
+    public bool dead;
+    TPCamController cameraController;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         charController = GetComponent<CharacterController>();
         capsCollider = GetComponent<CapsuleCollider>();
+        cameraController = cam.GetComponent<TPCamController>();
         dead = false;
     }
 
@@ -40,9 +42,23 @@ public class Third_person_mvmnt : MonoBehaviour
             capsCollider.enabled = !capsCollider.enabled;
             animator.enabled = !animator.enabled;
             dead = !dead;
+            cameraController.deadChar = dead;
+
+            if(dead)
+            {
+                cameraController.CamFocus = cameraController.RagdollTarget;
+            }
+            else
+            {
+                cameraController.CamFocus = cameraController.Target;
+            }
         }
 
-        if (dead) return;
+        if (dead)
+        {
+
+            return;
+        }
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
@@ -88,8 +104,6 @@ public class Third_person_mvmnt : MonoBehaviour
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            
-            
         }
 
 
@@ -117,6 +131,7 @@ public class Third_person_mvmnt : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("A");
         if (other.CompareTag("Respawn"))
         {
             Transform location = respawnPoint.transform;

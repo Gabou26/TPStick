@@ -157,6 +157,8 @@ MonoBehaviour:
   RotationSpeedY: 1
   Target: {fileID: 1565517444}
   Player: {fileID: 643439838}
+  RagdollTarget: {fileID: 248177073}
+  deadChar: 0
 --- !u!20 &3365650
 Camera:
   m_ObjectHideFlags: 0
@@ -296,6 +298,101 @@ CapsuleCollider:
   m_Height: 0.3555123
   m_Direction: 0
   m_Center: {x: -0.17775615, y: 0, z: 0}
+--- !u!1 &248177072
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 248177073}
+  - component: {fileID: 248177076}
+  - component: {fileID: 248177075}
+  - component: {fileID: 248177074}
+  m_Layer: 0
+  m_Name: RagdollTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &248177073
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248177072}
+  m_LocalRotation: {x: 0.50000477, y: -0.5000035, z: -0.49999696, w: -0.49999484}
+  m_LocalPosition: {x: -0.5984597, y: 0.009259057, z: -0.013999315}
+  m_LocalScale: {x: 0.09999998, y: 0.09999998, z: 0.09999998}
+  m_Children: []
+  m_Father: {fileID: 1317124988}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &248177074
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248177072}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &248177075
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248177072}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &248177076
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248177072}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &301698911 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100004, guid: e57e9b8cd5e115f4f8d7736473e5c7fd,
@@ -775,6 +872,7 @@ MonoBehaviour:
   yvelocity: 0
   turnSmoothTime: 0.1
   cam: {fileID: 3365651}
+  dead: 0
 --- !u!4 &643439838 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400050, guid: e57e9b8cd5e115f4f8d7736473e5c7fd,
@@ -1418,6 +1516,12 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.64169776, y: 0.3250637, z: 0.32506388}
   m_Center: {x: -0.22824353, y: -0.016978562, z: 0.16253178}
+--- !u!4 &1317124988 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400024, guid: e57e9b8cd5e115f4f8d7736473e5c7fd,
+    type: 3}
+  m_PrefabInstance: {fileID: 785108597}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1565517443
 GameObject:
   m_ObjectHideFlags: 0
@@ -1444,8 +1548,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1565517443}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.014, y: 2.021, z: 0.042}
+  m_LocalRotation: {x: -0.00000008940696, y: -0.00000008940696, z: 0.000000059604638,
+    w: 1}
+  m_LocalPosition: {x: 0.013999939, y: 2.021, z: 0.041999817}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 3365651}
