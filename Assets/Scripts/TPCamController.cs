@@ -12,8 +12,8 @@ public class TPCamController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void LateUpdate()
@@ -28,7 +28,7 @@ public class TPCamController : MonoBehaviour
         mousey = Mathf.Clamp(mousey, -60, 60);
 
         transform.LookAt(Target);
-        Target.rotation = Quaternion.Euler(mousey, mousex, 0);
+        //Target.rotation = Quaternion.Euler(mousey, mousex, 0);
         Player.rotation = Quaternion.Euler(0, mousex, 0);
     }
 }
