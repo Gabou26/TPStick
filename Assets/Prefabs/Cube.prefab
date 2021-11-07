@@ -127,7 +127,8 @@ MonoBehaviour:
   m_DefaultControlScheme: 
   m_DefaultActionMap: Map
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 8651999473339439022, guid: f5f48a5b233d235439dd4293d9a0b683,
+    type: 3}
 --- !u!114 &7723232927454327488
 MonoBehaviour:
   m_ObjectHideFlags: 0
