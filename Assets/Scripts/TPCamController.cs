@@ -7,6 +7,7 @@ public class TPCamController : MonoBehaviour
     public float RotationSpeedX = 1;
     public float RotationSpeedY = 1;
     public Transform Target, Player;
+    public RayWeapon rayWeapon;
     float mousex, mousey;
 
     // Start is called before the first frame update
@@ -19,6 +20,10 @@ public class TPCamController : MonoBehaviour
     private void LateUpdate()
     {
         CamControl();
+        if (Input.GetButtonDown("Fire1"))
+            rayWeapon.StartFiring();
+        else if (Input.GetButtonUp("Fire1"))
+            rayWeapon.StopFiring();
     }
 
     void CamControl()

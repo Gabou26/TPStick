@@ -1039,6 +1039,7 @@ MonoBehaviour:
   RotationSpeedY: 1
   Target: {fileID: 8062756967244870014}
   Player: {fileID: 8062756966951125821}
+  rayWeapon: {fileID: 0}
 --- !u!1 &8062756966950903473
 GameObject:
   m_ObjectHideFlags: 0
@@ -3470,7 +3471,7 @@ GameObject:
   - component: {fileID: 1860515501685218650}
   - component: {fileID: 785008808}
   - component: {fileID: 785008809}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
