@@ -28,6 +28,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press(behavior=1)"
+                },
+                {
+                    "name": "CameraV",
+                    "type": "Value",
+                    "id": "7463985f-a60a-4a42-8f95-34a25c93f102",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "CameraH",
+                    "type": "Value",
+                    "id": "d33e5a20-154d-45c6-a27b-0e9378d191aa",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -61,6 +77,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "JumpRelease",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "08efab49-b8bc-4f3b-8c7c-c5d8c11d1c84",
+                    "path": "<HID::Logitech Logitech Dual Action>/rz",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraV",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "81243efd-0a09-4df5-a6f1-db7b22e6fafa",
+                    "path": "<HID::Logitech Logitech Dual Action>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraH",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

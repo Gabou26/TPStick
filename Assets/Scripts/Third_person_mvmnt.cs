@@ -145,6 +145,14 @@ public class Third_person_mvmnt : MonoBehaviour
         jumped = false;
     }
 
+    public void OnCameraH(InputValue value) {
+        cameraController.OnCameraH(value);
+    }
+
+    public void OnCameraV(InputValue value) {
+        cameraController.OnCameraV(value);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("A");
