@@ -35,6 +35,10 @@ public class Third_person_mvmnt : MonoBehaviour
     Vector2 i_movement = Vector2.zero;
     bool jumped = false;
 
+    //Test Ragdoll
+    public GameObject weapon;
+    public bool modeBot = false;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -43,6 +47,7 @@ public class Third_person_mvmnt : MonoBehaviour
         cameraController = cam.GetComponent<TPCamController>();
         initialisePlayerProperties();
         dead = false;
+        weapon.SetActive(!dead);
     }
 
     // Update is called once per frame
