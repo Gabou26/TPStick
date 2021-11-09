@@ -14,6 +14,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "MoveKey",
+                    "type": "Value",
+                    "id": "0dfc6118-e7ed-4104-ac81-5590ba4d1437",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "JumpPress",
                     "type": "Button",
                     "id": "f84f58ca-80ba-437c-b08c-2563e2a56e75",
@@ -46,34 +54,31 @@
                     "interactions": ""
                 },
                 {
-                    "name": "MoveKey",
-                    "type": "Value",
-                    "id": "0dfc6118-e7ed-4104-ac81-5590ba4d1437",
-                    "expectedControlType": "Vector2",
+                    "name": "FirePress",
+                    "type": "Button",
+                    "id": "bc537706-909a-49e8-8c26-08b5790ffb4d",
+                    "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 },
                 {
-                    "name": "CameraVKey",
-                    "type": "Value",
-                    "id": "e1e70a1e-3508-4b91-8d6d-6eaa8b021219",
-                    "expectedControlType": "Axis",
+                    "name": "FireRelease",
+                    "type": "Button",
+                    "id": "78406958-f2b3-4341-a265-7acd1dad95e3",
+                    "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press(behavior=1)"
+                },
+                {
+                    "name": "Ragdoll",
+                    "type": "Button",
+                    "id": "0e8e056b-6fb7-45e4-8b07-acdde1b65c3d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "d72f6097-8bcc-4ec0-8d92-7185d2f5bd6b",
-                    "path": "<Joystick>/stick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Logitech",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "1f901801-5c05-42cb-a2e1-23acf4e969e6",
@@ -82,17 +87,6 @@
                     "processors": "",
                     "groups": "Controller",
                     "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "588a86b3-2bd6-4e6f-8b30-d57ec9ca6251",
-                    "path": "<HID::Logitech Logitech Dual Action>/button2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Logitech",
-                    "action": "JumpPress",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -120,17 +114,6 @@
                 },
                 {
                     "name": "",
-                    "id": "f54991b9-0d1a-45fb-8324-8e01535b1d8f",
-                    "path": "<HID::Logitech Logitech Dual Action>/button2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Logitech",
-                    "action": "JumpRelease",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "705dd889-fe12-43fc-a184-75a3218cd39b",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -153,17 +136,6 @@
                 },
                 {
                     "name": "",
-                    "id": "08efab49-b8bc-4f3b-8c7c-c5d8c11d1c84",
-                    "path": "<HID::Logitech Logitech Dual Action>/rz",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Logitech",
-                    "action": "CameraV",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "24514b9e-ab5a-4727-87c3-7ff4e6c614a4",
                     "path": "<Mouse>/delta/y",
                     "interactions": "",
@@ -181,17 +153,6 @@
                     "processors": "",
                     "groups": "Controller",
                     "action": "CameraV",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "81243efd-0a09-4df5-a6f1-db7b22e6fafa",
-                    "path": "<HID::Logitech Logitech Dual Action>/z",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Logitech",
-                    "action": "CameraH",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -326,16 +287,77 @@
                     "action": "MoveKey",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "7e8d70bd-0c86-44a1-a76d-2046dbeafdd8",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "FirePress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5bd1b0e5-fd3a-4306-8bbf-1c0ef91da3de",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "FirePress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ef1e6718-bbb0-4362-a43b-4c49ff117ffb",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "FireRelease",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e9de3105-33dd-4f1c-bfcd-51c3a452255d",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "FireRelease",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e14dafee-4758-48cd-b14b-37a55be088ac",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Ragdoll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "969b1827-4d39-46c5-8eec-55d399878a39",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Ragdoll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
     ],
     "controlSchemes": [
-        {
-            "name": "Logitech",
-            "bindingGroup": "Logitech",
-            "devices": []
-        },
         {
             "name": "Keyboard",
             "bindingGroup": "Keyboard",

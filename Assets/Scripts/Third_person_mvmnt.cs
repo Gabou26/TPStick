@@ -23,6 +23,7 @@ public class Third_person_mvmnt : MonoBehaviour
     private CharacterController charController;
     private CapsuleCollider capsCollider;
     public bool dead;
+    private bool ragdoll = false;
     TPCamController cameraController;
 
     Vector2 i_movement = Vector2.zero;
@@ -44,7 +45,7 @@ public class Third_person_mvmnt : MonoBehaviour
         //float horizontalTEMP = Input.GetAxisRaw("Horizontal");
         //float verticalTEMP = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown("left ctrl"))
+        if (ragdoll)
         {
             charController.enabled = !charController.enabled;
             capsCollider.enabled = !capsCollider.enabled;
@@ -60,6 +61,7 @@ public class Third_person_mvmnt : MonoBehaviour
             {
                 cameraController.CamFocus = cameraController.Target;
             }
+            ragdoll = false;
         }
 
         if (dead)
@@ -210,6 +212,10 @@ public class Third_person_mvmnt : MonoBehaviour
 
     public void OnCameraV(InputValue value) {
         cameraController.OnCameraV(value);
+    }
+
+    public void OnRagdoll() {
+        ragdoll = !ragdoll;
     }
 
     private void OnTriggerEnter(Collider other)
