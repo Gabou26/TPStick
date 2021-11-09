@@ -17,8 +17,7 @@ public class SpawnCrates : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        min = 1.0f;
+        min = 1.0f; //Interval dans lequel une boîte tombe
         max = 10.0f;
         Invoke("SpawnBoxes", Random.Range(min,max));
     }
