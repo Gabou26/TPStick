@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class UIHealth : MonoBehaviour
 {
     private Slider slider;
-    private Color fullHealthColor = new Color(0.16f, 0.6f, 0.25f);
-    private Color lowHealthColor = new Color(0.67f, 0.24f, 0.21f);
-    private GameObject fillBar;
+    private Color fullHealthColor = new Color(0.33f, 1f, 0.25f);
+    private Color lowHealthColor = new Color(1f, 0.24f, 0.33f);
+    public GameObject fillBar;
 
     private void Start()
     {
@@ -19,11 +19,12 @@ public class UIHealth : MonoBehaviour
     {
         slider.maxValue = maxHealth;
         slider.value = health;
+        fillBar.GetComponent<Image>().color = Color.Lerp(lowHealthColor, fullHealthColor, slider.value / slider.maxValue);
     }
 
     public void SetHealth(float health)
     {
-        //slider.value = health;
-        //fillBar.GetComponent<Image>().color = Color.Lerp(lowHealthColor, fullHealthColor, slider.value / slider.maxValue);
+        slider.value = health;
+        fillBar.GetComponent<Image>().color = Color.Lerp(lowHealthColor, fullHealthColor, slider.value / slider.maxValue);
     }
 }
