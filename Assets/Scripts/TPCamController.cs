@@ -30,8 +30,8 @@ public class TPCamController : MonoBehaviour
 
     void CamControl()
     {
-        mousex += Input.GetAxis("Mouse X") * RotationSpeedX;
-        mousey -= Input.GetAxis("Mouse Y") * RotationSpeedY;
+        //mousex += Input.GetAxis("Mouse X") * RotationSpeedX;
+        //mousey -= Input.GetAxis("Mouse Y") * RotationSpeedY;
         mousex += horizontal * RotationSpeedX;
         mousey += vertical * RotationSpeedY;
         mousey = Mathf.Clamp(mousey, -60, 60);
