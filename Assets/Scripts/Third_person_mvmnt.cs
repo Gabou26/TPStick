@@ -31,6 +31,7 @@ public class Third_person_mvmnt : MonoBehaviour
 
     private void Start()
     {
+        respawnPoint = GameObject.Find("RespawnCube").transform; // Peut être changer ça car trop sale
         animator = GetComponent<Animator>();
         charController = GetComponent<CharacterController>();
         capsCollider = GetComponent<CapsuleCollider>();
@@ -220,7 +221,6 @@ public class Third_person_mvmnt : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("A");
         if (other.CompareTag("Respawn"))
         {
             Transform location = respawnPoint.transform;
