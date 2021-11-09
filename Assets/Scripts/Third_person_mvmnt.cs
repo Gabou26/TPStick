@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class Third_person_mvmnt : MonoBehaviour
 {
@@ -21,13 +22,18 @@ public class Third_person_mvmnt : MonoBehaviour
     private Animator animator;
     private CharacterController charController;
     private CapsuleCollider capsCollider;
-    private bool dead;
+    public bool dead;
+    TPCamController cameraController;
+
+    Vector2 i_movement = Vector2.zero;
+    bool jumped = false;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         charController = GetComponent<CharacterController>();
         capsCollider = GetComponent<CapsuleCollider>();
+        cameraController = cam.GetComponent<TPCamController>();
         dead = false;
     }
 
@@ -40,11 +46,57 @@ public class Third_person_mvmnt : MonoBehaviour
             capsCollider.enabled = !capsCollider.enabled;
             animator.enabled = !animator.enabled;
             dead = !dead;
+            cameraController.deadChar = dead;
+
+            if(dead)
+            {
+                cameraController.CamFocus = cameraController.RagdollTarget;
+            }
+            else
+            {
+                cameraController.CamFocus = cameraController.Target;
+            }
         }
 
-        if (dead) return;
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        if (dead)
+        {
+
+            return;
+        }
+        float horizontal = i_movement.x;
+        float vertical = i_movement.y;
+
+        if(vertical > 0)
+        {
+            animator.SetBool("IsRunning", true);
+            animator.SetBool("IsBacking", false);
+        }
+        else if(vertical < 0)
+        {
+            animator.SetBool("IsBacking", true);
+            animator.SetBool("IsRunning", false);
+        }
+        else
+        {
+            animator.SetBool("IsRunning", false);
+            animator.SetBool("IsBacking", false);
+        }
+
+        if (horizontal > 0)
+        {
+            animator.SetBool("IsRight", true);
+            animator.SetBool("IsLeft", false);
+        }
+        else if (horizontal < 0)
+        {
+            animator.SetBool("IsLeft", true);
+            animator.SetBool("IsRight", false);
+        }
+        else
+        {
+            animator.SetBool("IsRight", false);
+            animator.SetBool("IsLeft", false);
+        }
 
 
         //Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
@@ -56,14 +108,12 @@ public class Third_person_mvmnt : MonoBehaviour
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            
-            
         }
 
 
         if (controller.isGrounded)
         {
-            if (Input.GetButton("Jump"))
+            if (jumped)
             {
                 yvelocity = jumpForce;
                 //Invoke("stopVelocity", 0.6f);
@@ -77,14 +127,35 @@ public class Third_person_mvmnt : MonoBehaviour
 
         direction.y = yvelocity;
         
-        //ceci enlève le jitter du saut
+        //ceci enlï¿½ve le jitter du saut
         transform.position += direction * Time.deltaTime;
         //controller.Move(direction * Time.deltaTime);
 
     }
 
+    public void OnMove(InputValue value) {
+        i_movement = value.Get<Vector2>();
+    }
+
+    public void OnJumpPress(InputValue value) {
+        jumped = true;
+    }
+
+    public void OnJumpRelease(InputValue value) {
+        jumped = false;
+    }
+
+    public void OnCameraH(InputValue value) {
+        cameraController.OnCameraH(value);
+    }
+
+    public void OnCameraV(InputValue value) {
+        cameraController.OnCameraV(value);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("A");
         if (other.CompareTag("Respawn"))
         {
             Transform location = respawnPoint.transform;

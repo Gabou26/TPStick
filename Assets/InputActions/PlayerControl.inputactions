@@ -1,0 +1,109 @@
+{
+    "name": "PlayerControl",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "bcfbd212-5295-4507-9f48-b4d05b46c7a1",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "aa3aeee5-624e-4fd8-ab94-4d419b896012",
+                    "expectedControlType": "Stick",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "JumpPress",
+                    "type": "Button",
+                    "id": "f84f58ca-80ba-437c-b08c-2563e2a56e75",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "JumpRelease",
+                    "type": "Button",
+                    "id": "65cb0aa8-e8e6-431c-a812-ee9e9e62505a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)"
+                },
+                {
+                    "name": "CameraV",
+                    "type": "Value",
+                    "id": "7463985f-a60a-4a42-8f95-34a25c93f102",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "CameraH",
+                    "type": "Value",
+                    "id": "d33e5a20-154d-45c6-a27b-0e9378d191aa",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d72f6097-8bcc-4ec0-8d92-7185d2f5bd6b",
+                    "path": "<Joystick>/stick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "588a86b3-2bd6-4e6f-8b30-d57ec9ca6251",
+                    "path": "<HID::Logitech Logitech Dual Action>/button2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JumpPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f54991b9-0d1a-45fb-8324-8e01535b1d8f",
+                    "path": "<HID::Logitech Logitech Dual Action>/button2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JumpRelease",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "08efab49-b8bc-4f3b-8c7c-c5d8c11d1c84",
+                    "path": "<HID::Logitech Logitech Dual Action>/rz",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraV",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "81243efd-0a09-4df5-a6f1-db7b22e6fafa",
+                    "path": "<HID::Logitech Logitech Dual Action>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraH",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
