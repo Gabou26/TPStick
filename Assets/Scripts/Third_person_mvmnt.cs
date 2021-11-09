@@ -137,6 +137,10 @@ public class Third_person_mvmnt : MonoBehaviour
         i_movement = value.Get<Vector2>();
     }
 
+    public void OnMoveKey(InputValue value) {
+        i_movement = value.Get<Vector2>();
+    }
+
     public void OnJumpPress(InputValue value) {
         jumped = true;
     }
@@ -151,6 +155,10 @@ public class Third_person_mvmnt : MonoBehaviour
 
     public void OnCameraV(InputValue value) {
         cameraController.OnCameraV(value);
+    }
+
+    public void OnCameraVKey(InputValue value) {
+        cameraController.OnCameraVKey(value);
     }
 
     private void OnTriggerEnter(Collider other)
