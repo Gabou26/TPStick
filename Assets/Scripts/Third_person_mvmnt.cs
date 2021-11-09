@@ -22,6 +22,9 @@ public class Third_person_mvmnt : MonoBehaviour
     private CharacterController charController;
     private CapsuleCollider capsCollider;
     public bool dead;
+    private bool hasPower;
+    private float powerUpTimer;
+    private float powerUpEffectTime;
     TPCamController cameraController;
 
     private void Start()
@@ -31,11 +34,18 @@ public class Third_person_mvmnt : MonoBehaviour
         capsCollider = GetComponent<CapsuleCollider>();
         cameraController = cam.GetComponent<TPCamController>();
         dead = false;
+        hasPower = false;
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        if(hasPower == true){
+            powerUpTimer += Time.deltaTime;
+            if(powerUpTimer > powerUpEffectTime){
+                initialisePlayerProperties();
+            }
+        }
         if (Input.GetKeyDown("left ctrl"))
         {
             charController.enabled = !charController.enabled;
@@ -149,11 +159,27 @@ public class Third_person_mvmnt : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "MisteryBox"){
+            //initialisePlayerProperties(); // Delete all power up already in place
             Destroy(collision.gameObject);
             var nbPower = listMisteryPower.Count;
             var randomPower = listMisteryPower[Random.Range(0,nbPower)];
-            yvelocity *= 2;        
+            activePower(randomPower);
         }
-        
+    }
+
+    void activePower(string powerName){
+        powerUpTimer = 0;
+        hasPower = true;
+        powerUpEffectTime = 10f; // A choisir si l'onn souhaite accumuler le temps des effets (+=) ou bien le réinitialiser (=)
+        if(powerName == "SpeedUp"){
+            speed = 30f;
+        }
+        else{
+            speed = 20f;
+        }
+    }
+    void initialisePlayerProperties(){
+        speed = 6f;
+        hasPower = false;
     }
 }
