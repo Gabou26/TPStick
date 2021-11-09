@@ -23,6 +23,9 @@ public class Third_person_mvmnt : MonoBehaviour
     private CapsuleCollider capsCollider;
     public bool dead;
     private bool hasPower;
+    private float speedPower;
+    private float armorPower;
+    private float attackPower;
     private float powerUpTimer;
     private float powerUpEffectTime;
     TPCamController cameraController;
@@ -35,6 +38,9 @@ public class Third_person_mvmnt : MonoBehaviour
         cameraController = cam.GetComponent<TPCamController>();
         dead = false;
         hasPower = false;
+        speedPower = 0.0f;
+        armorPower = 0.0f;
+        attackPower = 0.0f;
     }
 
     // Update is called once per frame
@@ -107,7 +113,7 @@ public class Third_person_mvmnt : MonoBehaviour
         //Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
         Vector3 direction = (cam.forward * vertical) + (cam.right * horizontal); 
         direction.Normalize();
-        direction = direction * speed;
+        direction = direction * (speed + speedPower);
         if (direction.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
@@ -172,35 +178,35 @@ public class Third_person_mvmnt : MonoBehaviour
         hasPower = true;
         powerUpEffectTime = 10f; // A choisir si l'onn souhaite accumuler le temps des effets (+=) ou bien le réinitialiser (=)
         if(powerName == "SpeedUp"){
-            speed = 30f;
+            speedPower = 30f;
         }
         else if(powerName == "SpeedDown"){
-            speed = 20f;
+            speedPower = 20f;
         }
         else if(powerName == "SpeedDown"){
-            speed = 20f;
+            speedPower = 20f;
         }
         else if(powerName == "ArmorUp"){
-            speed = 20f;
+            speedPower = 20f;
         }
         else if(powerName == "ArmorDown"){
-            speed = 20f;
+            speedPower = 20f;
         }
         else if(powerName == "AttackUp"){
-            speed = 20f;
+            speedPower = -10f;
         }
         else if(powerName == "AttackDown"){
-            speed = 20f;
+            speedPower = -10f;
         }
         else if(powerName == "changeGuns"){
-            speed = 20f;
+            speedPower = -10f;
         }
         else{
-            speed = 6f;
+            speedPower = 0f;
         }
     }
     void initialisePlayerProperties(){
-        speed = 6f;
+        speedPower = 0f;
         hasPower = false;
     }
 }
