@@ -23,23 +23,36 @@ public class Third_person_mvmnt : MonoBehaviour
     private CapsuleCollider capsCollider;
     private bool dead;
 
+    //Test Ragdoll
+    public GameObject weapon;
+    public bool modeBot = false;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
         charController = GetComponent<CharacterController>();
-        capsCollider = GetComponent<CapsuleCollider>();
+        //capsCollider = GetComponent<CapsuleCollider>();
         dead = false;
+    }
+
+    public void Ragdoll()
+    {
+        charController.enabled = !charController.enabled;
+        //capsCollider.enabled = !capsCollider.enabled;
+        animator.enabled = !animator.enabled;
+        dead = !dead;
+        weapon.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (modeBot)
+            return;
+
         if (Input.GetKeyDown("left ctrl"))
         {
-            charController.enabled = !charController.enabled;
-            capsCollider.enabled = !capsCollider.enabled;
-            animator.enabled = !animator.enabled;
-            dead = !dead;
+            Ragdoll();
         }
 
         if (dead) return;

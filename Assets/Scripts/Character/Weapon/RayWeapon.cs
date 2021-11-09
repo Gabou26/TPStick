@@ -11,7 +11,7 @@ public class RayWeapon : MonoBehaviour
     public Transform rayOrigin;
     public Transform raycastAimTarget;
 
-    //Raycast
+    //Raycast of Weapon
     Ray ray;
     RaycastHit hit;
 
@@ -34,7 +34,11 @@ public class RayWeapon : MonoBehaviour
         {
             //Debug.DrawLine(ray.origin, hit.point, Color.yellow, 1.0f);
             if (hit.transform.gameObject.layer == 3)
-                hit.transform.GetComponent<HealthBar>().TakeDamage(player, 12);
+            {
+                HealthBar bar = hit.transform.GetComponent<HealthBar>();
+                if (hit.transform.GetComponent<HealthBar>())
+                    bar.TakeDamage(player, 12);
+            }
 
 
             hitEffect.transform.position = hit.point;
