@@ -8,6 +8,8 @@ public class TPCamController : MonoBehaviour
     public float RotationSpeedX = 1;
     public float RotationSpeedY = 1;
     public Transform Target, Player, RagdollTarget;
+    public RayWeapon rayWeapon;
+
     public Transform CamFocus;
     float mousex, mousey;
     float horizontal = 0f;
@@ -26,6 +28,11 @@ public class TPCamController : MonoBehaviour
     private void LateUpdate()
     {
         CamControl();
+        rayWeapon.StartFiring();
+        if (Input.GetButtonDown("Fire1"))
+            rayWeapon.StartFiring();
+        else if (Input.GetButtonUp("Fire1"))
+            rayWeapon.StopFiring();
     }
 
     void CamControl()

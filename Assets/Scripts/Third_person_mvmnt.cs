@@ -29,6 +29,10 @@ public class Third_person_mvmnt : MonoBehaviour
     Vector2 i_movement = Vector2.zero;
     bool jumped = false;
 
+    //Test Ragdoll
+    public GameObject weapon;
+    public bool modeBot = false;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -36,6 +40,7 @@ public class Third_person_mvmnt : MonoBehaviour
         capsCollider = GetComponent<CapsuleCollider>();
         cameraController = cam.GetComponent<TPCamController>();
         dead = false;
+        weapon.SetActive(!dead);
     }
 
     // Update is called once per frame
@@ -238,7 +243,9 @@ public class Third_person_mvmnt : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        print("S");
         if(collision.gameObject.tag == "MisteryBox"){
+            print("B");
             Destroy(collision.gameObject);
             var nbPower = listMisteryPower.Count;
             var randomPower = listMisteryPower[Random.Range(0,nbPower)];
