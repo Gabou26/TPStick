@@ -8,6 +8,9 @@ public class TPCamController : MonoBehaviour
     public float RotationSpeedY = 1;
     public Transform Target, Player;
     public RayWeapon rayWeapon;
+
+    public Transform refCamPos;
+    public float decalageCam = 0f;
     float mousex, mousey;
 
     // Start is called before the first frame update
@@ -34,6 +37,7 @@ public class TPCamController : MonoBehaviour
 
         Vector3 rotTarget = Target.rotation.eulerAngles;
         transform.LookAt(Target);
+        transform.position = refCamPos.position + refCamPos.right * decalageCam;
         Target.rotation = Quaternion.Euler(mousey, rotTarget.y, 0);
         Player.rotation = Quaternion.Euler(0, mousex, 0);
     }

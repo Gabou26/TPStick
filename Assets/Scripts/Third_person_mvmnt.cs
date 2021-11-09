@@ -41,7 +41,7 @@ public class Third_person_mvmnt : MonoBehaviour
         //capsCollider.enabled = !capsCollider.enabled;
         animator.enabled = !animator.enabled;
         dead = !dead;
-        weapon.SetActive(false);
+        weapon.SetActive(!weapon.activeSelf);
     }
 
     // Update is called once per frame
