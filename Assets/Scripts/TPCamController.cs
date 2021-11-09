@@ -47,4 +47,8 @@ public class TPCamController : MonoBehaviour
         vertical = value.Get<float>();
     }
 
+    public void OnCameraVKey(InputValue value) {
+        vertical = -value.Get<float>();
+    }
+
 }
