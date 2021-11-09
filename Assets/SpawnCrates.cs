@@ -7,15 +7,17 @@ public class SpawnCrates : MonoBehaviour
     public Material cubeMat;
     private Material cubeMaterial;
     private int nbMaterial;
-    public List<Material> unityGameObjects = new List<Material>();
+    public List<Material> materialForMisteryBoxes = new List<Material>();
     [SerializeField] private Transform objectsSpawnZone;
     float min;
     float max;
+    public List<string> listMisteryPower = new List<string>(){"SpeedUp","SpeedDown","ArmorUp","ArmorDown","AttackUp","AttackDown","ChangeGuns"};
 
 
     // Start is called before the first frame update
     void Start()
     {
+
         min = 1.0f;
         max = 10.0f;
         Invoke("SpawnBoxes", Random.Range(min,max));
@@ -43,12 +45,18 @@ public class SpawnCrates : MonoBehaviour
         //Change o� va spawn ce cube
         //cube.transform.position = new Vector3(0, 0.5f, 0);
         cube.transform.position = spawnPoint;
-        nbMaterial = unityGameObjects.Count;
-        cubeMaterial = unityGameObjects[Random.Range(0,nbMaterial)];
+        nbMaterial = materialForMisteryBoxes.Count;
+        cubeMaterial = materialForMisteryBoxes[Random.Range(0,nbMaterial)];
         cube.GetComponent<Renderer>().material = cubeMaterial;
+        cube.tag = "MisteryBox";
+        /*
         cube.GetComponent<Rigidbody>().mass = 10000.0f;
         cube.GetComponent<Rigidbody>().isKinematic = false;
+        Collider collider = cube.GetComponent<BoxCollider>();
+        collider.enabled = true;
+        */
         Destroy(cube, 20.0f);
+        
         //StartCoroutine(ChangeMaterial(cube,0.1));
         //Invoke("ChangeMaterial", 0.1f);
         Invoke("SpawnBoxes", Random.Range(min,max));
@@ -56,14 +64,6 @@ public class SpawnCrates : MonoBehaviour
 
     void ChangeMaterial(GameObject cube,double delayTime){
 
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        foreach (ContactPoint contact in collision.contacts)
-        {
-            Debug.DrawRay(contact.point, contact.normal, Color.white);
-        }
     }
 
 }

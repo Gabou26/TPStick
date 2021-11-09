@@ -16,7 +16,7 @@ public class Third_person_mvmnt : MonoBehaviour
 
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
-
+    public List<string> listMisteryPower = new List<string>(){"SpeedUp","SpeedDown","ArmorUp","ArmorDown","AttackUp","AttackDown","ChangeGuns"};
     public Transform cam;
     private Animator animator;
     private CharacterController charController;
@@ -56,7 +56,6 @@ public class Third_person_mvmnt : MonoBehaviour
 
         if (dead)
         {
-
             return;
         }
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -123,7 +122,7 @@ public class Third_person_mvmnt : MonoBehaviour
 
         direction.y = yvelocity;
         
-        //ceci enlève le jitter du saut
+        //ceci enlï¿½ve le jitter du saut
         transform.position += direction * Time.deltaTime;
         //controller.Move(direction * Time.deltaTime);
 
@@ -145,5 +144,16 @@ public class Third_person_mvmnt : MonoBehaviour
     private void stopVelocity()
     {
         yvelocity = 0;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "MisteryBox"){
+            Destroy(collision.gameObject);
+            var nbPower = listMisteryPower.Count;
+            var randomPower = listMisteryPower[Random.Range(0,nbPower)];
+            yvelocity *= 2;        
+        }
+        
     }
 }
