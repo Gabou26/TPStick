@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class Third_person_mvmnt : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class Third_person_mvmnt : MonoBehaviour
     private CapsuleCollider capsCollider;
     public bool dead;
     TPCamController cameraController;
+
+    Vector2 i_movement = Vector2.zero;
+    bool jumped = false;
 
     private void Start()
     {
@@ -59,8 +63,8 @@ public class Third_person_mvmnt : MonoBehaviour
 
             return;
         }
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        float horizontal = i_movement.x;
+        float vertical = i_movement.y;
 
         if(vertical > 0)
         {
@@ -109,7 +113,7 @@ public class Third_person_mvmnt : MonoBehaviour
 
         if (controller.isGrounded)
         {
-            if (Input.GetButton("Jump"))
+            if (jumped)
             {
                 yvelocity = jumpForce;
                 //Invoke("stopVelocity", 0.6f);
@@ -127,6 +131,18 @@ public class Third_person_mvmnt : MonoBehaviour
         transform.position += direction * Time.deltaTime;
         //controller.Move(direction * Time.deltaTime);
 
+    }
+
+    public void OnMove(InputValue value) {
+        i_movement = value.Get<Vector2>();
+    }
+
+    public void OnJumpPress(InputValue value) {
+        jumped = true;
+    }
+
+    public void OnJumpRelease(InputValue value) {
+        jumped = false;
     }
 
     private void OnTriggerEnter(Collider other)

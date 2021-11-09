@@ -119,6 +119,47 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube
       objectReference: {fileID: 0}
+    - target: {fileID: 7723232927454327491, guid: dfefc4a681e0bcc42a6cf0f3b5375daf,
+        type: 3}
+      propertyPath: m_Actions
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: 7333fc57a70780b4ca28137a9c80e616,
+        type: 3}
+    - target: {fileID: 7723232927454327491, guid: dfefc4a681e0bcc42a6cf0f3b5375daf,
+        type: 3}
+      propertyPath: m_DefaultActionMap
+      value: Map
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723232927454327491, guid: dfefc4a681e0bcc42a6cf0f3b5375daf,
+        type: 3}
+      propertyPath: m_NotificationBehavior
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723232927454327491, guid: dfefc4a681e0bcc42a6cf0f3b5375daf,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723232927454327491, guid: dfefc4a681e0bcc42a6cf0f3b5375daf,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_ActionId
+      value: aa3aeee5-624e-4fd8-ab94-4d419b896012
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723232927454327491, guid: dfefc4a681e0bcc42a6cf0f3b5375daf,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_ActionId
+      value: f84f58ca-80ba-437c-b08c-2563e2a56e75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723232927454327491, guid: dfefc4a681e0bcc42a6cf0f3b5375daf,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_ActionName
+      value: Map/Move[/Logitech Logitech Dual Action/stick]
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723232927454327491, guid: dfefc4a681e0bcc42a6cf0f3b5375daf,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_ActionName
+      value: Map/Jump[/Keyboard/space]
+      objectReference: {fileID: 0}
     - target: {fileID: 7723232927454327495, guid: dfefc4a681e0bcc42a6cf0f3b5375daf,
         type: 3}
       propertyPath: m_RootOrder

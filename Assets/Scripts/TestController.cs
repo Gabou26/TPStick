@@ -26,8 +26,21 @@ public class TestController : MonoBehaviour
         transform.Translate(movement);
     }
 
-    private void OnMove(InputValue value)
-    {
-        i_movement = value.Get<Vector2>();
+    public void OnMove(InputValue value) {
+        Debug.Log("x : " + value.Get<Vector2>().x);
+        Debug.Log("y : " + value.Get<Vector2>().y);
     }
+
+    public void OnJump(InputValue value) {
+        Debug.Log("Saut : " + value.isPressed);
+    }
+
+    public void OnCameraH(InputValue value) {
+        Debug.Log("Horizontal : " + value.Get<float>());
+    }
+
+    public void OnCameraV(InputValue value) {
+        Debug.Log("Vertical : " + value.Get<float>());
+    }
+
 }
