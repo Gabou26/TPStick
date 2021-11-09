@@ -24798,6 +24798,7 @@ MonoBehaviour:
     type: 3}
   rayOrigin: {fileID: 265552979}
   raycastAimTarget: {fileID: 1728409947}
+  weaponDamage: 12
 --- !u!1 &2405158107832594319
 GameObject:
   m_ObjectHideFlags: 0
@@ -25107,8 +25108,10 @@ MonoBehaviour:
   RotationSpeedY: 1
   Target: {fileID: 8062756967244870014}
   Player: {fileID: 8062756966951125821}
+  RagdollTarget: {fileID: 0}
   rayWeapon: {fileID: 729025433}
-  refCamPos: {fileID: 762812191}
+  CamFocus: {fileID: 467015387}
+  deadChar: 0
 --- !u!1 &8062756966950903473
 GameObject:
   m_ObjectHideFlags: 0
@@ -27623,7 +27626,16 @@ MonoBehaviour:
   gravityScale: 1.5
   yvelocity: 0
   turnSmoothTime: 0.1
+  listMisteryPower:
+  - SpeedUp
+  - SpeedDown
+  - ArmorUp
+  - ArmorDown
+  - AttackUp
+  - AttackDown
+  - ChangeGuns
   cam: {fileID: 8062756966248942825}
+  dead: 0
   weapon: {fileID: 2142802014968769338}
   modeBot: 0
 --- !u!114 &1860515501685218650

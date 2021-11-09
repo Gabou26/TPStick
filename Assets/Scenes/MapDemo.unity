@@ -1228,6 +1228,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &717891326 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5952156914260917328, guid: d2fff9c55e34d214cbadddaefe4a6244,
+    type: 3}
+  m_PrefabInstance: {fileID: 998612281}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796bfb5ea6f18f44a24cbde7b1a8134, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &757179874 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100048, guid: e57e9b8cd5e115f4f8d7736473e5c7fd,
@@ -2000,6 +2012,12 @@ CapsuleCollider:
   m_Height: 2.5
   m_Direction: 1
   m_Center: {x: 0, y: 1.25, z: 0}
+--- !u!4 &1192410996 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 467015387, guid: 54ca8c846081fdd4aba80b9752ae855a,
+    type: 3}
+  m_PrefabInstance: {fileID: 2065664772}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1263402271
 GameObject:
   m_ObjectHideFlags: 0
@@ -2994,7 +3012,7 @@ PrefabInstance:
         type: 3}
       propertyPath: healthBar
       value: 
-      objectReference: {fileID: 1544620465}
+      objectReference: {fileID: 717891326}
     - target: {fileID: 8062756965960112283, guid: 54ca8c846081fdd4aba80b9752ae855a,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
@@ -3015,6 +3033,16 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: 0.11652322
       objectReference: {fileID: 0}
+    - target: {fileID: 8062756966248942824, guid: 54ca8c846081fdd4aba80b9752ae855a,
+        type: 3}
+      propertyPath: m_TargetDisplay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8062756966248942826, guid: 54ca8c846081fdd4aba80b9752ae855a,
+        type: 3}
+      propertyPath: CamFocus
+      value: 
+      objectReference: {fileID: 1192410996}
     - target: {fileID: 8062756966272410802, guid: 54ca8c846081fdd4aba80b9752ae855a,
         type: 3}
       propertyPath: m_ConnectedAnchor.y

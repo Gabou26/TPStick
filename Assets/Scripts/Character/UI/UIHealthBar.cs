@@ -23,7 +23,7 @@ public class UIHealthBar : MonoBehaviour
 
     public void SetHealth(float health)
     {
-        slider.value = health;
-        fillBar.GetComponent<Image>().color = Color.Lerp(lowHealthColor, fullHealthColor, slider.value / slider.maxValue);
+        //slider.value = health;
+        //fillBar.GetComponent<Image>().color = Color.Lerp(lowHealthColor, fullHealthColor, slider.value / slider.maxValue);
     }
 }

@@ -32,7 +32,7 @@ public class HealthBar : MonoBehaviour
     public virtual void Death(GameObject killer)
     {
         print("Death!");
-        //GetComponent<Third_person_mvmnt>().Ragdoll();
+        GetComponent<Third_person_mvmnt>().Ragdoll();
     }
 
     public void Recover(int iteration)
