@@ -39,9 +39,6 @@ public class RayWeapon : MonoBehaviour
             if (hit.transform.gameObject.layer == 3)
             {
                 HealthBar bar = hit.transform.GetComponent<HealthBar>();
-                print(player);
-                print(bar);
-                print(weaponDamage);
                 if (player.activeSelf && bar)
                     bar.TakeDamage(player, weaponDamage);
             }

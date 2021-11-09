@@ -253,9 +253,7 @@ public class Third_person_mvmnt : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        print("S");
         if(collision.gameObject.tag == "MisteryBox"){
-            print("B");
             Destroy(collision.gameObject);
             var nbPower = listMisteryPower.Count;
             var randomPower = listMisteryPower[Random.Range(0,nbPower)];

@@ -197,7 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3432911676661127620}
   - component: {fileID: 3432911676661127621}
-  - component: {fileID: -6962454954868834350}
+  - component: {fileID: 891464533804189221}
   m_Layer: 5
   m_Name: BarreVies
   m_TagString: Untagged
@@ -277,7 +277,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &-6962454954868834350
+--- !u!114 &891464533804189221
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3432911676661127623}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d796bfb5ea6f18f44a24cbde7b1a8134, type: 3}
+  m_Script: {fileID: 11500000, guid: 28a85c7200557ce45af27c3dfd2cb20b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3432911676938336392

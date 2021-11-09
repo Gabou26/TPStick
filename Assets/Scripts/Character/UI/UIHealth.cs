@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIHealthBar : MonoBehaviour
+public class UIHealth : MonoBehaviour
 {
     private Slider slider;
     private Color fullHealthColor = new Color(0.16f, 0.6f, 0.25f);
     private Color lowHealthColor = new Color(0.67f, 0.24f, 0.21f);
     private GameObject fillBar;
 
-    private void Awake()
+    private void Start()
     {
-        slider = GetComponentInChildren<Slider>();
+        slider = GetComponent<Slider>();
     }
 
     public void SetMaxHealth(int maxHealth, float health)
