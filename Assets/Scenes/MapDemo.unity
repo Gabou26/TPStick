@@ -211,7 +211,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3365647}
   m_LocalRotation: {x: 0.08855574, y: -0.000000011575845, z: 8.516083e-10, w: 0.9960712}
-  m_LocalPosition: {x: -0.14, y: 12.162023, z: -73.285095}
+  m_LocalPosition: {x: 0, y: 12.162023, z: -73.285095}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 1527303279}
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cbb616d47ff8ee34688e1cbce904acfb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 63e6d9c5a2144674a86982e0abadc1ff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1855,7 +1855,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1539801308}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44663be5fdddbc54ab88d39453768929, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e9ea2129d3276241a116131d4b8df52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 1539801310}
@@ -1888,7 +1888,7 @@ Transform:
   m_GameObject: {fileID: 1565517443}
   m_LocalRotation: {x: -0.00000008940696, y: -0.00000008940696, z: 0.000000059604638,
     w: 1}
-  m_LocalPosition: {x: 0.01, y: 2.79, z: 0.041999817}
+  m_LocalPosition: {x: 1, y: 2.79, z: 0.041999817}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 3365651}
