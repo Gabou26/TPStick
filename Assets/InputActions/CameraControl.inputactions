@@ -1,0 +1,52 @@
+{
+    "name": "CameraControl",
+    "maps": [
+        {
+            "name": "Cam",
+            "id": "7c02b2b8-e3fc-4a16-ae9a-31e57075f76b",
+            "actions": [
+                {
+                    "name": "CameraV",
+                    "type": "Value",
+                    "id": "2e1b5c87-33ff-4dc9-b6eb-b00a975118ce",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "CameraH",
+                    "type": "Value",
+                    "id": "0e71049f-d3df-486f-8d3e-7292c8624cd0",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "110ec2ef-ce21-47c5-9312-48a745cd4700",
+                    "path": "<HID::Logitech Logitech Dual Action>/rz",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraV",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "32df5665-2bf0-4c20-9a94-c847ea12770d",
+                    "path": "<HID::Logitech Logitech Dual Action>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraH",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
