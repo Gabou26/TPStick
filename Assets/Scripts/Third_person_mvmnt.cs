@@ -41,11 +41,8 @@ public class Third_person_mvmnt : MonoBehaviour
         charController = GetComponent<CharacterController>();
         capsCollider = GetComponent<CapsuleCollider>();
         cameraController = cam.GetComponent<TPCamController>();
+        initialisePlayerProperties();
         dead = false;
-        hasPower = false;
-        speedPower = 0.0f;
-        armorPower = 0.0f;
-        attackPower = 0.0f;
     }
 
     // Update is called once per frame
@@ -62,6 +59,7 @@ public class Third_person_mvmnt : MonoBehaviour
         }
         if (ragdoll)
         {
+            initialisePlayerProperties();
             charController.enabled = !charController.enabled;
             capsCollider.enabled = !capsCollider.enabled;
             animator.enabled = !animator.enabled;
@@ -238,6 +236,7 @@ public class Third_person_mvmnt : MonoBehaviour
         Debug.Log("A");
         if (other.CompareTag("Respawn"))
         {
+            initialisePlayerProperties();
             Transform location = respawnPoint.transform;
             float rangex = Random.Range(-(location.localScale.x / 2), location.localScale.x / 2);
             float rangez = Random.Range(-(location.localScale.z / 2), location.localScale.z / 2);
@@ -296,7 +295,9 @@ public class Third_person_mvmnt : MonoBehaviour
         }
     }
     void initialisePlayerProperties(){
-        speedPower = 0f;
         hasPower = false;
+        speedPower = 0.0f;
+        armorPower = 0.0f;
+        attackPower = 0.0f;
     }
 }
