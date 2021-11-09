@@ -10,7 +10,7 @@ public class UIHealth : MonoBehaviour
     private Color lowHealthColor = new Color(1f, 0.24f, 0.33f);
     public GameObject fillBar;
 
-    private void Start()
+    private void Awake()
     {
         slider = GetComponent<Slider>();
     }
