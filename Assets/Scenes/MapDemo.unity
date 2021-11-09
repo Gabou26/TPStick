@@ -1228,6 +1228,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &717891326 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4730245752612734375, guid: d2fff9c55e34d214cbadddaefe4a6244,
+    type: 3}
+  m_PrefabInstance: {fileID: 998612281}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28a85c7200557ce45af27c3dfd2cb20b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &757179874 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100048, guid: e57e9b8cd5e115f4f8d7736473e5c7fd,
@@ -1321,7 +1333,7 @@ PrefabInstance:
         type: 3}
       propertyPath: healthBar
       value: 
-      objectReference: {fileID: 1544620465}
+      objectReference: {fileID: 774544945}
     - target: {fileID: 8062756966826134310, guid: 54ca8c846081fdd4aba80b9752ae855a,
         type: 3}
       propertyPath: respawnPoint
@@ -1399,6 +1411,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54ca8c846081fdd4aba80b9752ae855a, type: 3}
+--- !u!114 &774544945 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7926638295720812910, guid: d2fff9c55e34d214cbadddaefe4a6244,
+    type: 3}
+  m_PrefabInstance: {fileID: 998612281}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28a85c7200557ce45af27c3dfd2cb20b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &785108597
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1810,6 +1834,21 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7088118038405852006, guid: d2fff9c55e34d214cbadddaefe4a6244,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.25098038
+      objectReference: {fileID: 0}
+    - target: {fileID: 7088118038405852006, guid: d2fff9c55e34d214cbadddaefe4a6244,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7088118038405852006, guid: d2fff9c55e34d214cbadddaefe4a6244,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.26455024
+      objectReference: {fileID: 0}
     - target: {fileID: 7088118038773832262, guid: d2fff9c55e34d214cbadddaefe4a6244,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2000,6 +2039,12 @@ CapsuleCollider:
   m_Height: 2.5
   m_Direction: 1
   m_Center: {x: 0, y: 1.25, z: 0}
+--- !u!4 &1192410996 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 467015387, guid: 54ca8c846081fdd4aba80b9752ae855a,
+    type: 3}
+  m_PrefabInstance: {fileID: 2065664772}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1263402271
 GameObject:
   m_ObjectHideFlags: 0
@@ -2502,18 +2547,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 1539801310}
   timeLimit: 20
---- !u!114 &1544620465 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9024767071783884953, guid: d2fff9c55e34d214cbadddaefe4a6244,
-    type: 3}
-  m_PrefabInstance: {fileID: 998612281}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d796bfb5ea6f18f44a24cbde7b1a8134, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1565517443
 GameObject:
   m_ObjectHideFlags: 0
@@ -2994,7 +3027,7 @@ PrefabInstance:
         type: 3}
       propertyPath: healthBar
       value: 
-      objectReference: {fileID: 1544620465}
+      objectReference: {fileID: 717891326}
     - target: {fileID: 8062756965960112283, guid: 54ca8c846081fdd4aba80b9752ae855a,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
@@ -3015,6 +3048,16 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: 0.11652322
       objectReference: {fileID: 0}
+    - target: {fileID: 8062756966248942824, guid: 54ca8c846081fdd4aba80b9752ae855a,
+        type: 3}
+      propertyPath: m_TargetDisplay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8062756966248942826, guid: 54ca8c846081fdd4aba80b9752ae855a,
+        type: 3}
+      propertyPath: CamFocus
+      value: 
+      objectReference: {fileID: 1192410996}
     - target: {fileID: 8062756966272410802, guid: 54ca8c846081fdd4aba80b9752ae855a,
         type: 3}
       propertyPath: m_ConnectedAnchor.y

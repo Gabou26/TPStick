@@ -50,9 +50,23 @@ public class Third_person_mvmnt : MonoBehaviour
         weapon.SetActive(!dead);
     }
 
+    public void Ragdoll()
+    {
+        charController.enabled = !charController.enabled;
+        capsCollider.enabled = !capsCollider.enabled;
+        animator.enabled = !animator.enabled;
+        dead = !dead;
+        weapon.SetActive(!dead);
+        cameraController.deadChar = dead;
+    }
+
+
     // Update is called once per frame
     void Update()
     {
+        if (modeBot) //Teste avec un bot joueur (en solo)
+            return;
+
         //TEMP keyboard movement
         //float horizontalTEMP = Input.GetAxisRaw("Horizontal");
         //float verticalTEMP = Input.GetAxisRaw("Vertical");
@@ -70,8 +84,9 @@ public class Third_person_mvmnt : MonoBehaviour
             animator.enabled = !animator.enabled;
             dead = !dead;
             cameraController.deadChar = dead;
+            Ragdoll();
 
-            if(dead)
+            if (dead)
             {
                 cameraController.CamFocus = cameraController.RagdollTarget;
             }
@@ -259,7 +274,6 @@ public class Third_person_mvmnt : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "MisteryBox"){
-            //initialisePlayerProperties(); // Delete all power up already in place
             Destroy(collision.gameObject);
             var nbPower = listMisteryPower.Count;
             var randomPower = listMisteryPower[Random.Range(0,nbPower)];
