@@ -30,6 +30,7 @@ public class TimerDisplay : MonoBehaviour
         {
           this.timeLimit -= Time.deltaTime;
           
+            //formatter ajouter un 0 aux dizaines lorsqu'il ne reste que des unités
           string minutes = ((int) this.timeLimit / 60).ToString();
           string seconds = Math.Round((this.timeLimit % 60), 2).ToString();  
           timerText.text = minutes + ":" + seconds;

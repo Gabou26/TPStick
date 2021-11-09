@@ -30,6 +30,8 @@ public class TPCamController : MonoBehaviour
 
     void CamControl()
     {
+        mousex += Input.GetAxis("Mouse X") * RotationSpeedX;
+        mousey -= Input.GetAxis("Mouse Y") * RotationSpeedY;
         mousex += horizontal * RotationSpeedX;
         mousey += vertical * RotationSpeedY;
         mousey = Mathf.Clamp(mousey, -60, 60);
@@ -40,15 +42,11 @@ public class TPCamController : MonoBehaviour
     }
     
     public void OnCameraH(InputValue value) {
-        horizontal = value.Get<float>();
+        horizontal = value.Get<float>() / 3;
     }
 
     public void OnCameraV(InputValue value) {
-        vertical = value.Get<float>();
-    }
-
-    public void OnCameraVKey(InputValue value) {
-        vertical = -value.Get<float>();
+        vertical = -value.Get<float>() / 3;
     }
 
 }

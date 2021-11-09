@@ -164,6 +164,17 @@
                 },
                 {
                     "name": "",
+                    "id": "24514b9e-ab5a-4727-87c3-7ff4e6c614a4",
+                    "path": "<Mouse>/delta/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "CameraV",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "05d4e650-91b6-47ca-a906-cf9adc6f7584",
                     "path": "<Gamepad>/rightStick/y",
                     "interactions": "",
@@ -315,17 +326,6 @@
                     "action": "MoveKey",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "24514b9e-ab5a-4727-87c3-7ff4e6c614a4",
-                    "path": "<Mouse>/delta/y",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "CameraVKey",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         }
