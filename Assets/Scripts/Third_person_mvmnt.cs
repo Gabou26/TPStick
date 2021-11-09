@@ -40,6 +40,10 @@ public class Third_person_mvmnt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //TEMP keyboard movement
+        float horizontalTEMP = Input.GetAxisRaw("Horizontal");
+        float verticalTEMP = Input.GetAxisRaw("Vertical");
+
         if (Input.GetKeyDown("left ctrl"))
         {
             charController.enabled = !charController.enabled;
@@ -65,12 +69,12 @@ public class Third_person_mvmnt : MonoBehaviour
         float horizontal = i_movement.x;
         float vertical = i_movement.y;
 
-        if(vertical > 0)
+        if(vertical > 0 || verticalTEMP > 0)
         {
             animator.SetBool("IsRunning", true);
             animator.SetBool("IsBacking", false);
         }
-        else if(vertical < 0)
+        else if(vertical < 0 || verticalTEMP < 0)
         {
             animator.SetBool("IsBacking", true);
             animator.SetBool("IsRunning", false);
@@ -81,12 +85,12 @@ public class Third_person_mvmnt : MonoBehaviour
             animator.SetBool("IsBacking", false);
         }
 
-        if (horizontal > 0)
+        if (horizontal > 0 || horizontalTEMP > 0)
         {
             animator.SetBool("IsRight", true);
             animator.SetBool("IsLeft", false);
         }
-        else if (horizontal < 0)
+        else if (horizontal < 0 || horizontalTEMP < 0)
         {
             animator.SetBool("IsLeft", true);
             animator.SetBool("IsRight", false);
@@ -100,11 +104,21 @@ public class Third_person_mvmnt : MonoBehaviour
 
         //Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
         Vector3 direction = (cam.forward * vertical) + (cam.right * horizontal); 
+        Vector3 directionTEMP = (cam.forward * verticalTEMP) + (cam.right * horizontalTEMP); 
         direction.Normalize();
+        directionTEMP.Normalize();
         direction = direction * speed;
+        directionTEMP = directionTEMP * speed;
+
         if (direction.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        }
+        else if (directionTEMP.magnitude >= 0.1f)
+        {
+            float targetAngle = Mathf.Atan2(directionTEMP.x, directionTEMP.z) * Mathf.Rad2Deg;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
         }
@@ -117,6 +131,11 @@ public class Third_person_mvmnt : MonoBehaviour
                 yvelocity = jumpForce;
                 //Invoke("stopVelocity", 0.6f);
             }
+            else if (Input.GetKey("space"))
+            {
+                yvelocity = jumpForce;
+                //Invoke("stopVelocity", 0.6f);
+            }
             else yvelocity = 0;
         }
         else
@@ -125,9 +144,11 @@ public class Third_person_mvmnt : MonoBehaviour
         }
 
         direction.y = yvelocity;
+        directionTEMP.y = yvelocity;
         
         //ceci enl�ve le jitter du saut
         transform.position += direction * Time.deltaTime;
+        transform.position += directionTEMP * Time.deltaTime;
         //controller.Move(direction * Time.deltaTime);
 
     }
