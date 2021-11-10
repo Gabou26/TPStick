@@ -18,6 +18,13 @@ public class HealthBar : MonoBehaviour
 
     public void TakeDamage(GameObject killer, float damage)
     {
+        //GameObject playerHit = this.gameObject;
+        var armorFactor = GetComponent<Third_person_mvmnt>().getArmorPowerFactor(); 
+        var attackFactor = killer.GetComponent<Third_person_mvmnt>().getAttackPowerFactor(); 
+        damage /= armorFactor;  // On divise les dégats par l'armure du joueur touché
+        damage *= attackFactor;
+        print(armorFactor);
+        print(attackFactor);
         currentHealth -= damage;
         if (currentHealth <= 0)
         {

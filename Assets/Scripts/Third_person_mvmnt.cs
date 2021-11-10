@@ -26,8 +26,8 @@ public class Third_person_mvmnt : MonoBehaviour
     private bool ragdoll = false;
     private bool hasPower;
     private float speedPower;
-    private float armorPower;
-    private float attackPower;
+    private float armorPowerFactor;
+    private float attackPowerFactor;
     private float powerUpTimer;
     private float powerUpEffectTime;
     TPCamController cameraController;
@@ -281,42 +281,71 @@ public class Third_person_mvmnt : MonoBehaviour
         }
     }
 
+    public float getAttackPowerFactor(){
+        return attackPowerFactor;
+    }
+    public float getArmorPowerFactor(){
+        return armorPowerFactor;
+    }
+
+    void setArmorPowerFactor(float armorFactor){
+        armorPowerFactor = armorFactor;
+    }
+
+    void setAttackPowerFactor(float attackFactor){
+        attackPowerFactor = attackFactor;
+    }
+
     void activePower(string powerName){
         powerUpTimer = 0;
         hasPower = true;
         powerUpEffectTime = 10f; // A choisir si l'onn souhaite accumuler le temps des effets (+=) ou bien le réinitialiser (=)
-        if(powerName == "SpeedUp"){
-            speedPower = 30f;
+        switch (powerName){
+            case "SpeedUp":
+            {   
+                speedPower = 30f;
+                break;
+            }
+            case "SpeedDown":
+            {   
+                speedPower -= 30f;
+                break;
+            }
+            case "ArmorUp":
+            {   
+                setArmorPowerFactor(2f);
+                break;
+            }
+            case "ArmorDown":
+            {   
+                setArmorPowerFactor(0.5f);
+                break;
+            }
+            case "AttackUp":
+            {   
+                attackPowerFactor = 2f;
+                break;
+            }
+            case "AttackDown":
+            {   
+                attackPowerFactor = 0.5f;
+                break;
+            }
+            case "ChangeGuns":
+            {   
+                speedPower = 10f;
+                break;
+            }
+            default: break;
+
         }
-        else if(powerName == "SpeedDown"){
-            speedPower = 20f;
-        }
-        else if(powerName == "SpeedDown"){
-            speedPower = 20f;
-        }
-        else if(powerName == "ArmorUp"){
-            speedPower = 20f;
-        }
-        else if(powerName == "ArmorDown"){
-            speedPower = 20f;
-        }
-        else if(powerName == "AttackUp"){
-            speedPower = -10f;
-        }
-        else if(powerName == "AttackDown"){
-            speedPower = -10f;
-        }
-        else if(powerName == "changeGuns"){
-            speedPower = -10f;
-        }
-        else{
-            speedPower = 0f;
-        }
+        setAttackPowerFactor(2f);
+        print(attackPowerFactor);
     }
     void initialisePlayerProperties(){
         hasPower = false;
         speedPower = 0.0f;
-        armorPower = 0.0f;
-        attackPower = 0.0f;
+        armorPowerFactor = 1f;
+        attackPowerFactor = 1f;
     }
 }

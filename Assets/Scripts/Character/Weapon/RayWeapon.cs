@@ -12,7 +12,7 @@ public class RayWeapon : MonoBehaviour
     public Transform raycastAimTarget;
 
     //Attributs d'arme
-    public float weaponDamage = 12;
+    public float weaponDamage = 12 ;
 
     //Raycast of Weapon
     Ray ray;
@@ -37,7 +37,7 @@ public class RayWeapon : MonoBehaviour
         {
             //Debug.DrawLine(ray.origin, hit.point, Color.yellow, 1.0f);
             if (hit.transform.gameObject.layer == 3)
-            {
+            { 
                 HealthBar bar = hit.transform.GetComponent<HealthBar>();
                 if (player.activeSelf && bar)
                     bar.TakeDamage(player, weaponDamage);
