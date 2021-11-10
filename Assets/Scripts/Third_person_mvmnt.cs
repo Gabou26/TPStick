@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class Third_person_mvmnt : MonoBehaviour
 {
@@ -16,13 +17,21 @@ public class Third_person_mvmnt : MonoBehaviour
 
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
-
+    public List<string> listMisteryPower = new List<string>(){"SpeedUp","SpeedDown","ArmorUp","ArmorDown","AttackUp","AttackDown","ChangeGuns"};
     public Transform cam;
     private Animator animator;
     private CharacterController charController;
     private CapsuleCollider capsCollider;
     public bool dead;
+    private bool ragdoll = false;
     TPCamController cameraController;
+
+    Vector2 i_movement = Vector2.zero;
+    bool jumped = false;
+
+    //Test Ragdoll
+    public GameObject weapon;
+    public bool modeBot = false;
 
     private void Start()
     {
@@ -31,20 +40,35 @@ public class Third_person_mvmnt : MonoBehaviour
         capsCollider = GetComponent<CapsuleCollider>();
         cameraController = cam.GetComponent<TPCamController>();
         dead = false;
+        weapon.SetActive(!dead);
     }
+
+    public void Ragdoll()
+    {
+        charController.enabled = !charController.enabled;
+        capsCollider.enabled = !capsCollider.enabled;
+        animator.enabled = !animator.enabled;
+        dead = !dead;
+        weapon.SetActive(!dead);
+        cameraController.deadChar = dead;
+    }
+
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("left ctrl"))
-        {
-            charController.enabled = !charController.enabled;
-            capsCollider.enabled = !capsCollider.enabled;
-            animator.enabled = !animator.enabled;
-            dead = !dead;
-            cameraController.deadChar = dead;
+        if (modeBot) //Teste avec un bot joueur (en solo)
+            return;
 
-            if(dead)
+        //TEMP keyboard movement
+        //float horizontalTEMP = Input.GetAxisRaw("Horizontal");
+        //float verticalTEMP = Input.GetAxisRaw("Vertical");
+
+        if (ragdoll)
+        {
+            Ragdoll();
+
+            if (dead)
             {
                 cameraController.CamFocus = cameraController.RagdollTarget;
             }
@@ -52,22 +76,53 @@ public class Third_person_mvmnt : MonoBehaviour
             {
                 cameraController.CamFocus = cameraController.Target;
             }
+            ragdoll = false;
         }
 
         if (dead)
         {
-
             return;
         }
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        float horizontal = i_movement.x;
+        float vertical = i_movement.y;
 
-        if(vertical > 0)
+        //if(vertical > 0 || verticalTEMP > 0)
+        //{
+        //    animator.SetBool("IsRunning", true);
+        //    animator.SetBool("IsBacking", false);
+        //}
+        //else if(vertical < 0 || verticalTEMP < 0)
+        //{
+        //    animator.SetBool("IsBacking", true);
+        //    animator.SetBool("IsRunning", false);
+        //}
+        //else
+        //{
+        //    animator.SetBool("IsRunning", false);
+        //    animator.SetBool("IsBacking", false);
+        //}
+
+        //if (horizontal > 0 || horizontalTEMP > 0)
+        //{
+        //    animator.SetBool("IsRight", true);
+        //    animator.SetBool("IsLeft", false);
+        //}
+        //else if (horizontal < 0 || horizontalTEMP < 0)
+        //{
+        //    animator.SetBool("IsLeft", true);
+        //    animator.SetBool("IsRight", false);
+        //}
+        //else
+        //{
+        //    animator.SetBool("IsRight", false);
+        //    animator.SetBool("IsLeft", false);
+        //}
+        if (vertical > 0)
         {
             animator.SetBool("IsRunning", true);
             animator.SetBool("IsBacking", false);
         }
-        else if(vertical < 0)
+        else if (vertical < 0)
         {
             animator.SetBool("IsBacking", true);
             animator.SetBool("IsRunning", false);
@@ -95,25 +150,41 @@ public class Third_person_mvmnt : MonoBehaviour
         }
 
 
+
         //Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
         Vector3 direction = (cam.forward * vertical) + (cam.right * horizontal); 
+        //Vector3 directionTEMP = (cam.forward * verticalTEMP) + (cam.right * horizontalTEMP); 
         direction.Normalize();
+        //directionTEMP.Normalize();
         direction = direction * speed;
+        //directionTEMP = directionTEMP * speed;
+
         if (direction.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
         }
+        //else if (directionTEMP.magnitude >= 0.1f)
+        //{
+        //    float targetAngle = Mathf.Atan2(directionTEMP.x, directionTEMP.z) * Mathf.Rad2Deg;
+        //    float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+        //    transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        //}
 
 
         if (controller.isGrounded)
         {
-            if (Input.GetButton("Jump"))
+            if (jumped)
             {
                 yvelocity = jumpForce;
                 //Invoke("stopVelocity", 0.6f);
             }
+            //else if (Input.GetKey("space"))
+            //{
+            //    yvelocity = jumpForce;
+            //    //Invoke("stopVelocity", 0.6f);
+            //}
             else yvelocity = 0;
         }
         else
@@ -122,11 +193,44 @@ public class Third_person_mvmnt : MonoBehaviour
         }
 
         direction.y = yvelocity;
+        //directionTEMP.y = yvelocity;
         
-        //ceci enlève le jitter du saut
+        //ceci enleve le jitter du saut
         transform.position += direction * Time.deltaTime;
+        //transform.position += directionTEMP * Time.deltaTime;
+
+
+
         //controller.Move(direction * Time.deltaTime);
 
+    }
+
+    public void OnMove(InputValue value) {
+        i_movement = value.Get<Vector2>();
+    }
+
+    public void OnMoveKey(InputValue value) {
+        i_movement = value.Get<Vector2>();
+    }
+
+    public void OnJumpPress(InputValue value) {
+        jumped = true;
+    }
+
+    public void OnJumpRelease(InputValue value) {
+        jumped = false;
+    }
+
+    public void OnCameraH(InputValue value) {
+        cameraController.OnCameraH(value);
+    }
+
+    public void OnCameraV(InputValue value) {
+        cameraController.OnCameraV(value);
+    }
+
+    public void OnRagdoll() {
+        ragdoll = !ragdoll;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -145,5 +249,16 @@ public class Third_person_mvmnt : MonoBehaviour
     private void stopVelocity()
     {
         yvelocity = 0;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "MisteryBox"){
+            Destroy(collision.gameObject);
+            var nbPower = listMisteryPower.Count;
+            var randomPower = listMisteryPower[Random.Range(0,nbPower)];
+            yvelocity *= 2;        
+        }
+        
     }
 }
