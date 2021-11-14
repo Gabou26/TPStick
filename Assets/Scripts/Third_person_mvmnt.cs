@@ -29,6 +29,10 @@ public class Third_person_mvmnt : MonoBehaviour
     Vector2 i_movement = Vector2.zero;
     bool jumped = false;
 
+    //Test Ragdoll
+    public GameObject weapon;
+    public bool modeBot = false;
+
     private void Start()
     {
         respawnPoint = GameObject.Find("RespawnCube").transform; // Peut être changer ça car trop sale
@@ -37,24 +41,35 @@ public class Third_person_mvmnt : MonoBehaviour
         capsCollider = GetComponent<CapsuleCollider>();
         cameraController = cam.GetComponent<TPCamController>();
         dead = false;
+        weapon.SetActive(!dead);
     }
+
+    public void Ragdoll()
+    {
+        charController.enabled = !charController.enabled;
+        capsCollider.enabled = !capsCollider.enabled;
+        animator.enabled = !animator.enabled;
+        dead = !dead;
+        weapon.SetActive(!dead);
+        cameraController.deadChar = dead;
+    }
+
 
     // Update is called once per frame
     void Update()
     {
+        if (modeBot) //Teste avec un bot joueur (en solo)
+            return;
+
         //TEMP keyboard movement
         //float horizontalTEMP = Input.GetAxisRaw("Horizontal");
         //float verticalTEMP = Input.GetAxisRaw("Vertical");
 
         if (ragdoll)
         {
-            charController.enabled = !charController.enabled;
-            capsCollider.enabled = !capsCollider.enabled;
-            animator.enabled = !animator.enabled;
-            dead = !dead;
-            cameraController.deadChar = dead;
+            Ragdoll();
 
-            if(dead)
+            if (dead)
             {
                 cameraController.CamFocus = cameraController.RagdollTarget;
             }
