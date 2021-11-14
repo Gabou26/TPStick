@@ -13,6 +13,8 @@ public class ActiveWeapon : MonoBehaviour
 
     //Editeur
     public Transform gripLeft, gripRight;
+    Animator animator;
+    AnimatorOverrideController overrides;
 
     // Start is called before the first frame update
     void Start()

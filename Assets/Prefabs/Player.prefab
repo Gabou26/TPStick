@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 435997140}
   m_LocalRotation: {x: -0.52298373, y: 0.4476602, z: 0.47590744, w: 0.5473577}
-  m_LocalPosition: {x: 0.028880138, y: -1.8204002, z: -1.5706006}
+  m_LocalPosition: {x: 0.022, y: -0.078, z: 0.232}
   m_LocalScale: {x: 0.75999975, y: 0.76000047, z: 0.76000017}
   m_Children: []
   m_Father: {fileID: 688356812401631696}
@@ -286,7 +286,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 929357398}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -0.09120013, y: -1.8127995, z: -1.0690007}
+  m_LocalPosition: {x: -0.113, y: -0.117, z: 0.701}
   m_LocalScale: {x: 0.7600004, y: 0.7600001, z: 0.75999975}
   m_Children: []
   m_Father: {fileID: 688356812401631696}
@@ -3342,6 +3342,8 @@ GameObject:
   - component: {fileID: 1860515501685218650}
   - component: {fileID: 785008808}
   - component: {fileID: 785008809}
+  - component: {fileID: 1181904002}
+  - component: {fileID: 1181904001}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -3379,7 +3381,7 @@ Animator:
   m_GameObject: {fileID: 8062756966950903645}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: e57e9b8cd5e115f4f8d7736473e5c7fd, type: 3}
-  m_Controller: {fileID: 9100000, guid: 7ff0cf27ed8e9684b9bdd381bab1f846, type: 2}
+  m_Controller: {fileID: 22100000, guid: e08570769fa6d8040a986fc2f34baee5, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 1
   m_ApplyRootMotion: 1
@@ -3452,7 +3454,6 @@ MonoBehaviour:
   crossHairTarg: {fileID: 1728409947}
   weaponParent: {fileID: 688356812401631696}
   hankIk: {fileID: 1184593024}
-  rayWeapon: {fileID: 0}
   gripLeft: {fileID: 929357399}
   gripRight: {fileID: 435997141}
 --- !u!114 &1860515501685218650
@@ -3561,6 +3562,51 @@ MonoBehaviour:
   - m_Rig: {fileID: 1184593024}
     m_Active: 1
   m_Effectors: []
+--- !u!136 &1181904002
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8062756966950903645}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.25, z: 0}
+--- !u!114 &1181904001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8062756966950903645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 7333fc57a70780b4ca28137a9c80e616,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 8062756966248942824}
 --- !u!1 &8062756966950903647
 GameObject:
   m_ObjectHideFlags: 0
