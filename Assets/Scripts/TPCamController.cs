@@ -43,10 +43,13 @@ public class TPCamController : MonoBehaviour
         mousey = Mathf.Clamp(mousey, -60, 60);
 
 
-        Vector3 rotTarget = Target.rotation.eulerAngles;
-        transform.LookAt(Target);
-        Target.rotation = Quaternion.Euler(mousey, rotTarget.y, 0);
-        if(!deadChar) Player.rotation = Quaternion.Euler(0, mousex, 0);
+        Vector3 rotTarget = CamFocus.rotation.eulerAngles;
+        transform.LookAt(CamFocus);
+        CamFocus.rotation = Quaternion.Euler(mousey, rotTarget.y, 0);
+        if (!deadChar)
+        {
+            Player.rotation = Quaternion.Euler(0, mousex, 0);
+        }
     }
     
     public void OnCameraH(InputValue value) {
