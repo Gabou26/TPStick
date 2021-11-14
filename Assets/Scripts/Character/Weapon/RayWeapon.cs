@@ -8,6 +8,7 @@ public class RayWeapon : MonoBehaviour
     public bool isFiring = false;
     public ParticleSystem flashTir, hitEffect;
     public TrailRenderer tracerEffect;
+    public AnimationClip weaponAnim;
     public Transform rayOrigin;
     public Transform raycastAimTarget;
 

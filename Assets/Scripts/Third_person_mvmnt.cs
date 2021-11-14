@@ -26,8 +26,8 @@ public class Third_person_mvmnt : MonoBehaviour
     private bool ragdoll = false;
     private bool hasPower;
     private float speedPower;
-    private float armorPowerFactor;
-    private float attackPowerFactor;
+    private float armorPowerFactor = 1;
+    private float attackPowerFactor = 1;
     private float powerUpTimer;
     private float powerUpEffectTime;
     TPCamController cameraController;
@@ -47,7 +47,9 @@ public class Third_person_mvmnt : MonoBehaviour
         cameraController = cam.GetComponent<TPCamController>();
         initialisePlayerProperties();
         dead = false;
-        weapon.SetActive(!dead);
+
+        if (weapon)
+            weapon.SetActive(!dead);
     }
 
     public void Ragdoll()
@@ -56,7 +58,9 @@ public class Third_person_mvmnt : MonoBehaviour
         capsCollider.enabled = !capsCollider.enabled;
         animator.enabled = !animator.enabled;
         dead = !dead;
-        weapon.SetActive(!dead);
+
+        if (weapon)
+            weapon.SetActive(!dead);
         cameraController.deadChar = dead;
     }
 
@@ -253,7 +257,6 @@ public class Third_person_mvmnt : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("A");
         if (other.CompareTag("Respawn"))
         {
             initialisePlayerProperties();
