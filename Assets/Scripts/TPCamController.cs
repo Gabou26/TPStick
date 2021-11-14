@@ -28,7 +28,7 @@ public class TPCamController : MonoBehaviour
     private void LateUpdate()
     {
         CamControl();
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1"))
             rayWeapon.StartFiring();
         else if (Input.GetButtonUp("Fire1"))
             rayWeapon.StopFiring();
