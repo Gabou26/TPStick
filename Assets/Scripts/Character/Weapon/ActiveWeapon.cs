@@ -10,6 +10,8 @@ public class ActiveWeapon : MonoBehaviour
     public Transform weaponParent;
     public Rig hankIk;
     RayWeapon rayWeapon;
+    private bool pressed;
+    private bool released;
 
     //Editeur
     public Transform gripLeft, gripRight;
@@ -33,10 +35,18 @@ public class ActiveWeapon : MonoBehaviour
             return;
         }
 
-        if (Input.GetButton("Fire1"))
+        if (pressed)
             rayWeapon.StartFiring();
-        else if (Input.GetButtonUp("Fire1"))
+        else
             rayWeapon.StopFiring();
+    }
+
+    public void OnFirePress() {
+        pressed = true;
+    }
+
+    public void OnFireRelease() {
+        pressed = false;
     }
 
     public void Equip(RayWeapon weapon)
