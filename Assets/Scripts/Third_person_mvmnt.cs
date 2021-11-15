@@ -25,7 +25,7 @@ public class Third_person_mvmnt : MonoBehaviour
     public bool dead;
     private bool ragdoll = false;
     private bool hasPower;
-    private float speedPower;
+    private float speedPowerFactor;
     private float armorPowerFactor = 1;
     private float attackPowerFactor = 1;
     private float powerUpTimer;
@@ -179,7 +179,7 @@ public class Third_person_mvmnt : MonoBehaviour
         //Vector3 directionTEMP = (cam.forward * verticalTEMP) + (cam.right * horizontalTEMP); 
         direction.Normalize();
         //directionTEMP.Normalize();
-        direction = direction * (speed + speedPower);
+        direction = direction * (speed*speedPowerFactor);
         //directionTEMP = directionTEMP * speed;
 
         if (direction.magnitude >= 0.1f)
@@ -300,56 +300,79 @@ public class Third_person_mvmnt : MonoBehaviour
         attackPowerFactor = attackFactor;
     }
 
+    void setSpeedPowerFactor(float speedFactor){
+        speedPowerFactor = speedFactor;
+    }
+
+    void resetArmorPower(){
+        setArmorPowerFactor(1f);
+    }
+    void resetAttackPower(){
+        setAttackPowerFactor(1f);
+    }
+
+    void resetSpeedPower(){
+        setSpeedPowerFactor(1f);
+    }
+
     void activePower(string powerName){
         powerUpTimer = 0;
         hasPower = true;
         powerUpEffectTime = 10f; // A choisir si l'onn souhaite accumuler le temps des effets (+=) ou bien le réinitialiser (=)
+        print(powerName);
         switch (powerName){
             case "SpeedUp":
             {   
-                speedPower = 30f;
+                setSpeedPowerFactor(3f);
+                Invoke("resetSpeedPower", powerUpEffectTime);
                 break;
             }
             case "SpeedDown":
             {   
-                speedPower -= 30f;
+                setSpeedPowerFactor(0.5f);
+                Invoke("resetSpeedPower", powerUpEffectTime);
                 break;
             }
             case "ArmorUp":
             {   
                 setArmorPowerFactor(2f);
+                Invoke("resetArmorPower", powerUpEffectTime);
                 break;
             }
             case "ArmorDown":
             {   
                 setArmorPowerFactor(0.5f);
+                Invoke("resetArmorPower", powerUpEffectTime);
                 break;
             }
             case "AttackUp":
             {   
-                attackPowerFactor = 2f;
+                setAttackPowerFactor(2f);
+                Invoke("resetAttackPower", powerUpEffectTime);
                 break;
             }
             case "AttackDown":
             {   
-                attackPowerFactor = 0.5f;
+                setAttackPowerFactor(0.5f);
+                Invoke("resetAttackPower", powerUpEffectTime);
                 break;
             }
             case "ChangeGuns":
             {   
-                speedPower = 10f;
+                speedPowerFactor = 5f;
                 break;
             }
             default: break;
-
+            
         }
-        setAttackPowerFactor(2f);
-        print(attackPowerFactor);
+        print("Attack" + attackPowerFactor);
+        print("Armor" + armorPowerFactor);
+        print("Speed" + speedPowerFactor);
     }
     void initialisePlayerProperties(){
         hasPower = false;
-        speedPower = 0.0f;
-        armorPowerFactor = 1f;
-        attackPowerFactor = 1f;
+        setSpeedPowerFactor(1f);
+        setArmorPowerFactor(1f);
+        setAttackPowerFactor(1f);
     }
 }
