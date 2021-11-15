@@ -21,6 +21,9 @@ public class ActiveWeapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
+        overrides = animator.runtimeAnimatorController as AnimatorOverrideController;
+
         RayWeapon baseWeapon = GetComponentInChildren<RayWeapon>();
         if (baseWeapon)
             Equip(baseWeapon);
@@ -32,6 +35,7 @@ public class ActiveWeapon : MonoBehaviour
         if (!rayWeapon)
         {
             hankIk.weight = 0;
+            animator.SetLayerWeight(2, 0.0f);
             return;
         }
 
@@ -61,6 +65,14 @@ public class ActiveWeapon : MonoBehaviour
         rayWeapon.transform.localRotation = Quaternion.identity;
 
         hankIk.weight = 1;
+        animator.SetLayerWeight(2, 1.0f);
+
+        Invoke(nameof(SetAnimationDelayed), 0.001f);
+    }
+
+    void SetAnimationDelayed()
+    {
+        overrides["weapon_anim_empty"] = rayWeapon.weaponAnim;
     }
 
     [ContextMenu("Save Weapon Pose")]

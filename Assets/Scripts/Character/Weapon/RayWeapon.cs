@@ -45,6 +45,7 @@ public class RayWeapon : MonoBehaviour
         ray.origin = rayOrigin.position;
         ray.direction = (raycastAimTarget.position - rayOrigin.position).normalized;
 
+        print(tracerEffect);
         TrailRenderer tracer = Instantiate(tracerEffect, ray.origin, Quaternion.identity);
         tracer.AddPosition(ray.origin);
         if (Physics.Raycast(ray, out hit, distTir))
@@ -64,6 +65,8 @@ public class RayWeapon : MonoBehaviour
 
             tracer.transform.position = hit.point;
         } 
+        else
+            tracer.transform.position = ray.origin + (ray.direction * 30);
     }
 
     public void StopFiring()

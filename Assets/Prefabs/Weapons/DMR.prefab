@@ -47,13 +47,13 @@ MonoBehaviour:
   isFiring: 0
   flashTir: {fileID: 8598854735720842207}
   hitEffect: {fileID: 1779766955019556216}
-  tracerEffect: {fileID: 3699318590177216467, guid: 99e195dcb2652ca4e9fb348544066e57,
+  tracerEffect: {fileID: 9198307897857253529, guid: 562dd0a10c119614e8973d8a6fd965fb,
     type: 3}
   weaponAnim: {fileID: 7400000, guid: 8b8ec3c010100f54db52204c2f7a1746, type: 2}
   rayOrigin: {fileID: 1905492658952547189}
   raycastAimTarget: {fileID: 0}
   weaponDamage: 12
-  distTir: 1000
+  distTir: 150
   interTir: 0.3
 --- !u!1 &1905492658821829510
 GameObject:
@@ -24323,17 +24323,17 @@ PrefabInstance:
     - target: {fileID: 198234346748616026, guid: ad2ab49d0a2a17148bd51c93d977bdbc,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 198234346748616026, guid: ad2ab49d0a2a17148bd51c93d977bdbc,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.000000061591464
+      value: 0.3971982
       objectReference: {fileID: 0}
     - target: {fileID: 198234346748616026, guid: ad2ab49d0a2a17148bd51c93d977bdbc,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198234346748616026, guid: ad2ab49d0a2a17148bd51c93d977bdbc,
         type: 3}
