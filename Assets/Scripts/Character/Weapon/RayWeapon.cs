@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class RayWeapon : MonoBehaviour
 {
@@ -55,7 +56,10 @@ public class RayWeapon : MonoBehaviour
             { 
                 HealthBar bar = hit.transform.GetComponent<HealthBar>();
                 if (player.activeSelf && bar)
+                {
                     bar.TakeDamage(player, weaponDamage);
+                    hit.transform.GetComponentInParent<ScoreManager>().SetLastShooter(player);
+                }
             }
 
 

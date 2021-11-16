@@ -267,6 +267,17 @@ public class Third_person_mvmnt : MonoBehaviour
             float rangez = Random.Range(-(location.localScale.z / 2), location.localScale.z / 2);
             Vector3 spawnPoint = new Vector3(location.position.x + rangex, location.position.y, location.position.z + rangez);
             transform.position = spawnPoint;
+            ScoreManager sM = GetComponent<ScoreManager>();
+            if(!ragdoll){
+                sM.ScoreDown(); //diminue le score du joueur qui tombe, utilisé lors d'une chute sans ragdoll
+            }
+            else
+            {
+                //TODO: modification du score de la personne ayant poussé le joueur dans le vide (i.e dernier tir reçu)
+                sM.GetLastShooter().GetComponent<ScoreManager>().ScoreUp();
+            }
+            
+            
         }
     }
 

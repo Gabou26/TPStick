@@ -4,14 +4,31 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    public int score;
-    
+    public int _score;
+    public GameObject _lastShooter;
 
-    public int scoreBuffer;
+    public void ScoreUp()
+    {
+        _score++;
+    }
+    public void ScoreDown()
+    {
+        _score--;
+    }
+
+    public void SetLastShooter(GameObject lastShooter)
+    {
+        this._lastShooter = lastShooter;
+    }
+
+    public GameObject GetLastShooter()
+    {
+        return this._lastShooter;
+    }
     // Start is called before the first frame update
     void Start()
     {
-        score = 0;
+        _score = 0;
 
     }
 
