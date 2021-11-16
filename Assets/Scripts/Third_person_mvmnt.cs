@@ -275,7 +275,6 @@ public class Third_person_mvmnt : MonoBehaviour
             }
             else
             {
-                //TODO: modification du score de la personne ayant poussé le joueur dans le vide (i.e dernier tir reçu)
                 sM.GetLastShooter().GetComponentInParent(typeof(ScoreManager)).GetComponent<ScoreManager>().ScoreUp();//ligne pour augmenter le score du joueur qui a tiré en dernier sur la victime
 
             }
