@@ -18,7 +18,7 @@ public class ScoreManager : MonoBehaviour
 
     public void SetLastShooter(GameObject lastShooter)
     {
-        this._lastShooter = lastShooter;
+        _lastShooter = lastShooter;
     }
 
     public GameObject GetLastShooter()

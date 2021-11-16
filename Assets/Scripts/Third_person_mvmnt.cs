@@ -4,6 +4,7 @@ using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Third_person_mvmnt : MonoBehaviour
 {
@@ -270,11 +271,13 @@ public class Third_person_mvmnt : MonoBehaviour
             ScoreManager sM = GetComponent<ScoreManager>();
             if(!ragdoll){
                 sM.ScoreDown(); //diminue le score du joueur qui tombe, utilisé lors d'une chute sans ragdoll
+                //sM.GetLastShooter().GetComponentInParent(typeof(ScoreManager)).GetComponent<ScoreManager>().ScoreUp();
             }
             else
             {
                 //TODO: modification du score de la personne ayant poussé le joueur dans le vide (i.e dernier tir reçu)
-                sM.GetLastShooter().GetComponent<ScoreManager>().ScoreUp();
+                sM.GetLastShooter().GetComponentInParent(typeof(ScoreManager)).GetComponent<ScoreManager>().ScoreUp();//ligne pour augmenter le score du joueur qui a tiré en dernier sur la victime
+
             }
             
             
