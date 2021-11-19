@@ -25,6 +25,12 @@ public class Third_person_mvmnt : MonoBehaviour
     private CapsuleCollider capsCollider;
     public bool dead;
     private bool ragdoll = false;
+    private bool hasPower;
+    private float speedPower;
+    private float armorPowerFactor = 1;
+    private float attackPowerFactor = 1;
+    private float powerUpTimer;
+    private float powerUpEffectTime;
     TPCamController cameraController;
     public Vector3 Velocity;
     private Vector3 VelocityZero;
@@ -40,12 +46,16 @@ public class Third_person_mvmnt : MonoBehaviour
     {
         VelocityZero = new Vector3(0,0,0);
         Velocity = VelocityZero;
+        respawnPoint = GameObject.Find("RespawnCube").transform; // Peut être changer ça car trop sale
         animator = GetComponent<Animator>();
         charController = GetComponent<CharacterController>();
         capsCollider = GetComponent<CapsuleCollider>();
         cameraController = cam.GetComponent<TPCamController>();
+        initialisePlayerProperties();
         dead = false;
-        weapon.SetActive(!dead);
+
+        if (weapon)
+            weapon.SetActive(!dead);
     }
 
     public void Ragdoll()
@@ -54,7 +64,9 @@ public class Third_person_mvmnt : MonoBehaviour
         capsCollider.isTrigger = !capsCollider.isTrigger;
         animator.enabled = !animator.enabled;
         dead = !dead;
-        weapon.SetActive(!dead);
+
+        if (weapon)
+            weapon.SetActive(!dead);
         cameraController.deadChar = dead;
     }
 
@@ -68,9 +80,20 @@ public class Third_person_mvmnt : MonoBehaviour
         //TEMP keyboard movement
         //float horizontalTEMP = Input.GetAxisRaw("Horizontal");
         //float verticalTEMP = Input.GetAxisRaw("Vertical");
-
+        if(hasPower == true){
+            powerUpTimer += Time.deltaTime;
+            if(powerUpTimer > powerUpEffectTime){
+                initialisePlayerProperties();
+            }
+        }
         if (ragdoll)
         {
+            initialisePlayerProperties();
+            charController.enabled = !charController.enabled;
+            capsCollider.enabled = !capsCollider.enabled;
+            animator.enabled = !animator.enabled;
+            dead = !dead;
+            cameraController.deadChar = dead;
             Ragdoll();
 
             if (dead)
@@ -171,7 +194,7 @@ public class Third_person_mvmnt : MonoBehaviour
         //Vector3 directionTEMP = (cam.forward * verticalTEMP) + (cam.right * horizontalTEMP); 
         direction.Normalize();
         //directionTEMP.Normalize();
-        direction = direction * speed;
+        direction = direction * (speed + speedPower);
         //directionTEMP = directionTEMP * speed;
 
         if (direction.magnitude >= 0.1f)
@@ -254,6 +277,7 @@ public class Third_person_mvmnt : MonoBehaviour
     {
         if (other.CompareTag("Respawn"))
         {
+            initialisePlayerProperties();
             Transform location = respawnPoint.transform;
             float rangex = Random.Range(-(location.localScale.x / 2), location.localScale.x / 2);
             float rangez = Random.Range(-(location.localScale.z / 2), location.localScale.z / 2);
@@ -267,6 +291,7 @@ public class Third_person_mvmnt : MonoBehaviour
         yvelocity = 0;
     }
 
+
     void OnCollisionEnter(Collision collision)
     {
         Velocity = VelocityZero;
@@ -275,9 +300,75 @@ public class Third_person_mvmnt : MonoBehaviour
             Destroy(collision.gameObject);
             var nbPower = listMisteryPower.Count;
             var randomPower = listMisteryPower[Random.Range(0,nbPower)];
-            yvelocity *= 2;        
+            activePower(randomPower);
         }
-        
     }
 
+    public float getAttackPowerFactor(){
+        return attackPowerFactor;
+    }
+    public float getArmorPowerFactor(){
+        return armorPowerFactor;
+    }
+
+    void setArmorPowerFactor(float armorFactor){
+        armorPowerFactor = armorFactor;
+    }
+
+    void setAttackPowerFactor(float attackFactor){
+        attackPowerFactor = attackFactor;
+    }
+
+    void activePower(string powerName){
+        powerUpTimer = 0;
+        hasPower = true;
+        powerUpEffectTime = 10f; // A choisir si l'onn souhaite accumuler le temps des effets (+=) ou bien le réinitialiser (=)
+        switch (powerName){
+            case "SpeedUp":
+            {   
+                speedPower = 30f;
+                break;
+            }
+            case "SpeedDown":
+            {   
+                speedPower -= 30f;
+                break;
+            }
+            case "ArmorUp":
+            {   
+                setArmorPowerFactor(2f);
+                break;
+            }
+            case "ArmorDown":
+            {   
+                setArmorPowerFactor(0.5f);
+                break;
+            }
+            case "AttackUp":
+            {   
+                attackPowerFactor = 2f;
+                break;
+            }
+            case "AttackDown":
+            {   
+                attackPowerFactor = 0.5f;
+                break;
+            }
+            case "ChangeGuns":
+            {   
+                speedPower = 10f;
+                break;
+            }
+            default: break;
+
+        }
+        setAttackPowerFactor(2f);
+        print(attackPowerFactor);
+    }
+    void initialisePlayerProperties(){
+        hasPower = false;
+        speedPower = 0.0f;
+        armorPowerFactor = 1f;
+        attackPowerFactor = 1f;
+    }
 }

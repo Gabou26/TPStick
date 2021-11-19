@@ -8,11 +8,17 @@ public class RayWeapon : MonoBehaviour
     public bool isFiring = false;
     public ParticleSystem flashTir, hitEffect;
     public TrailRenderer tracerEffect;
+    public AnimationClip weaponAnim;
     public Transform rayOrigin;
     public Transform raycastAimTarget;
 
     //Attributs d'arme
-    public float weaponDamage = 12;
+    public float weaponDamage = 12 ;
+    public float distTir = 1000;
+    public float interTir = 0.3f;
+
+    //Intervalle
+    float interCour = 0;
 
     //Raycast of Weapon
     Ray ray;
@@ -25,19 +31,28 @@ public class RayWeapon : MonoBehaviour
 
     public void StartFiring()
     {
+        interCour += Time.deltaTime;
+        if (interCour < interTir)
+        {
+            StopFiring();
+            return;
+        }
+
+        interCour -= interTir;
         isFiring = true;
         flashTir.Emit(1);
 
         ray.origin = rayOrigin.position;
         ray.direction = (raycastAimTarget.position - rayOrigin.position).normalized;
 
+        print(tracerEffect);
         TrailRenderer tracer = Instantiate(tracerEffect, ray.origin, Quaternion.identity);
         tracer.AddPosition(ray.origin);
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, distTir))
         {
             //Debug.DrawLine(ray.origin, hit.point, Color.yellow, 1.0f);
             if (hit.transform.gameObject.layer == 3)
-            {
+            { 
                 HealthBar bar = hit.transform.GetComponent<HealthBar>();
                 if (player.activeSelf && bar)
                     bar.TakeDamage(player, weaponDamage);
@@ -50,6 +65,8 @@ public class RayWeapon : MonoBehaviour
 
             tracer.transform.position = hit.point;
         } 
+        else
+            tracer.transform.position = ray.origin + (ray.direction * 30);
     }
 
     public void StopFiring()
