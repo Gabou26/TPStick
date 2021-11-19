@@ -54,6 +54,7 @@ public class Grappling : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(cam.position, cam.forward, out hit, maxDistance, whatIsGrappleable))
         {
+            movement.Velocity = new Vector3(0, 0, 0);
             grapplePoint = hit.point;
 
             lr.positionCount = 2;
@@ -76,6 +77,8 @@ public class Grappling : MonoBehaviour
     void StopGrapple()
     {
         if (!IsGrappling) return;
+
+        movement.yvelocity = 0f;
         var velocity = (player.transform.position - lastPosition) / (Time.deltaTime * 1000f);
         Debug.Log(velocity);
         Debug.Log(lastPosition);
