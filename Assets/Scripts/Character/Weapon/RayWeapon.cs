@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class RayWeapon : MonoBehaviour
 {
@@ -45,7 +46,6 @@ public class RayWeapon : MonoBehaviour
         ray.origin = rayOrigin.position;
         ray.direction = (raycastAimTarget.position - rayOrigin.position).normalized;
 
-        print(tracerEffect);
         TrailRenderer tracer = Instantiate(tracerEffect, ray.origin, Quaternion.identity);
         tracer.AddPosition(ray.origin);
         if (Physics.Raycast(ray, out hit, distTir))
@@ -53,9 +53,12 @@ public class RayWeapon : MonoBehaviour
             //Debug.DrawLine(ray.origin, hit.point, Color.yellow, 1.0f);
             if (hit.transform.gameObject.layer == 3)
             { 
+                hit.transform.GetComponentInParent<ScoreManager>().SetLastShooter(player);
                 HealthBar bar = hit.transform.GetComponent<HealthBar>();
                 if (player.activeSelf && bar)
+                {
                     bar.TakeDamage(player, weaponDamage);
+                }
             }
 
 
