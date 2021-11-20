@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Third_person_mvmnt : MonoBehaviour
 {
@@ -25,7 +27,7 @@ public class Third_person_mvmnt : MonoBehaviour
     public bool dead;
     private bool ragdoll = false;
     private bool hasPower;
-    private float speedPower;
+    private float speedPowerFactor;
     private float armorPowerFactor = 1;
     private float attackPowerFactor = 1;
     private float powerUpTimer;
@@ -181,7 +183,7 @@ public class Third_person_mvmnt : MonoBehaviour
         //Vector3 directionTEMP = (cam.forward * verticalTEMP) + (cam.right * horizontalTEMP); 
         direction.Normalize();
         //directionTEMP.Normalize();
-        direction = direction * (speed + speedPower);
+        direction = direction * (speed*speedPowerFactor);
         //directionTEMP = directionTEMP * speed;
 
         if (direction.magnitude >= 0.1f)
@@ -290,6 +292,18 @@ public class Third_person_mvmnt : MonoBehaviour
             float rangez = Random.Range(-(location.localScale.z / 2), location.localScale.z / 2);
             Vector3 spawnPoint = new Vector3(location.position.x + rangex, location.position.y, location.position.z + rangez);
             transform.position = spawnPoint;
+            ScoreManager sM = GetComponent<ScoreManager>();
+            if(!ragdoll){
+                sM.ScoreDown(); //diminue le score du joueur qui tombe, utilisé lors d'une chute sans ragdoll
+                //sM.GetLastShooter().GetComponentInParent(typeof(ScoreManager)).GetComponent<ScoreManager>().ScoreUp();
+            }
+            else
+            {
+                sM.GetLastShooter().GetComponentInParent(typeof(ScoreManager)).GetComponent<ScoreManager>().ScoreUp();//ligne pour augmenter le score du joueur qui a tiré en dernier sur la victime
+
+            }
+            
+            
         }
     }
 
@@ -324,56 +338,103 @@ public class Third_person_mvmnt : MonoBehaviour
         attackPowerFactor = attackFactor;
     }
 
+    void setSpeedPowerFactor(float speedFactor){
+        speedPowerFactor = speedFactor;
+    }
+
+    void resetArmorPower(){
+        setArmorPowerFactor(1f);
+    }
+    void resetAttackPower(){
+        setAttackPowerFactor(1f);
+    }
+
+    void resetSpeedPower(){
+        setSpeedPowerFactor(1f);
+    }
+
     void activePower(string powerName){
+        UIHealth healthBar = GetComponent<HealthBar>().getUIHealth();
+        var maxHealth = GetComponent<HealthBar>().getMaxHealth();
+        var currentHealth = GetComponent<HealthBar>().getCurrentHealth();
         powerUpTimer = 0;
         hasPower = true;
         powerUpEffectTime = 10f; // A choisir si l'onn souhaite accumuler le temps des effets (+=) ou bien le réinitialiser (=)
+        print(powerName);
         switch (powerName){
             case "SpeedUp":
             {   
-                speedPower = 30f;
+                setSpeedPowerFactor(2f);
+                Invoke("resetSpeedPower", powerUpEffectTime);
+                GetComponent<activePowerImage>().ChangeSprite(Color.yellow);
                 break;
             }
             case "SpeedDown":
             {   
-                speedPower -= 30f;
+                setSpeedPowerFactor(0.5f);
+                Invoke("resetSpeedPower", powerUpEffectTime);
+                GetComponent<activePowerImage>().ChangeSprite(Color.yellow);
                 break;
             }
             case "ArmorUp":
             {   
                 setArmorPowerFactor(2f);
+                Invoke("resetArmorPower", powerUpEffectTime);
+                GetComponent<activePowerImage>().ChangeSprite(Color.green);
                 break;
             }
             case "ArmorDown":
             {   
                 setArmorPowerFactor(0.5f);
+                Invoke("resetArmorPower", powerUpEffectTime);
+                GetComponent<activePowerImage>().ChangeSprite(Color.green);
                 break;
             }
             case "AttackUp":
             {   
-                attackPowerFactor = 2f;
+                setAttackPowerFactor(2f);
+                Invoke("resetAttackPower", powerUpEffectTime);
+                GetComponent<activePowerImage>().ChangeSprite(Color.red);
                 break;
             }
             case "AttackDown":
             {   
-                attackPowerFactor = 0.5f;
+                setAttackPowerFactor(0.5f);
+                Invoke("resetAttackPower", powerUpEffectTime);
+                GetComponent<activePowerImage>().ChangeSprite(Color.red);
+                break;
+            }
+            case "HealthUp":
+            {   
+                healthBar.SetHealth(maxHealth);
+                break;
+            }
+            case "HealthDown":
+            {   
+                healthBar.SetHealth(currentHealth*2/3); // Ne fait pas trop de dégats pour le moment
                 break;
             }
             case "ChangeGuns":
             {   
-                speedPower = 10f;
+                speedPowerFactor = 0.2f;
+                GetComponent<activePowerImage>().ChangeSprite(Color.blue);
+                break;
+            }
+            case "BoomBoom": // Créer une pluie de bombe dans le niveau
+            {   
                 break;
             }
             default: break;
-
+            
         }
-        setAttackPowerFactor(2f);
-        print(attackPowerFactor);
+        print("Attack" + attackPowerFactor);
+        print("Armor" + armorPowerFactor);
+        print("Speed" + speedPowerFactor);
     }
     void initialisePlayerProperties(){
         hasPower = false;
-        speedPower = 0.0f;
-        armorPowerFactor = 1f;
-        attackPowerFactor = 1f;
+        setSpeedPowerFactor(1f);
+        setArmorPowerFactor(1f);
+        setAttackPowerFactor(1f);
     }
 }
