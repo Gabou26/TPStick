@@ -2965,6 +2965,7 @@ GameObject:
   - component: {fileID: 345620015136166667}
   - component: {fileID: 7889348634859481703}
   - component: {fileID: 3741539272657928680}
+  - component: {fileID: 681659758062887232}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -3074,7 +3075,6 @@ MonoBehaviour:
   cam: {fileID: 4380655094242186867}
   dead: 0
   weapon: {fileID: 0}
-  modeBot: 0
 --- !u!114 &7540364777896950615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3241,6 +3241,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d457870787df53f489269cd9b1472003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &681659758062887232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6533920303846371470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aff1989c92ff3f4dbd6f23135900e09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 3553946145319685104}
+  spritePowerList: []
 --- !u!1 &6878259785058756057
 GameObject:
   m_ObjectHideFlags: 0
