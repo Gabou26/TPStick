@@ -51,4 +51,24 @@ public class HealthBar : MonoBehaviour
         currentHealth = maxHealth[reviveIndex];
         healthBar.SetMaxHealth(maxHealth[reviveIndex], currentHealth);
     }
+
+    public float getCurrentHealth()
+    {
+        return currentHealth;
+    }
+
+    public int getReviveIndex()
+    {
+        return reviveIndex;
+    }
+
+    public int getMaxHealth()
+    {
+        return maxHealth[reviveIndex];
+    }
+
+    public UIHealth getUIHealth()
+    {
+        return healthBar;
+    }
 }

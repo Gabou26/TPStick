@@ -330,6 +330,9 @@ public class Third_person_mvmnt : MonoBehaviour
     }
 
     void activePower(string powerName){
+        UIHealth healthBar = GetComponent<HealthBar>().getUIHealth();
+        var maxHealth = GetComponent<HealthBar>().getMaxHealth();
+        var currentHealth = GetComponent<HealthBar>().getCurrentHealth();
         powerUpTimer = 0;
         hasPower = true;
         powerUpEffectTime = 10f; // A choisir si l'onn souhaite accumuler le temps des effets (+=) ou bien le réinitialiser (=)
@@ -337,43 +340,64 @@ public class Third_person_mvmnt : MonoBehaviour
         switch (powerName){
             case "SpeedUp":
             {   
-                setSpeedPowerFactor(3f);
+                setSpeedPowerFactor(2f);
                 Invoke("resetSpeedPower", powerUpEffectTime);
+                GetComponent<activePowerImage>().ChangeSprite(Color.yellow);
                 break;
             }
             case "SpeedDown":
             {   
                 setSpeedPowerFactor(0.5f);
                 Invoke("resetSpeedPower", powerUpEffectTime);
+                GetComponent<activePowerImage>().ChangeSprite(Color.yellow);
                 break;
             }
             case "ArmorUp":
             {   
                 setArmorPowerFactor(2f);
                 Invoke("resetArmorPower", powerUpEffectTime);
+                GetComponent<activePowerImage>().ChangeSprite(Color.green);
                 break;
             }
             case "ArmorDown":
             {   
                 setArmorPowerFactor(0.5f);
                 Invoke("resetArmorPower", powerUpEffectTime);
+                GetComponent<activePowerImage>().ChangeSprite(Color.green);
                 break;
             }
             case "AttackUp":
             {   
                 setAttackPowerFactor(2f);
                 Invoke("resetAttackPower", powerUpEffectTime);
+                GetComponent<activePowerImage>().ChangeSprite(Color.red);
                 break;
             }
             case "AttackDown":
             {   
                 setAttackPowerFactor(0.5f);
                 Invoke("resetAttackPower", powerUpEffectTime);
+                GetComponent<activePowerImage>().ChangeSprite(Color.red);
+                break;
+            }
+            case "HealthUp":
+            {   
+                healthBar.SetHealth(maxHealth);
+                break;
+            }
+            case "HealthDown":
+            {   
+                healthBar.SetHealth(currentHealth*2/3); // Ne fait pas trop de dégats pour le moment
                 break;
             }
             case "ChangeGuns":
             {   
-                speedPowerFactor = 5f;
+                speedPowerFactor = 0.2f;
+                GetComponent<activePowerImage>().ChangeSprite(Color.blue);
+                break;
+            }
+            case "BoomBoom": // Créer une pluie de bombe dans le niveau
+            {   
                 break;
             }
             default: break;
