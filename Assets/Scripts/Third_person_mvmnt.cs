@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Third_person_mvmnt : MonoBehaviour
 {
@@ -266,6 +268,18 @@ public class Third_person_mvmnt : MonoBehaviour
             float rangez = Random.Range(-(location.localScale.z / 2), location.localScale.z / 2);
             Vector3 spawnPoint = new Vector3(location.position.x + rangex, location.position.y, location.position.z + rangez);
             transform.position = spawnPoint;
+            ScoreManager sM = GetComponent<ScoreManager>();
+            if(!ragdoll){
+                sM.ScoreDown(); //diminue le score du joueur qui tombe, utilisé lors d'une chute sans ragdoll
+                //sM.GetLastShooter().GetComponentInParent(typeof(ScoreManager)).GetComponent<ScoreManager>().ScoreUp();
+            }
+            else
+            {
+                sM.GetLastShooter().GetComponentInParent(typeof(ScoreManager)).GetComponent<ScoreManager>().ScoreUp();//ligne pour augmenter le score du joueur qui a tiré en dernier sur la victime
+
+            }
+            
+            
         }
     }
 
