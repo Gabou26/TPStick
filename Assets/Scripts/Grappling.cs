@@ -8,6 +8,7 @@ public class Grappling : MonoBehaviour
     private Vector3 grapplePoint;
     public Third_person_mvmnt movement;
     public LayerMask whatIsGrappleable;
+    public LayerMask whatStopsGrappleable;
     public Transform grappleTip, cam, player;
     private float maxDistance = 100f;
     private bool IsGrappling;
@@ -52,10 +53,16 @@ public class Grappling : MonoBehaviour
     void StartGrapple()
     {
         RaycastHit hit;
-        if(Physics.Raycast(cam.position, cam.forward, out hit, maxDistance, whatIsGrappleable))
+        if (Physics.Raycast(cam.position, cam.forward, out hit, maxDistance, whatIsGrappleable))
         {
+            if (hit.transform.tag == "Detach")
+            {
+                return;
+            }
+
             movement.Velocity = new Vector3(0, 0, 0);
             grapplePoint = hit.point;
+
 
             lr.positionCount = 2;
             IsGrappling = true;
@@ -68,7 +75,7 @@ public class Grappling : MonoBehaviour
 
         lr.SetPosition(0, grappleTip.position);
         lr.SetPosition(1, grapplePoint);
-        if (Vector3.Distance(grappleTip.position, grapplePoint) < 5.0f)
+        if (Vector3.Distance(grappleTip.position, grapplePoint) < 8.0f)
         {
             StopGrapple();
         }
@@ -80,9 +87,6 @@ public class Grappling : MonoBehaviour
 
         movement.yvelocity = 0f;
         var velocity = (player.transform.position - lastPosition) / (Time.deltaTime * 1000f);
-        Debug.Log(velocity);
-        Debug.Log(lastPosition);
-        Debug.Log(player.transform.position);
         movement.Velocity = velocity;
         lr.positionCount = 0;
         IsGrappling = false;
