@@ -21,6 +21,7 @@ public class Third_person_mvmnt : MonoBehaviour
     float turnSmoothVelocity;
     public List<string> listMisteryPower = new List<string>(){"SpeedUp","SpeedDown","ArmorUp","ArmorDown","AttackUp","AttackDown","ChangeGuns"};
     public Transform cam;
+    public CharacterJoint spine;
     private Animator animator;
     private CharacterController charController;
     private CapsuleCollider capsCollider;
@@ -33,9 +34,11 @@ public class Third_person_mvmnt : MonoBehaviour
     private float powerUpTimer;
     private float powerUpEffectTime;
     TPCamController cameraController;
-
+    public Vector3 Velocity;
+    private Vector3 VelocityZero;
     Vector2 i_movement = Vector2.zero;
     bool jumped = false;
+    private FixedJoint joint;
 
     //Test Ragdoll
     public GameObject weapon;
@@ -45,6 +48,8 @@ public class Third_person_mvmnt : MonoBehaviour
 
     private void Start()
     {
+        VelocityZero = new Vector3(0,0,0);
+        Velocity = VelocityZero;
         respawnPoint = GameObject.Find("RespawnCube").transform; // Peut être changer ça car trop sale
         animator = GetComponent<Animator>();
         charController = GetComponent<CharacterController>();
@@ -60,7 +65,7 @@ public class Third_person_mvmnt : MonoBehaviour
     public void Ragdoll()
     {
         charController.enabled = !charController.enabled;
-        capsCollider.enabled = !capsCollider.enabled;
+        capsCollider.isTrigger = !capsCollider.isTrigger;
         animator.enabled = !animator.enabled;
         dead = !dead;
 
@@ -98,16 +103,26 @@ public class Third_person_mvmnt : MonoBehaviour
             if (dead)
             {
                 cameraController.CamFocus = cameraController.RagdollTarget;
+                joint = gameObject.AddComponent<FixedJoint>();
+                joint.autoConfigureConnectedAnchor = false;
+                joint.connectedAnchor = spine.transform.position;
             }
             else
             {
+                Rigidbody r = gameObject.GetComponent(typeof(Rigidbody)) as Rigidbody;
+                Destroy(joint);
+                Destroy(r);
                 cameraController.CamFocus = cameraController.Target;
+                gameObject.transform.position = spine.transform.position;
             }
+
             ragdoll = false;
         }
 
         if (dead)
         {
+            joint.connectedAnchor = spine.transform.position;
+            //gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, spine.transform.position, 50f * Time.deltaTime);
             return;
         }
         float horizontal = i_movement.x;
@@ -202,6 +217,7 @@ public class Third_person_mvmnt : MonoBehaviour
 
         if (controller.isGrounded)
         {
+            Velocity = VelocityZero;
             if (jumped)
             {
                 yvelocity = jumpForce;
@@ -224,9 +240,10 @@ public class Third_person_mvmnt : MonoBehaviour
         
         //ceci enleve le jitter du saut
         transform.position += direction * Time.deltaTime;
+        transform.position += Velocity;
         //transform.position += directionTEMP * Time.deltaTime;
 
-
+        Velocity = Vector3.Lerp(Velocity, VelocityZero, .001f) ;
 
         //controller.Move(direction * Time.deltaTime);
 
@@ -315,6 +332,8 @@ public class Third_person_mvmnt : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        Velocity = VelocityZero;
+
         if(collision.gameObject.tag == "MisteryBox"){
             Destroy(collision.gameObject);
             var nbPower = listMisteryPower.Count;
