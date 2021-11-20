@@ -37,7 +37,9 @@ public class Third_person_mvmnt : MonoBehaviour
 
     //Test Ragdoll
     public GameObject weapon;
-    public bool modeBot = false;
+
+    //Paused Lorsque menu est ouvert
+    [HideInInspector] public static bool paused = false;
 
     private void Start()
     {
@@ -69,13 +71,13 @@ public class Third_person_mvmnt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (modeBot) //Teste avec un bot joueur (en solo)
-            return;
+        if (paused)
+            jumped = false;
 
         //TEMP keyboard movement
         //float horizontalTEMP = Input.GetAxisRaw("Horizontal");
         //float verticalTEMP = Input.GetAxisRaw("Vertical");
-        if(hasPower == true){
+        if (hasPower == true){
             powerUpTimer += Time.deltaTime;
             if(powerUpTimer > powerUpEffectTime){
                 initialisePlayerProperties();
@@ -229,14 +231,30 @@ public class Third_person_mvmnt : MonoBehaviour
     }
 
     public void OnMove(InputValue value) {
+        if (paused)
+        {
+            i_movement = new Vector2(0, 0);
+            return;
+        }
+
+
         i_movement = value.Get<Vector2>();
     }
 
     public void OnMoveKey(InputValue value) {
+        if (paused)
+        {
+            i_movement = new Vector2(0, 0);
+            return;
+        }
+
         i_movement = value.Get<Vector2>();
     }
 
     public void OnJumpPress(InputValue value) {
+        if (paused)
+            return;
+
         jumped = true;
     }
 
@@ -245,10 +263,16 @@ public class Third_person_mvmnt : MonoBehaviour
     }
 
     public void OnCameraH(InputValue value) {
+        if (paused)
+            return;
+
         cameraController.OnCameraH(value);
     }
 
     public void OnCameraV(InputValue value) {
+        if (paused)
+            return;
+
         cameraController.OnCameraV(value);
     }
 

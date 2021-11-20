@@ -1100,7 +1100,6 @@ MonoBehaviour:
   cam: {fileID: 3365651}
   dead: 0
   weapon: {fileID: 0}
-  modeBot: 0
 --- !u!114 &643439837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1554,7 +1553,8 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 774544945}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3741539272657928680, guid: 54ca8c846081fdd4aba80b9752ae855a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 54ca8c846081fdd4aba80b9752ae855a, type: 3}
 --- !u!114 &774544945 stripped
 MonoBehaviour:
