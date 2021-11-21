@@ -5,40 +5,43 @@ using UnityEngine.UI;
 
 public class activePowerImage : MonoBehaviour
 {
-    public Image speedImages;
-    public Image armorImages;
-    public Image attackImages;
+    public Image speedImage;
+    public Image armorImage;
+    public Image attackImage;
     public Sprite[] spritePowerList;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
-        //Invoke("ChangeSprite", 10f);
     }
 
     // Update is called once per frame
     void Update()
     {
     }
-
-    public void ChangeSpriteAttack(string motCle)
-    {
-        if(motCle == "Up") attackImages.sprite = spritePowerList[0];
-        if(motCle == "Down") attackImages.sprite = spritePowerList[1];
-        if(motCle == "reset") attackImages.sprite = spritePowerList[2];
-    }
     public void ChangeSpriteSpeed(string motCle)
     {
-        if(motCle == "Up") speedImages.sprite = spritePowerList[0];
-        if(motCle == "Down") speedImages.sprite = spritePowerList[1];
-        if(motCle == "reset") speedImages.sprite = spritePowerList[2];
+        if(motCle == "Down") speedImage.sprite = spritePowerList[1];
+        if(motCle == "Up") speedImage.sprite = spritePowerList[2];
+        if(motCle == "reset") speedImage.sprite = spritePowerList[0];
     }
     public void ChangeSpriteArmor(string motCle)
     {
-        if(motCle == "Up") armorImages.sprite = spritePowerList[0];
-        if(motCle == "Down") armorImages.sprite = spritePowerList[1];
-        if(motCle == "reset") armorImages.sprite = spritePowerList[2]; 
+        if(motCle == "Down") armorImage.sprite = spritePowerList[3];
+        if(motCle == "Up") armorImage.sprite = spritePowerList[4];
+        if(motCle == "reset") armorImage.sprite = spritePowerList[0]; 
+    }
+    public void ChangeSpriteAttack(string motCle)
+    {
+        if(motCle == "Down") attackImage.sprite = spritePowerList[5];
+        if(motCle == "Up") attackImage.sprite = spritePowerList[6];
+        if(motCle == "reset") attackImage.sprite = spritePowerList[0];
+    }
+    public void resetAllSprite()
+    {
+        armorImage.sprite = spritePowerList[0];
+        speedImage.sprite = spritePowerList[0];
+        attackImage.sprite = spritePowerList[0]; 
     }
 }
