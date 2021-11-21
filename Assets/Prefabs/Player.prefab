@@ -3691,9 +3691,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b532d36cb975ed4dbc6b3f117346800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedImages: {fileID: 6279600048853949047}
-  armorImages: {fileID: 6824243077622234892}
-  attackImages: {fileID: 6258421922970917759}
+  speedImage: {fileID: 6279600048853949047}
+  armorImage: {fileID: 6824243077622234892}
+  attackImage: {fileID: 6258421922970917759}
   spritePowerList:
   - {fileID: 21300000, guid: eae69e28abc554e4586d941b70064a66, type: 3}
   - {fileID: 21300000, guid: 0fd18f8d819b94642a8d1553965bf73d, type: 3}
