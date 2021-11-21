@@ -142,9 +142,6 @@ public class MysteryBoxScript : MonoBehaviour
             default: break;
             
         }
-        print("Attack" + attackPowerFactor);
-        print("Armor" + armorPowerFactor);
-        print("Speed" + speedPowerFactor);
     }
     public void initialisePlayerProperties(){
         hasPower = false;
