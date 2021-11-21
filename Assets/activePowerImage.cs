@@ -38,8 +38,9 @@ public class activePowerImage : MonoBehaviour
         if(motCle == "Up") attackImage.sprite = spritePowerList[6];
         if(motCle == "reset") attackImage.sprite = spritePowerList[0];
     }
-    public void resetAllSprite()
+    public IEnumerator resetAllSprite()
     {
+        yield return new WaitForSeconds(2);
         armorImage.sprite = spritePowerList[0];
         speedImage.sprite = spritePowerList[0];
         attackImage.sprite = spritePowerList[0]; 
