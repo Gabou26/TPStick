@@ -16,10 +16,9 @@ public class Third_person_mvmnt : MonoBehaviour
     public float jumpForce;
     public float gravityScale;
     public float yvelocity;
-
+    private List<string> listMisteryPower = new List<string>(){"SpeedUp","SpeedDown","ArmorUp","ArmorDown","AttackUp","AttackDown","HealthUp","HealthDown","ChangeGuns"};
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
-    public List<string> listMisteryPower = new List<string>(){"SpeedUp","SpeedDown","ArmorUp","ArmorDown","AttackUp","AttackDown","ChangeGuns"};
     public Transform cam;
     public CharacterJoint spine;
     private Animator animator;
@@ -27,12 +26,6 @@ public class Third_person_mvmnt : MonoBehaviour
     private CapsuleCollider capsCollider;
     public bool dead;
     private bool ragdoll = false;
-    private bool hasPower;
-    private float speedPowerFactor;
-    private float armorPowerFactor = 1;
-    private float attackPowerFactor = 1;
-    private float powerUpTimer;
-    private float powerUpEffectTime;
     TPCamController cameraController;
     public Vector3 Velocity;
     private Vector3 VelocityZero;
@@ -55,7 +48,7 @@ public class Third_person_mvmnt : MonoBehaviour
         charController = GetComponent<CharacterController>();
         capsCollider = GetComponent<CapsuleCollider>();
         cameraController = cam.GetComponent<TPCamController>();
-        initialisePlayerProperties();
+        GetComponent<MysteryBoxScript>().initialisePlayerProperties();
         dead = false;
 
         if (weapon)
@@ -84,15 +77,9 @@ public class Third_person_mvmnt : MonoBehaviour
         //TEMP keyboard movement
         //float horizontalTEMP = Input.GetAxisRaw("Horizontal");
         //float verticalTEMP = Input.GetAxisRaw("Vertical");
-        if (hasPower == true){
-            powerUpTimer += Time.deltaTime;
-            if(powerUpTimer > powerUpEffectTime){
-                initialisePlayerProperties();
-            }
-        }
         if (ragdoll)
         {
-            initialisePlayerProperties();
+            GetComponent<MysteryBoxScript>().initialisePlayerProperties();
             charController.enabled = !charController.enabled;
             capsCollider.enabled = !capsCollider.enabled;
             animator.enabled = !animator.enabled;
@@ -198,6 +185,7 @@ public class Third_person_mvmnt : MonoBehaviour
         //Vector3 directionTEMP = (cam.forward * verticalTEMP) + (cam.right * horizontalTEMP); 
         direction.Normalize();
         //directionTEMP.Normalize();
+        float speedPowerFactor = GetComponent<MysteryBoxScript>().getSpeedPowerFactor();
         direction = direction * (speed*speedPowerFactor);
         //directionTEMP = directionTEMP * speed;
 
@@ -303,7 +291,7 @@ public class Third_person_mvmnt : MonoBehaviour
     {
         if (other.CompareTag("Respawn"))
         {
-            initialisePlayerProperties();
+            GetComponent<MysteryBoxScript>().initialisePlayerProperties();
             Transform location = respawnPoint.transform;
             float rangex = Random.Range(-(location.localScale.x / 2), location.localScale.x / 2);
             float rangez = Random.Range(-(location.localScale.z / 2), location.localScale.z / 2);
@@ -338,122 +326,7 @@ public class Third_person_mvmnt : MonoBehaviour
             Destroy(collision.gameObject);
             var nbPower = listMisteryPower.Count;
             var randomPower = listMisteryPower[Random.Range(0,nbPower)];
-            activePower(randomPower);
+            GetComponent<MysteryBoxScript>().activePower(randomPower);
         }
-    }
-
-    public float getAttackPowerFactor(){
-        return attackPowerFactor;
-    }
-    public float getArmorPowerFactor(){
-        return armorPowerFactor;
-    }
-
-    void setArmorPowerFactor(float armorFactor){
-        armorPowerFactor = armorFactor;
-    }
-
-    void setAttackPowerFactor(float attackFactor){
-        attackPowerFactor = attackFactor;
-    }
-
-    void setSpeedPowerFactor(float speedFactor){
-        speedPowerFactor = speedFactor;
-    }
-
-    void resetArmorPower(){
-        setArmorPowerFactor(1f);
-    }
-    void resetAttackPower(){
-        setAttackPowerFactor(1f);
-    }
-
-    void resetSpeedPower(){
-        setSpeedPowerFactor(1f);
-    }
-
-    void activePower(string powerName){
-        UIHealth healthBar = GetComponent<HealthBar>().getUIHealth();
-        var maxHealth = GetComponent<HealthBar>().getMaxHealth();
-        var currentHealth = GetComponent<HealthBar>().getCurrentHealth();
-        powerUpTimer = 0;
-        hasPower = true;
-        powerUpEffectTime = 10f; // A choisir si l'onn souhaite accumuler le temps des effets (+=) ou bien le réinitialiser (=)
-        print(powerName);
-        switch (powerName){
-            case "SpeedUp":
-            {   
-                setSpeedPowerFactor(2f);
-                Invoke("resetSpeedPower", powerUpEffectTime);
-                GetComponent<activePowerImage>().ChangeSprite(Color.yellow);
-                break;
-            }
-            case "SpeedDown":
-            {   
-                setSpeedPowerFactor(0.5f);
-                Invoke("resetSpeedPower", powerUpEffectTime);
-                GetComponent<activePowerImage>().ChangeSprite(Color.yellow);
-                break;
-            }
-            case "ArmorUp":
-            {   
-                setArmorPowerFactor(2f);
-                Invoke("resetArmorPower", powerUpEffectTime);
-                GetComponent<activePowerImage>().ChangeSprite(Color.green);
-                break;
-            }
-            case "ArmorDown":
-            {   
-                setArmorPowerFactor(0.5f);
-                Invoke("resetArmorPower", powerUpEffectTime);
-                GetComponent<activePowerImage>().ChangeSprite(Color.green);
-                break;
-            }
-            case "AttackUp":
-            {   
-                setAttackPowerFactor(2f);
-                Invoke("resetAttackPower", powerUpEffectTime);
-                GetComponent<activePowerImage>().ChangeSprite(Color.red);
-                break;
-            }
-            case "AttackDown":
-            {   
-                setAttackPowerFactor(0.5f);
-                Invoke("resetAttackPower", powerUpEffectTime);
-                GetComponent<activePowerImage>().ChangeSprite(Color.red);
-                break;
-            }
-            case "HealthUp":
-            {   
-                healthBar.SetHealth(maxHealth);
-                break;
-            }
-            case "HealthDown":
-            {   
-                healthBar.SetHealth(currentHealth*2/3); // Ne fait pas trop de dégats pour le moment
-                break;
-            }
-            case "ChangeGuns":
-            {   
-                speedPowerFactor = 0.2f;
-                GetComponent<activePowerImage>().ChangeSprite(Color.blue);
-                break;
-            }
-            case "BoomBoom": // Créer une pluie de bombe dans le niveau
-            {   
-                break;
-            }
-            default: break;
-            
-        }
-        print("Attack" + attackPowerFactor);
-        print("Armor" + armorPowerFactor);
-        print("Speed" + speedPowerFactor);
-    }
-    void initialisePlayerProperties(){
-        hasPower = false;
-        setSpeedPowerFactor(1f);
-        setArmorPowerFactor(1f);
-        setAttackPowerFactor(1f);
     }
 }
