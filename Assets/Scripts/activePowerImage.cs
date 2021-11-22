@@ -8,6 +8,7 @@ public class activePowerImage : MonoBehaviour
     public Image speedImage;
     public Image armorImage;
     public Image attackImage;
+    public Image healthImage;
     public Sprite[] spritePowerList;
 
 
@@ -37,6 +38,12 @@ public class activePowerImage : MonoBehaviour
         if(motCle == "Down") attackImage.sprite = spritePowerList[5];
         if(motCle == "Up") attackImage.sprite = spritePowerList[6];
         if(motCle == "reset") attackImage.sprite = spritePowerList[0];
+    }
+    public void ChangeSpriteHealth(string motCle)
+    {
+        if(motCle == "Down") healthImage.sprite = spritePowerList[7];
+        if(motCle == "Up") healthImage.sprite = spritePowerList[8];
+        if(motCle == "reset") healthImage.sprite = spritePowerList[0];
     }
     public IEnumerator resetAllSprite()
     {

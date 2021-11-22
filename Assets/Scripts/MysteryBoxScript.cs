@@ -63,6 +63,10 @@ public class MysteryBoxScript : MonoBehaviour
         GetComponent<activePowerImage>().ChangeSpriteAttack("reset");
     }
 
+    public void resetHealthPower(){
+        GetComponent<activePowerImage>().ChangeSpriteHealth("reset");
+    }
+
     public void resetSpeedPower(){
         setSpeedPowerFactor(1f);
         GetComponent<activePowerImage>().ChangeSpriteSpeed("reset");
@@ -121,12 +125,16 @@ public class MysteryBoxScript : MonoBehaviour
             }
             case "HealthUp":
             {   
+                GetComponent<activePowerImage>().ChangeSpriteHealth("Up");
                 healthBar.SetHealth(maxHealth);
+                Invoke("resetHealthPower", 2f);
                 break;
             }
             case "HealthDown":
             {   
+                GetComponent<activePowerImage>().ChangeSpriteHealth("Down");
                 healthBar.SetHealth(currentHealth*2/3); // Ne fait pas trop de dégats pour le moment
+                Invoke("resetHealthPower", 2f);
                 break;
             }
             case "ChangeGuns":
