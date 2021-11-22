@@ -46,7 +46,7 @@ public class Third_person_mvmnt : MonoBehaviour
     //Paused Lorsque menu est ouvert
     [HideInInspector] public static bool paused = false;
 
-    private void Start()
+    private void Awake()
     {
         VelocityZero = new Vector3(0,0,0);
         Velocity = VelocityZero;
@@ -64,10 +64,10 @@ public class Third_person_mvmnt : MonoBehaviour
 
     public void Ragdoll()
     {
+        dead = !dead;
         charController.enabled = !charController.enabled;
         capsCollider.isTrigger = !capsCollider.isTrigger;
         animator.enabled = !animator.enabled;
-        dead = !dead;
 
         if (weapon)
             weapon.SetActive(!dead);
@@ -93,11 +93,6 @@ public class Third_person_mvmnt : MonoBehaviour
         if (ragdoll)
         {
             initialisePlayerProperties();
-            charController.enabled = !charController.enabled;
-            capsCollider.enabled = !capsCollider.enabled;
-            animator.enabled = !animator.enabled;
-            dead = !dead;
-            cameraController.deadChar = dead;
             Ragdoll();
 
             if (dead)
@@ -121,6 +116,7 @@ public class Third_person_mvmnt : MonoBehaviour
 
         if (dead)
         {
+            print(joint);
             joint.connectedAnchor = spine.transform.position;
             //gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, spine.transform.position, 50f * Time.deltaTime);
             return;
@@ -243,7 +239,7 @@ public class Third_person_mvmnt : MonoBehaviour
         transform.position += Velocity;
         //transform.position += directionTEMP * Time.deltaTime;
 
-        Velocity = Vector3.Lerp(Velocity, VelocityZero, .001f) ;
+        Velocity = Vector3.Lerp(Velocity, VelocityZero, .001f * Time.deltaTime) ;
 
         //controller.Move(direction * Time.deltaTime);
 
@@ -455,5 +451,10 @@ public class Third_person_mvmnt : MonoBehaviour
         setSpeedPowerFactor(1f);
         setArmorPowerFactor(1f);
         setAttackPowerFactor(1f);
+    }
+
+    GameObject GetDefaultWeapon()
+    {
+        return null;
     }
 }
