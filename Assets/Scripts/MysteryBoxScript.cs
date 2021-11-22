@@ -126,14 +126,14 @@ public class MysteryBoxScript : MonoBehaviour
             case "HealthUp":
             {   
                 GetComponent<activePowerImage>().ChangeSpriteHealth("Up");
-                healthBar.SetHealth(maxHealth);
+                //healthBar.SetHealth(maxHealth);
                 Invoke("resetHealthPower", 2f);
                 break;
             }
             case "HealthDown":
             {   
                 GetComponent<activePowerImage>().ChangeSpriteHealth("Down");
-                healthBar.SetHealth(currentHealth*2/3); // Ne fait pas trop de dégats pour le moment
+                //healthBar.SetHealth(currentHealth*2/3); // Ne fait pas trop de dégats pour le moment
                 Invoke("resetHealthPower", 2f);
                 break;
             }
