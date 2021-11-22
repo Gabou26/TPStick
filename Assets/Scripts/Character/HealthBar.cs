@@ -30,9 +30,10 @@ public class HealthBar : MonoBehaviour
         {
             currentHealth = 0;
             Death(killer);
-        }           
+        }
 
-        healthBar.SetHealth(currentHealth);
+        if (healthBar)
+            healthBar.SetHealth(currentHealth);
     }
 
     public virtual void Death(GameObject killer)
@@ -44,13 +45,16 @@ public class HealthBar : MonoBehaviour
     public void Recover(int iteration)
     {
         currentHealth = maxHealth[reviveIndex];
-        healthBar.SetHealth(currentHealth);
+        if (healthBar)
+            healthBar.SetHealth(currentHealth);
     }
 
     public void ResetHealth()
     {
         currentHealth = maxHealth[reviveIndex];
-        healthBar.SetMaxHealth(maxHealth[reviveIndex], currentHealth);
+
+        if (healthBar)
+            healthBar.SetMaxHealth(maxHealth[reviveIndex], currentHealth);
     }
 
     public float getCurrentHealth()
