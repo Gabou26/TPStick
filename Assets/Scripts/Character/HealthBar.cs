@@ -19,37 +19,42 @@ public class HealthBar : MonoBehaviour
     public void TakeDamage(GameObject killer, float damage)
     {
         //GameObject playerHit = this.gameObject;
-        var armorFactor = GetComponent<Third_person_mvmnt>().getArmorPowerFactor();
-        var attackFactor = killer.GetComponentInParent<Third_person_mvmnt>().getAttackPowerFactor();
+        var armorFactor = GetComponent<MysteryBoxScript>().getArmorPowerFactor();
+        var attackFactor = killer.GetComponentInParent<MysteryBoxScript>().getAttackPowerFactor();
         damage /= armorFactor;  // On divise les dégats par l'armure du joueur touché
         damage *= attackFactor;
-        print(armorFactor);
-        print(attackFactor);
+        print(damage);
         currentHealth -= damage;
+        print(currentHealth);
         if (currentHealth <= 0)
         {
             currentHealth = 0;
             Death(killer);
-        }           
+        }
 
-        healthBar.SetHealth(currentHealth);
+        if (healthBar)
+            healthBar.SetHealth(currentHealth);
     }
 
     public virtual void Death(GameObject killer)
     {
         GetComponent<Third_person_mvmnt>().Ragdoll();
+        GetComponent<activePowerImage>().resetAllSprite();
     }
 
     public void Recover(int iteration)
     {
         currentHealth = maxHealth[reviveIndex];
-        healthBar.SetHealth(currentHealth);
+        if (healthBar)
+            healthBar.SetHealth(currentHealth);
     }
 
     public void ResetHealth()
     {
         currentHealth = maxHealth[reviveIndex];
-        healthBar.SetMaxHealth(maxHealth[reviveIndex], currentHealth);
+
+        if (healthBar)
+            healthBar.SetMaxHealth(maxHealth[reviveIndex], currentHealth);
     }
 
     public float getCurrentHealth()
