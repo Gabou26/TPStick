@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class RayWeapon : MonoBehaviour
 {
@@ -52,9 +53,12 @@ public class RayWeapon : MonoBehaviour
             //Debug.DrawLine(ray.origin, hit.point, Color.yellow, 1.0f);
             if (hit.transform.gameObject.layer == 3)
             { 
+                hit.transform.GetComponentInParent<ScoreManager>().SetLastShooter(player);
                 HealthBar bar = hit.transform.GetComponent<HealthBar>();
                 if (player.activeSelf && bar)
+                {
                     bar.TakeDamage(player, weaponDamage);
+                }
             }
 
 
@@ -64,6 +68,8 @@ public class RayWeapon : MonoBehaviour
 
             tracer.transform.position = hit.point;
         } 
+        else
+            tracer.transform.position = ray.origin + (ray.direction * 30);
     }
 
     public void StopFiring()
