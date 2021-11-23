@@ -3873,6 +3873,10 @@ MonoBehaviour:
   crossHairTarg: {fileID: 7739450494797910798}
   weaponParent: {fileID: 423177292309949170}
   hankIk: {fileID: 7967437423500785743}
+  listWeaponsPrefab:
+  - {fileID: 1905492659546039487, guid: c65ca877c14c7944eb1976eb1e625e4b, type: 3}
+  - {fileID: 1905492659546039487, guid: 1718027590dacb242b9b7eb624619341, type: 3}
+  - {fileID: 1905492659546039487, guid: 3c3189638ed59a44eb2530427fb6cb78, type: 3}
   gripLeft: {fileID: 3554726781242938225}
   gripRight: {fileID: 9116611163528703242}
 --- !u!114 &8323265503147519518
