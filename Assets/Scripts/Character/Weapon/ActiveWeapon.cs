@@ -67,12 +67,17 @@ public class ActiveWeapon : MonoBehaviour
         Invoke(nameof(SetAnimationDelayed), 0.001f);
     }
 
+    public void destroyCurrentWeapon(){
+        print(rayWeapon);
+        if (rayWeapon)
+            Destroy(rayWeapon.gameObject);
+    }
+
     public void giveRandomWeapon(){
         var randomWeaponPrefab = currentWeapon;
         do
         {
             randomWeaponPrefab = listWeaponsPrefab[Random.Range(0,weaponCount)];
-            print("boucle");
         } while(randomWeaponPrefab == currentWeapon);
         RayWeapon newWeapon = Instantiate(randomWeaponPrefab);
         print(newWeapon);

@@ -59,13 +59,16 @@ public class Third_person_mvmnt : MonoBehaviour
 
     public void Ragdoll()
     {
+        print("cocou");
         dead = !dead;
         charController.enabled = !charController.enabled;
         capsCollider.isTrigger = !capsCollider.isTrigger;
         animator.enabled = !animator.enabled;
-
+        GetComponent<ActiveWeapon>().destroyCurrentWeapon();
+        /*
         if (weapon)
             weapon.SetActive(!dead);
+            */
         cameraController.deadChar = dead;
     }
 
