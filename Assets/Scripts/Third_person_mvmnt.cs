@@ -37,7 +37,6 @@ public class Third_person_mvmnt : MonoBehaviour
 
     //Test Ragdoll
     public GameObject weapon;
-
     //Paused Lorsque menu est ouvert
     [HideInInspector] public static bool paused = false;
 
@@ -51,24 +50,27 @@ public class Third_person_mvmnt : MonoBehaviour
         capsCollider = GetComponent<CapsuleCollider>();
         cameraController = cam.GetComponent<TPCamController>();
         GetComponent<MysteryBoxScript>().initialisePlayerProperties();
+        //GetComponent<ActiveWeapon>().restorePreviousWeapon();
         dead = false;
         grapple = grappleObject.GetComponent<Grappling>();
+        /*
         if (weapon)
             weapon.SetActive(!dead);
+        */
     }
 
     public void Ragdoll()
     {
-        print("cocou");
         dead = !dead;
         charController.enabled = !charController.enabled;
         capsCollider.isTrigger = !capsCollider.isTrigger;
         animator.enabled = !animator.enabled;
-        GetComponent<ActiveWeapon>().destroyCurrentWeapon();
+        GetComponent<MysteryBoxScript>().initialisePlayerProperties();
+        GetComponent<ActiveWeapon>().deactivateCurrentWeapon();
         /*
         if (weapon)
             weapon.SetActive(!dead);
-            */
+        */
         cameraController.deadChar = dead;
     }
 
@@ -84,7 +86,6 @@ public class Third_person_mvmnt : MonoBehaviour
         //float verticalTEMP = Input.GetAxisRaw("Vertical");
         if (ragdoll)
         {
-            GetComponent<MysteryBoxScript>().initialisePlayerProperties();
             charController.enabled = !charController.enabled;
             capsCollider.enabled = !capsCollider.enabled;
             animator.enabled = !animator.enabled;

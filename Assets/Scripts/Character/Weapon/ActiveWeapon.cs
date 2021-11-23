@@ -13,7 +13,8 @@ public class ActiveWeapon : MonoBehaviour
     private bool pressed;
     public RayWeapon[] listWeaponsPrefab;
     private int weaponCount;
-    private RayWeapon currentWeapon;
+    private RayWeapon currentWeapon; // Non instancié
+    private RayWeapon currentWeaponObject; // weapon clone instancié
     //Editeur
     public Transform gripLeft, gripRight;
     Animator animator;
@@ -67,10 +68,12 @@ public class ActiveWeapon : MonoBehaviour
         Invoke(nameof(SetAnimationDelayed), 0.001f);
     }
 
-    public void destroyCurrentWeapon(){
-        print(rayWeapon);
-        if (rayWeapon)
-            Destroy(rayWeapon.gameObject);
+    public void deactivateCurrentWeapon(){
+        currentWeaponObject.gameObject.SetActive(false);
+    }
+
+    public void activateCurrentWeapon(){
+        currentWeaponObject.gameObject.SetActive(true);
     }
 
     public void giveRandomWeapon(){
@@ -83,7 +86,7 @@ public class ActiveWeapon : MonoBehaviour
         print(newWeapon);
         if (newWeapon)
             Equip(newWeapon);
-        currentWeapon = randomWeaponPrefab;
+        currentWeaponObject = newWeapon;
     }
     void SetAnimationDelayed()
     {
