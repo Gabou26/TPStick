@@ -3577,6 +3577,7 @@ MonoBehaviour:
   spine: {fileID: 4159523688624799247}
   dead: 0
   Velocity: {x: 0, y: 0, z: 0}
+  grappleObject: {fileID: 230681811}
   weapon: {fileID: 0}
 --- !u!114 &7540364777896950615
 MonoBehaviour:

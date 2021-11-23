@@ -32,6 +32,8 @@ public class Third_person_mvmnt : MonoBehaviour
     Vector2 i_movement = Vector2.zero;
     bool jumped = false;
     private FixedJoint joint;
+    public GameObject grappleObject;
+    private Grappling grapple;
 
     //Test Ragdoll
     public GameObject weapon;
@@ -50,6 +52,7 @@ public class Third_person_mvmnt : MonoBehaviour
         cameraController = cam.GetComponent<TPCamController>();
         GetComponent<MysteryBoxScript>().initialisePlayerProperties();
         dead = false;
+        grapple = grappleObject.GetComponent<Grappling>();
 
         if (weapon)
             weapon.SetActive(!dead);
@@ -282,6 +285,20 @@ public class Third_person_mvmnt : MonoBehaviour
             return;
 
         cameraController.OnCameraV(value);
+    }
+
+    private void OnGrapplePress() {
+        if (paused)
+            return;
+        
+        grapple.OnGrapplePress();
+    }
+
+    private void OnGrappleRelease() {
+        if (paused)
+            return;
+        
+        grapple.OnGrappleRelease();
     }
 
     public void OnRagdoll() {

@@ -99,12 +99,20 @@ public class @PlayerPauseInput : IInputActionCollection, IDisposable
                     ""interactions"": ""Press""
                 },
                 {
-                    ""name"": ""Grapple"",
+                    ""name"": ""GrapplePress"",
                     ""type"": ""Button"",
                     ""id"": ""d3300b98-5522-48a6-8a15-fbb2aff987ec"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""GrappleRelease"",
+                    ""type"": ""Button"",
+                    ""id"": ""8bf6640b-1398-4664-9172-45e272f2c872"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)""
                 }
             ],
             ""bindings"": [
@@ -404,6 +412,50 @@ public class @PlayerPauseInput : IInputActionCollection, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""60b0c14d-15c3-470c-86f2-08dedc7251f5"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""GrappleRelease"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""74b09026-76fe-4fc4-a3a7-f74bf7f781fd"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""GrappleRelease"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9434639f-3144-49ff-94ee-98233d5136ca"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""GrapplePress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3a0517bd-9ede-4b26-b08b-8379f5b10d59"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""GrapplePress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -450,7 +502,8 @@ public class @PlayerPauseInput : IInputActionCollection, IDisposable
         m_Player_FireRelease = m_Player.FindAction("FireRelease", throwIfNotFound: true);
         m_Player_Ragdoll = m_Player.FindAction("Ragdoll", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
-        m_Player_Grapple = m_Player.FindAction("Grapple", throwIfNotFound: true);
+        m_Player_GrapplePress = m_Player.FindAction("GrapplePress", throwIfNotFound: true);
+        m_Player_GrappleRelease = m_Player.FindAction("GrappleRelease", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -510,7 +563,8 @@ public class @PlayerPauseInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_FireRelease;
     private readonly InputAction m_Player_Ragdoll;
     private readonly InputAction m_Player_Pause;
-    private readonly InputAction m_Player_Grapple;
+    private readonly InputAction m_Player_GrapplePress;
+    private readonly InputAction m_Player_GrappleRelease;
     public struct PlayerActions
     {
         private @PlayerPauseInput m_Wrapper;
@@ -525,7 +579,8 @@ public class @PlayerPauseInput : IInputActionCollection, IDisposable
         public InputAction @FireRelease => m_Wrapper.m_Player_FireRelease;
         public InputAction @Ragdoll => m_Wrapper.m_Player_Ragdoll;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
-        public InputAction @Grapple => m_Wrapper.m_Player_Grapple;
+        public InputAction @GrapplePress => m_Wrapper.m_Player_GrapplePress;
+        public InputAction @GrappleRelease => m_Wrapper.m_Player_GrappleRelease;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -565,9 +620,12 @@ public class @PlayerPauseInput : IInputActionCollection, IDisposable
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
-                @Grapple.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrapple;
-                @Grapple.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrapple;
-                @Grapple.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrapple;
+                @GrapplePress.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrapplePress;
+                @GrapplePress.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrapplePress;
+                @GrapplePress.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrapplePress;
+                @GrappleRelease.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrappleRelease;
+                @GrappleRelease.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrappleRelease;
+                @GrappleRelease.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrappleRelease;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -602,9 +660,12 @@ public class @PlayerPauseInput : IInputActionCollection, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
-                @Grapple.started += instance.OnGrapple;
-                @Grapple.performed += instance.OnGrapple;
-                @Grapple.canceled += instance.OnGrapple;
+                @GrapplePress.started += instance.OnGrapplePress;
+                @GrapplePress.performed += instance.OnGrapplePress;
+                @GrapplePress.canceled += instance.OnGrapplePress;
+                @GrappleRelease.started += instance.OnGrappleRelease;
+                @GrappleRelease.performed += instance.OnGrappleRelease;
+                @GrappleRelease.canceled += instance.OnGrappleRelease;
             }
         }
     }
@@ -639,6 +700,7 @@ public class @PlayerPauseInput : IInputActionCollection, IDisposable
         void OnFireRelease(InputAction.CallbackContext context);
         void OnRagdoll(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
-        void OnGrapple(InputAction.CallbackContext context);
+        void OnGrapplePress(InputAction.CallbackContext context);
+        void OnGrappleRelease(InputAction.CallbackContext context);
     }
 }
