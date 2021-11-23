@@ -11,21 +11,22 @@ public class ActiveWeapon : MonoBehaviour
     public Rig hankIk;
     RayWeapon rayWeapon;
     private bool pressed;
-
+    public RayWeapon[] listWeaponsPrefab;
+    private int weaponCount;
+    private RayWeapon currentWeapon;
     //Editeur
     public Transform gripLeft, gripRight;
     Animator animator;
     AnimatorOverrideController overrides;
+
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         overrides = animator.runtimeAnimatorController as AnimatorOverrideController;
-
-        RayWeapon baseWeapon = GetComponentInChildren<RayWeapon>();
-        if (baseWeapon)
-            Equip(baseWeapon);
+        weaponCount = listWeaponsPrefab.Length;
+        giveRandomWeapon();
     }
 
     // Update is called once per frame
@@ -52,23 +53,33 @@ public class ActiveWeapon : MonoBehaviour
         pressed = false;
     }
 
-    public void Equip(RayWeapon weapon)
+    public void Equip(RayWeapon newWeapon)
     {
         if (rayWeapon)
             Destroy(rayWeapon.gameObject);
-
-        rayWeapon = weapon;
+        rayWeapon = newWeapon;
         rayWeapon.raycastAimTarget = crossHairTarg;
         rayWeapon.transform.parent = weaponParent;
         rayWeapon.transform.localPosition = Vector3.zero;
         rayWeapon.transform.localRotation = Quaternion.identity;
-
         hankIk.weight = 1;
         animator.SetLayerWeight(2, 1.0f);
-
         Invoke(nameof(SetAnimationDelayed), 0.001f);
     }
 
+    public void giveRandomWeapon(){
+        var randomWeaponPrefab = currentWeapon;
+        do
+        {
+            randomWeaponPrefab = listWeaponsPrefab[Random.Range(0,weaponCount)];
+            print("boucle");
+        } while(randomWeaponPrefab == currentWeapon);
+        RayWeapon newWeapon = Instantiate(randomWeaponPrefab);
+        print(newWeapon);
+        if (newWeapon)
+            Equip(newWeapon);
+        currentWeapon = randomWeaponPrefab;
+    }
     void SetAnimationDelayed()
     {
         overrides["weapon_anim_empty"] = rayWeapon.weaponAnim;

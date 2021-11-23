@@ -53,7 +53,6 @@ public class Third_person_mvmnt : MonoBehaviour
         GetComponent<MysteryBoxScript>().initialisePlayerProperties();
         dead = false;
         grapple = grappleObject.GetComponent<Grappling>();
-
         if (weapon)
             weapon.SetActive(!dead);
     }
@@ -310,6 +309,7 @@ public class Third_person_mvmnt : MonoBehaviour
         if (other.CompareTag("Respawn"))
         {
             GetComponent<MysteryBoxScript>().initialisePlayerProperties();
+            GetComponent<ActiveWeapon>().giveRandomWeapon();
             Transform location = respawnPoint.transform;
             float rangex = Random.Range(-(location.localScale.x / 2), location.localScale.x / 2);
             float rangez = Random.Range(-(location.localScale.z / 2), location.localScale.z / 2);
@@ -333,7 +333,6 @@ public class Third_person_mvmnt : MonoBehaviour
             
         }
     }
-
     private void stopVelocity()
     {
         yvelocity = 0;
