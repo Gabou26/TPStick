@@ -9,7 +9,12 @@ public class UIHealth : MonoBehaviour
     private Color fullHealthColor = new Color(0.33f, 1f, 0.25f);
     private Color lowHealthColor = new Color(1f, 0.24f, 0.33f);
     public GameObject fillBar;
-
+    public Text playerName;
+    private UIHealth[] listUIHealth;
+    private void Start()
+    {
+        playerName.text = "Player 2";
+    }
     private void Awake()
     {
         slider = GetComponent<Slider>();
