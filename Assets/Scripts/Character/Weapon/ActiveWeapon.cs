@@ -88,6 +88,7 @@ public class ActiveWeapon : MonoBehaviour
             Equip(newWeapon);
         currentWeaponObject = newWeapon;
     }
+
     void SetAnimationDelayed()
     {
         overrides["weapon_anim_empty"] = rayWeapon.weaponAnim;

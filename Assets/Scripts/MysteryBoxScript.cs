@@ -16,7 +16,12 @@ public class MysteryBoxScript : MonoBehaviour
     private float powerUpSpeedTimer; // Timer depuis la dernière activation d'un pouvoir lié à la vitesse
     private float powerUpArmorTimer;
     private float powerUpAttackTimer;
+    private float powerUpHealthTimer;
+    private float powerUpChangeGunTimer;
     private float powerUpEffectTime; // Temps d'effet d'un pouvoir
+    private float powerUpHealthEffectTime; // Temps d'effet d'un pouvoir
+    private float powerUpChangeGunEffectTime; // Temps d'effet d'un pouvoir
+
     private void Start()
     {
         initialisePlayerProperties();
@@ -29,6 +34,8 @@ public class MysteryBoxScript : MonoBehaviour
             powerUpSpeedTimer += Time.deltaTime;
             powerUpArmorTimer += Time.deltaTime;
             powerUpAttackTimer += Time.deltaTime;
+            powerUpHealthTimer += Time.deltaTime;
+            powerUpChangeGunTimer += Time.deltaTime;
             if(powerUpSpeedTimer > powerUpEffectTime){
                 resetSpeedPower();
             }
@@ -37,6 +44,12 @@ public class MysteryBoxScript : MonoBehaviour
             }
             if(powerUpAttackTimer > powerUpEffectTime){
                 resetAttackPower();
+            }
+            if(powerUpHealthTimer > powerUpHealthEffectTime){
+                resetHealthPower();
+            }
+            if(powerUpChangeGunTimer > powerUpChangeGunEffectTime){
+                resetChangeGunPower();
             }
         }
 
@@ -80,19 +93,27 @@ public class MysteryBoxScript : MonoBehaviour
         GetComponent<activePowerImage>().ChangeSpriteHealth("reset");
     }
 
+    public void resetChangeGunPower(){
+        GetComponent<activePowerImage>().ChangeSpriteGun("reset");
+    }
+
+    private IEnumerator waitTime(float time){
+        yield return new WaitForSeconds(time);
+    }
     public void activePower(string powerName){
         UIHealth healthBar = GetComponent<HealthBar>().getUIHealth();
         var maxHealth = GetComponent<HealthBar>().getMaxHealth();
         var currentHealth = GetComponent<HealthBar>().getCurrentHealth();
         hasPower = true;
         powerUpEffectTime = 10f; // Temps d'effet d'un pouvoir
+        powerUpHealthEffectTime = 2f;
+        powerUpChangeGunEffectTime = 4f;
         print(powerName);
         switch (powerName){
             case "SpeedUp":
             {   
                 setSpeedPowerFactor(2f);
                 powerUpSpeedTimer = 0;
-                //Invoke("resetSpeedPower", powerUpEffectTime);
                 GetComponent<activePowerImage>().ChangeSpriteSpeed("Up");
                 break;
             }
@@ -100,7 +121,6 @@ public class MysteryBoxScript : MonoBehaviour
             {   
                 setSpeedPowerFactor(0.5f);
                 powerUpSpeedTimer = 0;
-                //Invoke("resetSpeedPower", powerUpEffectTime);
                 GetComponent<activePowerImage>().ChangeSpriteSpeed("Down");
                 break;
             }
@@ -108,7 +128,6 @@ public class MysteryBoxScript : MonoBehaviour
             {   
                 setArmorPowerFactor(2f);
                 powerUpArmorTimer = 0;
-                //Invoke("resetArmorPower", powerUpEffectTime);
                 GetComponent<activePowerImage>().ChangeSpriteArmor("Up");
                 break;
             }
@@ -116,7 +135,6 @@ public class MysteryBoxScript : MonoBehaviour
             {   
                 setArmorPowerFactor(0.5f);
                 powerUpArmorTimer = 0;
-                //Invoke("resetArmorPower", powerUpEffectTime);
                 GetComponent<activePowerImage>().ChangeSpriteArmor("Down");
                 break;
             }
@@ -124,7 +142,6 @@ public class MysteryBoxScript : MonoBehaviour
             {   
                 setAttackPowerFactor(2f);
                 powerUpAttackTimer = 0;
-                //Invoke("resetAttackPower", powerUpEffectTime);
                 GetComponent<activePowerImage>().ChangeSpriteAttack("Up");
                 break;
             }
@@ -132,7 +149,6 @@ public class MysteryBoxScript : MonoBehaviour
             {   
                 setAttackPowerFactor(0.5f);
                 powerUpAttackTimer = 0;
-                //Invoke("resetAttackPower", powerUpEffectTime);
                 GetComponent<activePowerImage>().ChangeSpriteAttack("Down");
                 break;
             }
@@ -140,20 +156,20 @@ public class MysteryBoxScript : MonoBehaviour
             {   
                 GetComponent<activePowerImage>().ChangeSpriteHealth("Up");
                 healthBar.SetHealth(maxHealth);
-                Invoke("resetHealthPower", 2f);
+                powerUpHealthTimer = 0;
                 break;
             }
             case "HealthDown":
             {   
                 GetComponent<activePowerImage>().ChangeSpriteHealth("Down");
                 healthBar.SetHealth(currentHealth*2/3); // Ne fait pas trop de dégats pour le moment
-                Invoke("resetHealthPower", 2f);
+                powerUpHealthTimer = 0;
                 break;
             }
             case "ChangeGuns":
             {   
-                speedPowerFactor = 0.2f;
-                //GetComponent<activePowerImage>().ChangeSprite(Color.blue);
+                changeAllWeapons();
+                powerUpChangeGunTimer = 0;
                 break;
             }
             case "BoomBoom": // Créer une pluie de bombe dans le niveau
@@ -162,6 +178,16 @@ public class MysteryBoxScript : MonoBehaviour
             }
             default: break;
             
+        }
+    }
+    private void changeAllWeapons(){
+        GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>() ;
+        foreach(GameObject go in allObjects){
+            if(go.name == "Player(Clone)"){
+                GetComponent<activePowerImage>().ChangeSpriteGun("Activate");
+                waitTime(2);
+                go.GetComponent<ActiveWeapon>().giveRandomWeapon();
+            }
         }
     }
     public void initialisePlayerProperties(){

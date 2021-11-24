@@ -9,6 +9,7 @@ public class activePowerImage : MonoBehaviour
     public Image armorImage;
     public Image attackImage;
     public Image healthImage;
+    public Image changeGunImage;
     public Sprite[] spritePowerList;
 
 
@@ -45,6 +46,12 @@ public class activePowerImage : MonoBehaviour
         if(motCle == "Up") healthImage.sprite = spritePowerList[8];
         if(motCle == "reset") healthImage.sprite = spritePowerList[0];
     }
+
+    public void ChangeSpriteGun(string motCle)
+    {
+        if(motCle == "Activate") changeGunImage.sprite = spritePowerList[9];
+        if(motCle == "reset") changeGunImage.sprite = spritePowerList[0];
+    }
     private IEnumerator waitTime(float time){
         yield return new WaitForSeconds(time);
     }
@@ -54,5 +61,6 @@ public class activePowerImage : MonoBehaviour
         armorImage.sprite = spritePowerList[0];
         speedImage.sprite = spritePowerList[0];
         attackImage.sprite = spritePowerList[0]; 
+        changeGunImage.sprite = spritePowerList[0]; 
     }
 }
