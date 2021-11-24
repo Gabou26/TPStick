@@ -13,7 +13,14 @@ public class UIHealth : MonoBehaviour
     private UIHealth[] listUIHealth;
     private void Start()
     {
-        playerName.text = "Player 2";
+        var nbPlayer = 0;
+        GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>() ;
+        foreach(GameObject go in allObjects){
+            if(go.name == "PlayerName"){
+                nbPlayer += 1;
+            }
+        }
+        playerName.text = "Player "+nbPlayer;
     }
     private void Awake()
     {
