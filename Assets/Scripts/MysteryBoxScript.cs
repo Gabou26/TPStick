@@ -184,7 +184,7 @@ public class MysteryBoxScript : MonoBehaviour
         GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>() ;
         foreach(GameObject go in allObjects){
             if(go.name == "Player(Clone)"){
-                GetComponent<activePowerImage>().ChangeSpriteGun("Activate");
+                go.GetComponent<activePowerImage>().ChangeSpriteGun("Activate");
                 waitTime(2);
                 go.GetComponent<ActiveWeapon>().giveRandomWeapon();
             }
