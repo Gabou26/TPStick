@@ -47,4 +47,8 @@ public class UIHealth : MonoBehaviour
         print("cc");
         playerName.text = name;
     }
+
+    public string getPlayerName(){
+        return playerName.text;
+    }
 }
