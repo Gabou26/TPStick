@@ -15,6 +15,8 @@ public class Grappling : MonoBehaviour
     public float grappleSpeed;
     private float Speed;
     private Vector3 lastPosition;
+    private bool pressed = false;
+    private bool released = false;
 
     private void Awake()
     {
@@ -27,13 +29,15 @@ public class Grappling : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(1))
+        if(pressed)
         {
             StartGrapple();
+            pressed = false;
         }
-        else if (Input.GetMouseButtonUp(1))
+        if (released)
         {
             StopGrapple();
+            released = false;
         }
 
         if(IsGrappling)
@@ -49,6 +53,14 @@ public class Grappling : MonoBehaviour
     private void LateUpdate()
     {
         DrawRope();
+    }
+
+    public void OnGrapplePress() {
+        pressed = true;
+    }
+
+    public void OnGrappleRelease() {
+        released = true;
     }
 
     void StartGrapple()
@@ -76,7 +88,7 @@ public class Grappling : MonoBehaviour
 
         lr.SetPosition(0, grappleTip.position);
         lr.SetPosition(1, grapplePoint);
-        if (Vector3.Distance(grappleTip.position, grapplePoint) < 8.0f)
+        if (Vector3.Distance(grappleTip.position, grapplePoint) < 8.0f)
         {
             StopGrapple();
         }
@@ -88,6 +100,7 @@ public class Grappling : MonoBehaviour
 
         movement.yvelocity = 0f;
         var velocity = (player.transform.position - lastPosition) / (Time.deltaTime * 1000f);
+        Debug.Log(velocity);
         movement.Velocity = velocity;
         lr.positionCount = 0;
         IsGrappling = false;

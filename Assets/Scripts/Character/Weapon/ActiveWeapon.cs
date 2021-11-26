@@ -11,7 +11,6 @@ public class ActiveWeapon : MonoBehaviour
     public Rig hankIk;
     RayWeapon rayWeapon;
     private bool pressed;
-    private bool released;
 
     //Editeur
     public Transform gripLeft, gripRight;
