@@ -37,6 +37,7 @@ public class Third_person_mvmnt : MonoBehaviour
 
     //Test Ragdoll
     public GameObject weapon;
+    Vector3 direction;
 
     //Paused Lorsque menu est ouvert
     [HideInInspector] public static bool paused = false;
@@ -196,7 +197,7 @@ public class Third_person_mvmnt : MonoBehaviour
 
 
         //Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
-        Vector3 direction = (cam.forward * vertical) + (cam.right * horizontal); 
+        direction = (cam.forward * vertical) + (cam.right * horizontal); 
         //Vector3 directionTEMP = (cam.forward * verticalTEMP) + (cam.right * horizontalTEMP); 
         direction.Normalize();
         //directionTEMP.Normalize();
@@ -246,7 +247,7 @@ public class Third_person_mvmnt : MonoBehaviour
         transform.position += Velocity;
         //transform.position += directionTEMP * Time.deltaTime;
 
-        Velocity = Vector3.Lerp(Velocity, VelocityZero, .001f * Time.deltaTime) ;
+        Velocity = Vector3.Lerp(Velocity, VelocityZero, 1f * Time.deltaTime) ;
 
         //controller.Move(direction * Time.deltaTime);
 
@@ -353,7 +354,12 @@ public class Third_person_mvmnt : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        Velocity = VelocityZero;
+        if (Velocity != VelocityZero)
+        {
+            Velocity = VelocityZero;
+            direction = VelocityZero;
+        }
+        
 
         if(collision.gameObject.tag == "MisteryBox"){
             Destroy(collision.gameObject);
