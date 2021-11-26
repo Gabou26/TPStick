@@ -13,6 +13,7 @@ public class UIHealth : MonoBehaviour
     private UIHealth[] listUIHealth;
     private void Start()
     {
+        /*
         var nbPlayer = 0;
         GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>() ;
         foreach(GameObject go in allObjects){
@@ -21,6 +22,7 @@ public class UIHealth : MonoBehaviour
             }
         }
         playerName.text = "Player "+nbPlayer;
+        */
     }
     private void Awake()
     {
@@ -34,9 +36,15 @@ public class UIHealth : MonoBehaviour
         fillBar.GetComponent<Image>().color = Color.Lerp(lowHealthColor, fullHealthColor, slider.value / slider.maxValue);
     }
 
+
     public void SetHealth(float health)
     {
         slider.value = health;
         fillBar.GetComponent<Image>().color = Color.Lerp(lowHealthColor, fullHealthColor, slider.value / slider.maxValue);
+    }
+
+    public void setPlayerName(string name){
+        print("cc");
+        playerName.text = name;
     }
 }
