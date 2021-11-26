@@ -9,7 +9,21 @@ public class UIHealth : MonoBehaviour
     private Color fullHealthColor = new Color(0.33f, 1f, 0.25f);
     private Color lowHealthColor = new Color(1f, 0.24f, 0.33f);
     public GameObject fillBar;
-
+    public Text playerName;
+    private UIHealth[] listUIHealth;
+    private void Start()
+    {
+        /*
+        var nbPlayer = 0;
+        GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>() ;
+        foreach(GameObject go in allObjects){
+            if(go.name == "PlayerName"){
+                nbPlayer += 1;
+            }
+        }
+        playerName.text = "Player "+nbPlayer;
+        */
+    }
     private void Awake()
     {
         slider = GetComponent<Slider>();
@@ -22,9 +36,19 @@ public class UIHealth : MonoBehaviour
         fillBar.GetComponent<Image>().color = Color.Lerp(lowHealthColor, fullHealthColor, slider.value / slider.maxValue);
     }
 
+
     public void SetHealth(float health)
     {
         slider.value = health;
         fillBar.GetComponent<Image>().color = Color.Lerp(lowHealthColor, fullHealthColor, slider.value / slider.maxValue);
+    }
+
+    public void setPlayerName(string name){
+        print("cc");
+        playerName.text = name;
+    }
+
+    public string getPlayerName(){
+        return playerName.text;
     }
 }
