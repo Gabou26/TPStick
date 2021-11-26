@@ -64,14 +64,25 @@ public class Third_person_mvmnt : MonoBehaviour
 
     public void Ragdoll()
     {
-        charController.enabled = !charController.enabled;
-        capsCollider.isTrigger = !capsCollider.isTrigger;
-        animator.enabled = !animator.enabled;
-        dead = !dead;
+        charController.enabled = false;
+        capsCollider.isTrigger = false;
+        animator.enabled = false;
+        dead = true;
 
         if (weapon)
-            weapon.SetActive(!dead);
-        cameraController.deadChar = dead;
+            weapon.SetActive(false);
+        cameraController.deadChar = true;
+    }
+    public void Unragdoll()
+    {
+        charController.enabled = true;
+        capsCollider.isTrigger = true;
+        animator.enabled = true;
+        dead = false;
+
+        if (weapon)
+            weapon.SetActive(true);
+        cameraController.deadChar = false;
     }
 
 

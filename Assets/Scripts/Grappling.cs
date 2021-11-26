@@ -10,7 +10,7 @@ public class Grappling : MonoBehaviour
     public LayerMask whatIsGrappleable;
     public LayerMask whatStopsGrappleable;
     public Transform grappleTip, cam, player;
-    private float maxDistance = 100f;
+    private float maxDistance = 60f;
     private bool IsGrappling;
     public float grappleSpeed;
     private float Speed;
@@ -19,7 +19,8 @@ public class Grappling : MonoBehaviour
     private void Awake()
     {
         lr = GetComponent<LineRenderer>();
-        IsGrappling = false;
+        IsGrappling = true;
+        StopGrapple();
         Speed = grappleSpeed;
         lastPosition = player.position;
     }
