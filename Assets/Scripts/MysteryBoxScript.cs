@@ -94,7 +94,12 @@ public class MysteryBoxScript : MonoBehaviour
     }
 
     public void resetChangeGunPower(){
-        GetComponent<activePowerImage>().ChangeSpriteGun("reset");
+        GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>() ;
+        foreach(GameObject go in allObjects){
+            if(go.name == "Player(Clone)"){
+                go.GetComponent<activePowerImage>().ChangeSpriteGun("reset");
+            }
+        }
     }
 
     private IEnumerator waitTime(float time){
