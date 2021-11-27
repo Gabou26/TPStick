@@ -54,7 +54,6 @@ public class NewPause : MonoBehaviour
 
     public void Show(bool inputKeyboard)
     {
-        print("OP");
         open = true;
         cGroup.interactable = true;
         Third_person_mvmnt.paused = true;

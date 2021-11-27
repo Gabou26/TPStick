@@ -15,6 +15,10 @@ public class TPCamController : MonoBehaviour
     float vertical = 0f;
     public bool deadChar;
 
+    //Camera Wall Collision
+    public float camDist = 7;
+    public LayerMask colliderCamMask;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +31,7 @@ public class TPCamController : MonoBehaviour
     private void LateUpdate()
     {
         CamControl();
+        SetCamDist();
     }
 
     void CamControl()
@@ -45,6 +50,25 @@ public class TPCamController : MonoBehaviour
         {
             Player.rotation = Quaternion.Euler(0, mousex, 0);
         }
+    }
+
+    void SetCamDist()
+    {
+        float camNewDist = camDist;
+        Vector3 camRot = (transform.position - CamFocus.position).normalized;
+
+
+        RaycastHit hit;
+        if (Physics.Raycast(CamFocus.position, camRot, out hit, camNewDist, colliderCamMask))
+        {
+            float distCol = hit.distance;
+            if (distCol < 2)
+                distCol = 2;
+
+            camNewDist = distCol;
+        }
+
+        transform.position = CamFocus.position + (camRot * camNewDist);
     }
     
     public void OnCameraH(InputValue value) {
