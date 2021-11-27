@@ -10,25 +10,20 @@ public class Grappling : MonoBehaviour
     public LayerMask whatIsGrappleable;
     public LayerMask whatStopsGrappleable;
     public Transform grappleTip, cam, player;
-    private float maxDistance = 60f;
+    private float maxDistance = 100f;
     private bool IsGrappling;
     public float grappleSpeed;
     private float Speed;
     private Vector3 lastPosition;
     private bool pressed = false;
     private bool released = false;
-    private Vector3 VelocityZero;
-    private bool springmax;
 
     private void Awake()
     {
         lr = GetComponent<LineRenderer>();
-        IsGrappling = true;
-        StopGrapple();
+        IsGrappling = false;
         Speed = grappleSpeed;
         lastPosition = player.position;
-        VelocityZero = new Vector3(0, 0, 0);
-        springmax = false;
     }
 
     private void Update()
@@ -46,19 +41,11 @@ public class Grappling : MonoBehaviour
 
         if(IsGrappling)
         {
-            if(Vector3.Distance(grappleTip.position, grapplePoint) > 6.0f)
-            {
-                float dist = .5f + (Vector3.Distance(player.transform.position, grapplePoint) / maxDistance);
-                //Debug.Log(dist);
-                Speed = Mathf.Clamp(Speed * dist, grappleSpeed, grappleSpeed * 1.5f);
-                lastPosition = player.transform.position;
-                player.transform.position = Vector3.MoveTowards(player.transform.position, grapplePoint, Speed * Time.deltaTime);
-            }
-            else
-            {
-                movement.Velocity = VelocityZero;
-                springmax = true;
-            }
+            float dist = .5f + (Vector3.Distance(player.transform.position, grapplePoint) / maxDistance);
+            //Debug.Log(dist);
+            Speed = Mathf.Clamp(Speed * dist, grappleSpeed, grappleSpeed * 1.5f);
+            lastPosition = player.transform.position;
+            player.transform.position = Vector3.MoveTowards(player.transform.position, grapplePoint, Speed * Time.deltaTime);
         }
     }
 
@@ -85,7 +72,6 @@ public class Grappling : MonoBehaviour
                 return;
             }
 
-            springmax = false;
             movement.Velocity = new Vector3(0, 0, 0);
             grapplePoint = hit.point;
 
@@ -101,7 +87,7 @@ public class Grappling : MonoBehaviour
 
         lr.SetPosition(0, grappleTip.position);
         lr.SetPosition(1, grapplePoint);
-        if (Vector3.Distance(grappleTip.position, grapplePoint) < 5.0f)
+        if (Vector3.Distance(grappleTip.position, grapplePoint) < 8.0f)
         {
             StopGrapple();
         }
@@ -113,10 +99,10 @@ public class Grappling : MonoBehaviour
 
         movement.yvelocity = 0f;
         var velocity = (player.transform.position - lastPosition) / (Time.deltaTime * 1000f);
-        if(!springmax) movement.Velocity = velocity;
+        Debug.Log(velocity);
+        movement.Velocity = velocity;
         lr.positionCount = 0;
         IsGrappling = false;
-        springmax = false;
     }
 
     public Vector3 GetGrapplePoint()

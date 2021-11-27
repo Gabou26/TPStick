@@ -37,8 +37,6 @@ public class Third_person_mvmnt : MonoBehaviour
 
     //Test Ragdoll
     public GameObject weapon;
-    Vector3 direction;
-
     //Paused Lorsque menu est ouvert
     [HideInInspector] public static bool paused = false;
 
@@ -63,29 +61,17 @@ public class Third_person_mvmnt : MonoBehaviour
 
     public void Ragdoll()
     {
-        charController.enabled = false;
-        capsCollider.isTrigger = false;
-        animator.enabled = false;
-        dead = true;
+        dead = !dead;
+        charController.enabled = !charController.enabled;
+        capsCollider.isTrigger = !capsCollider.isTrigger;
+        animator.enabled = !animator.enabled;
         GetComponent<MysteryBoxScript>().initialisePlayerProperties();
         GetComponent<ActiveWeapon>().deactivateCurrentWeapon();
-        /*if (weapon)
-            weapon.SetActive(false);
-        */
-        cameraController.deadChar = true;
-    }
-    public void Unragdoll()
-    {
-        charController.enabled = true;
-        capsCollider.isTrigger = true;
-        animator.enabled = true;
-        dead = false;
-        GetComponent<ActiveWeapon>().activateCurrentWeapon();
         /*
         if (weapon)
-            weapon.SetActive(true);
+            weapon.SetActive(!dead);
         */
-        cameraController.deadChar = false;
+        cameraController.deadChar = dead;
     }
 
 
@@ -202,7 +188,7 @@ public class Third_person_mvmnt : MonoBehaviour
 
 
         //Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
-        direction = (cam.forward * vertical) + (cam.right * horizontal); 
+        Vector3 direction = (cam.forward * vertical) + (cam.right * horizontal); 
         //Vector3 directionTEMP = (cam.forward * verticalTEMP) + (cam.right * horizontalTEMP); 
         direction.Normalize();
         //directionTEMP.Normalize();
@@ -252,7 +238,7 @@ public class Third_person_mvmnt : MonoBehaviour
         transform.position += Velocity;
         //transform.position += directionTEMP * Time.deltaTime;
 
-        Velocity = Vector3.Lerp(Velocity, VelocityZero, 1f * Time.deltaTime) ;
+        Velocity = Vector3.Lerp(Velocity, VelocityZero, .001f * Time.deltaTime) ;
 
         //controller.Move(direction * Time.deltaTime);
 
@@ -359,12 +345,7 @@ public class Third_person_mvmnt : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (Velocity != VelocityZero)
-        {
-            Velocity = VelocityZero;
-            direction = VelocityZero;
-        }
-        
+        Velocity = VelocityZero;
 
         if(collision.gameObject.tag == "MisteryBox"){
             Destroy(collision.gameObject);
