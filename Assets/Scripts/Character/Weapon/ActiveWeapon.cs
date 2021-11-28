@@ -9,7 +9,7 @@ public class ActiveWeapon : MonoBehaviour
     public Transform crossHairTarg;
     public Transform weaponParent;
     public Rig hankIk;
-    RayWeapon rayWeapon;
+    GunWeapon gunWeapon;
     private bool pressed;
     private bool released;
 
@@ -32,7 +32,7 @@ public class ActiveWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!rayWeapon)
+        if (!gunWeapon)
         {
             hankIk.weight = 0;
             animator.SetLayerWeight(2, 0.0f);
@@ -40,9 +40,9 @@ public class ActiveWeapon : MonoBehaviour
         }
 
         if (pressed)
-            rayWeapon.StartFiring();
+            gunWeapon.StartFiring();
         else
-            rayWeapon.StopFiring();
+            gunWeapon.StopFiring();
     }
 
     public void OnFirePress() {
@@ -53,16 +53,16 @@ public class ActiveWeapon : MonoBehaviour
         pressed = false;
     }
 
-    public void Equip(RayWeapon weapon)
+    public void Equip(GunWeapon weapon)
     {
-        if (rayWeapon)
-            Destroy(rayWeapon.gameObject);
+        if (gunWeapon)
+            Destroy(gunWeapon.gameObject);
 
-        rayWeapon = weapon;
-        rayWeapon.raycastAimTarget = crossHairTarg;
-        rayWeapon.transform.parent = weaponParent;
-        rayWeapon.transform.localPosition = Vector3.zero;
-        rayWeapon.transform.localRotation = Quaternion.identity;
+        gunWeapon = weapon;
+        gunWeapon.raycastAimTarget = crossHairTarg;
+        gunWeapon.transform.parent = weaponParent;
+        gunWeapon.transform.localPosition = Vector3.zero;
+        gunWeapon.transform.localRotation = Quaternion.identity;
 
         hankIk.weight = 1;
         animator.SetLayerWeight(2, 1.0f);
@@ -72,7 +72,7 @@ public class ActiveWeapon : MonoBehaviour
 
     void SetAnimationDelayed()
     {
-        overrides["weapon_anim_empty"] = rayWeapon.weaponAnim;
+        overrides["weapon_anim_empty"] = gunWeapon.weaponAnim;
     }
 
     [ContextMenu("Save Weapon Pose")]
@@ -82,7 +82,7 @@ public class ActiveWeapon : MonoBehaviour
         recorder.BindComponentsOfType<Transform>(gripLeft.gameObject, false);
         recorder.BindComponentsOfType<Transform>(gripRight.gameObject, false);
         recorder.TakeSnapshot(0);
-        recorder.SaveToClip(rayWeapon.weaponAnim);
+        recorder.SaveToClip(gunWeapon.weaponAnim);
         UnityEditor.AssetDatabase.SaveAssets();
     }
 }
