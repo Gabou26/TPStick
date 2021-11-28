@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class WeaponPickup : MonoBehaviour
 {
-    public RayWeapon weaponPrefab;
+    public GunWeapon weaponPrefab;
 
     private void OnTriggerEnter(Collider other)
     {
         ActiveWeapon activeW = other.gameObject.GetComponent<ActiveWeapon>();
         if (activeW)
         {
-            RayWeapon weapon = Instantiate(weaponPrefab);
+            GunWeapon weapon = Instantiate(weaponPrefab);
             activeW.Equip(weapon);
         }
     }

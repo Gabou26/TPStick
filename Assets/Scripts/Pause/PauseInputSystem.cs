@@ -21,23 +21,17 @@ public class PauseInputSystem : MonoBehaviour
     {
         CanvasPause pauseCanvas = CanvasPause.instance;
         if (pauseCanvas)
-            pauseMenu = pauseCanvas.GetComponentInChildren<NewPause>();
-    }
+            pauseMenu = GetComponentInChildren<NewPause>();
 
-    private void OnEnable()
-    {
         pauseTrigger = input.Player.Pause;
+        pauseTrigger.performed += PauseGame;
         pauseTrigger.Enable();
-
-        input.Player.Pause.performed += PauseGame;
-        input.Player.Pause.Enable();
     }
 
     private void PauseGame(InputAction.CallbackContext context)
     {
         if (!pauseMenu)
             return;
-
         //print(context.control.layout);
         if (!pauseMenu.open)
         {

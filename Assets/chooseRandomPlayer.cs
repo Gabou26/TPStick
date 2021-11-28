@@ -17,6 +17,9 @@ public class chooseRandomPlayer : MonoBehaviour
         foreach(GameObject go in allObjects){
             if(go.name == "Player(Clone)"){
                 Color color = go.GetComponentInChildren<SkinnedMeshRenderer>().material.color;
+                if(color == pink){ // La couleur pink n'est pas bien reconnu lors de l'appel de contains key (color)
+                    listPlayerColor_Name.Remove(pink);
+                }
                 if(listPlayerColor_Name.ContainsKey(color)){
                     listPlayerColor_Name.Remove(color);
                 } 
@@ -25,7 +28,6 @@ public class chooseRandomPlayer : MonoBehaviour
         List<Color> keyList = new List<Color>(listPlayerColor_Name.Keys);
         var nbValue = keyList.Count;
         var newColor = keyList[Random.Range(0,nbValue)];
-        print(newColor.ToString());
         var newName = listPlayerColor_Name[newColor];
         GetComponentInChildren<SkinnedMeshRenderer>().material.color = newColor;
         GetComponentInChildren<UIHealth>().setPlayerName(newName);

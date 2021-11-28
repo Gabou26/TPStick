@@ -9,12 +9,12 @@ public class ActiveWeapon : MonoBehaviour
     public Transform crossHairTarg;
     public Transform weaponParent;
     public Rig hankIk;
-    RayWeapon rayWeapon;
+    GunWeapon rayWeapon;
     private bool pressed;
-    public RayWeapon[] listWeaponsPrefab;
+    public GunWeapon[] listWeaponsPrefab;
     private int weaponCount;
-    private RayWeapon currentWeapon; // Non instancié
-    private RayWeapon currentWeaponObject; // weapon clone instancié
+    private GunWeapon currentWeapon; // Non instancié
+    private GunWeapon currentWeaponObject; // weapon clone instancié
     //Editeur
     public Transform gripLeft, gripRight;
     Animator animator;
@@ -54,7 +54,7 @@ public class ActiveWeapon : MonoBehaviour
         pressed = false;
     }
 
-    public void Equip(RayWeapon newWeapon)
+    public void Equip(GunWeapon newWeapon)
     {
         if (rayWeapon)
             Destroy(rayWeapon.gameObject);
@@ -82,7 +82,7 @@ public class ActiveWeapon : MonoBehaviour
         {
             randomWeaponPrefab = listWeaponsPrefab[Random.Range(0,weaponCount)];
         } while(randomWeaponPrefab == currentWeapon);
-        RayWeapon newWeapon = Instantiate(randomWeaponPrefab);
+        GunWeapon newWeapon = Instantiate(randomWeaponPrefab);
         print(newWeapon);
         if (newWeapon)
             Equip(newWeapon);

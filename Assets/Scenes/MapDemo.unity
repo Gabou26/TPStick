@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.11616774, g: 0.4241546, b: 0.7301588, a: 1}
+  m_IndirectSpecularColor: {r: 0.112605825, g: 0.4177903, b: 0.72322243, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -667,6 +667,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 86275073117417296, guid: 54ca8c846081fdd4aba80b9752ae855a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 86275073117417296, guid: 54ca8c846081fdd4aba80b9752ae855a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5682184082449528957, guid: 54ca8c846081fdd4aba80b9752ae855a,
         type: 3}
       propertyPath: m_RootOrder
@@ -727,6 +737,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7540364777896950615, guid: 54ca8c846081fdd4aba80b9752ae855a,
+        type: 3}
+      propertyPath: listWeaponsPrefab.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7540364777896950615, guid: 54ca8c846081fdd4aba80b9752ae855a,
+        type: 3}
+      propertyPath: listWeaponsPrefab.Array.data[3]
+      value: 
+      objectReference: {fileID: 1685445799163305631, guid: 84aab3f72d5a95b40bbedafc78989133,
+        type: 3}
+    - target: {fileID: 7540364777896950615, guid: 54ca8c846081fdd4aba80b9752ae855a,
+        type: 3}
+      propertyPath: listWeaponsPrefab.Array.data[4]
+      value: 
+      objectReference: {fileID: 1685445799163305631, guid: 503bc302a8e64e449b2a7afa18ef914b,
+        type: 3}
     - target: {fileID: 7889348634859481703, guid: 54ca8c846081fdd4aba80b9752ae855a,
         type: 3}
       propertyPath: m_NotificationBehavior
@@ -1967,7 +1994,7 @@ GameObject:
   - component: {fileID: 921317467}
   - component: {fileID: 921317466}
   - component: {fileID: 921317465}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3002,7 +3029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c07371d2f6b8b242a9e7c8a70144daa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 1905492659546039487, guid: 1718027590dacb242b9b7eb624619341,
+  weaponPrefab: {fileID: 1685445799163305631, guid: 503bc302a8e64e449b2a7afa18ef914b,
     type: 3}
 --- !u!4 &1867359775
 Transform:
