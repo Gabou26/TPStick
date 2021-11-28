@@ -16,6 +16,11 @@ public class ScoreManager : MonoBehaviour
         _score--;
     }
 
+    public int GetScore()
+    {
+        return _score;
+    }
+
     public void SetLastShooter(GameObject lastShooter)
     {
         _lastShooter = lastShooter;

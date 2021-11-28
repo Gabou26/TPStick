@@ -86,12 +86,20 @@
                     "interactions": "Press"
                 },
                 {
-                    "name": "Grapple",
+                    "name": "GrapplePress",
                     "type": "Button",
                     "id": "d3300b98-5522-48a6-8a15-fbb2aff987ec",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
+                },
+                {
+                    "name": "GrappleRelease",
+                    "type": "Button",
+                    "id": "8bf6640b-1398-4664-9172-45e272f2c872",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)"
                 }
             ],
             "bindings": [
@@ -389,6 +397,50 @@
                     "processors": "",
                     "groups": "Controller",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "60b0c14d-15c3-470c-86f2-08dedc7251f5",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "GrappleRelease",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "74b09026-76fe-4fc4-a3a7-f74bf7f781fd",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "GrappleRelease",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9434639f-3144-49ff-94ee-98233d5136ca",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "GrapplePress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3a0517bd-9ede-4b26-b08b-8379f5b10d59",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "GrapplePress",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
