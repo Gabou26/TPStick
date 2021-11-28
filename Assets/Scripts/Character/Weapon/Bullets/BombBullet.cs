@@ -42,8 +42,8 @@ public class BombBullet : BaseBullet
            // target.transform.GetComponent<ScoreManager>().SetLastShooter(player);
             HealthBar bar = target.transform.GetComponent<HealthBar>();
             print("TARGER");
-            if (player.activeSelf && bar)
-                bar.TakeDamage(player, weaponDamage);
+            //if (player.activeSelf && bar)
+               // bar.TakeDamage(player, weaponDamage);
         }
         StartCoroutine(Exploser());
     }

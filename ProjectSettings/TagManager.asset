@@ -8,6 +8,7 @@ TagManager:
   - MisteryBox
   - Collide
   - Detach
+  - ChangeMap
   layers:
   - Default
   - TransparentFX
