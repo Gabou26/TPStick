@@ -3476,7 +3476,7 @@ MonoBehaviour:
   camDist: 7
   colliderCamMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 66048
 --- !u!1 &6163357153464348304
 GameObject:
   m_ObjectHideFlags: 0
@@ -3775,6 +3775,8 @@ MonoBehaviour:
   - {fileID: 1905492659546039487, guid: c65ca877c14c7944eb1976eb1e625e4b, type: 3}
   - {fileID: 1905492659546039487, guid: 1718027590dacb242b9b7eb624619341, type: 3}
   - {fileID: 1905492659546039487, guid: 3c3189638ed59a44eb2530427fb6cb78, type: 3}
+  - {fileID: 1685445799163305631, guid: 84aab3f72d5a95b40bbedafc78989133, type: 3}
+  - {fileID: 1685445799163305631, guid: 503bc302a8e64e449b2a7afa18ef914b, type: 3}
   gripLeft: {fileID: 3554726781242938225}
   gripRight: {fileID: 9116611163528703242}
 --- !u!114 &8323265503147519518

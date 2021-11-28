@@ -14,7 +14,7 @@ public class BombBullet : BaseBullet
        // print("OK : " + transform.r);
         Rigidbody rigid = GetComponent<Rigidbody>();
         rigid.velocity = new Vector3();
-        rigid.AddForce(Vector3.forward * vitesse);
+        rigid.AddForce(transform.forward * vitesse);
     }
 
     void Update()
@@ -36,11 +36,12 @@ public class BombBullet : BaseBullet
             return;
 
         isDestroying = true;
-        RaycastHit[] targets = Physics.SphereCastAll(transform.position, explosionRadius, Vector3.zero, playerTrigger);
+        RaycastHit[] targets = Physics.SphereCastAll(transform.position, explosionRadius, transform.forward, playerTrigger);
         foreach (var target in targets)
         {
-            target.transform.GetComponentInParent<ScoreManager>().SetLastShooter(player);
+           // target.transform.GetComponent<ScoreManager>().SetLastShooter(player);
             HealthBar bar = target.transform.GetComponent<HealthBar>();
+            print("TARGER");
             if (player.activeSelf && bar)
                 bar.TakeDamage(player, weaponDamage);
         }
@@ -50,6 +51,8 @@ public class BombBullet : BaseBullet
     IEnumerator Exploser()
     {
         GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<SphereCollider>().enabled = false;
+        GetComponent<Rigidbody>().isKinematic = true;
         //explosif.GetComponent<AudioSource>().Stop();
         explosion.Play();
 
