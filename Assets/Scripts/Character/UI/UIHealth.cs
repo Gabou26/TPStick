@@ -44,7 +44,6 @@ public class UIHealth : MonoBehaviour
     }
 
     public void setPlayerName(string name){
-        print("cc");
         playerName.text = name;
     }
 
