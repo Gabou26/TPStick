@@ -41,8 +41,8 @@ public class SpawnCrates : MonoBehaviour
         GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         Rigidbody gameObjectsRigidBody = cube.AddComponent<Rigidbody>();
         cube_Collider = cube.GetComponent<BoxCollider>();
-        cube_Collider.size = new Vector3(1.3f, 1.1f, 1.3f);
-        cube_Collider.center = new Vector3(0f, 0.1f, 0f);
+        cube_Collider.size = new Vector3(1.3f, 1f, 1.3f);
+        cube_Collider.center = new Vector3(0f, 0f, 0f);
 
 
         //Change o� va spawn ce cube
