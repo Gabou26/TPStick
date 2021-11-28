@@ -92,8 +92,8 @@ public class NewPause : MonoBehaviour
 
     IEnumerator ChangeCurrentScene(string scene)
     {
-        if (scene == "MainMenu")
-            DisconnectEveryone();
+       // if (scene == "MainMenu")
+            //DisconnectEveryone();
         trans.Transition(new Vector2(0, 1200), new Vector2(0, 0), false);
         yield return new WaitForSeconds(0.6f);
         SceneManager.LoadScene(scene);

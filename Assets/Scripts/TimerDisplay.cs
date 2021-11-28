@@ -25,6 +25,23 @@ public class TimerDisplay : MonoBehaviour
         {
             timerText.text = "Time's Up !!!";
             //TODO: Trigger endgame event
+            GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+            Dictionary<GameObject, int> scoreBoard = new Dictionary<GameObject, int>();
+            foreach (GameObject gameObject in allObjects)
+            {
+                if (gameObject.name == "Player(Clone)")
+                {
+                    scoreBoard.Add(gameObject, gameObject.GetComponent<ScoreManager>().GetScore());
+                }
+            }
+
+            timerText.text += "\n";
+            foreach (KeyValuePair<GameObject, int> kv in scoreBoard)
+            {
+                timerText.text += $"{kv.Key.GetComponentInChildren<UIHealth>().getPlayerName()} : {kv.Value}, ";
+            }
+            
+
         }
         else
         {

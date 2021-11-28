@@ -3,46 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
-public class RayWeapon : MonoBehaviour
+public class RayWeapon : GunWeapon
 {
-    GameObject player;
-    public bool isFiring = false;
-    public ParticleSystem flashTir, hitEffect;
+    public ParticleSystem hitEffect;
     public TrailRenderer tracerEffect;
-    public AnimationClip weaponAnim;
-    public Transform rayOrigin;
-    public Transform raycastAimTarget;
 
     //Attributs d'arme
-    public float weaponDamage = 12 ;
     public float distTir = 1000;
-    public float interTir = 0.3f;
-
-    //Intervalle
-    float interCour = 0;
 
     //Raycast of Weapon
     Ray ray;
     RaycastHit hit;
 
-    private void Start()
+    protected override void Shoot()
     {
-        player = transform.parent.gameObject;
-    }
-
-    public void StartFiring()
-    {
-        interCour += Time.deltaTime;
-        if (interCour < interTir)
-        {
-            StopFiring();
-            return;
-        }
-
-        interCour -= interTir;
-        isFiring = true;
-        flashTir.Emit(1);
-
         ray.origin = rayOrigin.position;
         ray.direction = (raycastAimTarget.position - rayOrigin.position).normalized;
 
@@ -52,7 +26,7 @@ public class RayWeapon : MonoBehaviour
         {
             //Debug.DrawLine(ray.origin, hit.point, Color.yellow, 1.0f);
             if (hit.transform.gameObject.layer == 3)
-            { 
+            {
                 hit.transform.GetComponentInParent<ScoreManager>().SetLastShooter(player);
                 HealthBar bar = hit.transform.GetComponent<HealthBar>();
                 if (player.activeSelf && bar)
@@ -67,13 +41,8 @@ public class RayWeapon : MonoBehaviour
             hitEffect.Emit(1);
 
             tracer.transform.position = hit.point;
-        } 
+        }
         else
             tracer.transform.position = ray.origin + (ray.direction * 30);
-    }
-
-    public void StopFiring()
-    {
-        isFiring = false;
     }
 }

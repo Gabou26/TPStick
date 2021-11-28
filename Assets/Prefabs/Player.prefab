@@ -3476,7 +3476,7 @@ MonoBehaviour:
   camDist: 7
   colliderCamMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 66048
 --- !u!1 &6163357153464348304
 GameObject:
   m_ObjectHideFlags: 0
@@ -3650,7 +3650,7 @@ GameObject:
   - component: {fileID: 6245393675935741706}
   - component: {fileID: 50127265394687137}
   - component: {fileID: 9061311024127701718}
-  - component: {fileID: 8432980648840800304}
+  - component: {fileID: 1230093309378670090}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -3711,7 +3711,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2.59
+  m_Height: 2.45
   m_Radius: 0.66
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -3729,9 +3729,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 2.5
+  m_Height: 3.05
   m_Direction: 1
-  m_Center: {x: 0, y: 1.25, z: 0}
+  m_Center: {x: 0, y: 1.3, z: 0}
 --- !u!114 &1931720277191644298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3776,6 +3776,8 @@ MonoBehaviour:
   - {fileID: 1905492659546039487, guid: c65ca877c14c7944eb1976eb1e625e4b, type: 3}
   - {fileID: 1905492659546039487, guid: 1718027590dacb242b9b7eb624619341, type: 3}
   - {fileID: 1905492659546039487, guid: 3c3189638ed59a44eb2530427fb6cb78, type: 3}
+  - {fileID: 1685445799163305631, guid: 84aab3f72d5a95b40bbedafc78989133, type: 3}
+  - {fileID: 1685445799163305631, guid: 503bc302a8e64e449b2a7afa18ef914b, type: 3}
   gripLeft: {fileID: 3554726781242938225}
   gripRight: {fileID: 9116611163528703242}
 --- !u!114 &8323265503147519518
@@ -3981,7 +3983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03a54b712ac54ab40958cdbdaac4b36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8432980648840800304
+--- !u!114 &1230093309378670090
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

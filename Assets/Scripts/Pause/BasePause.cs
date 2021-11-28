@@ -46,6 +46,6 @@ public class BasePause : MonoBehaviour
     public void GoToMainMenu()
     {
         Time.timeScale = 1f;
-        GetComponentInParent<NewPause>().ChangeScene("MainMenu");
+        GetComponentInParent<NewPause>().ChangeScene("Lobby");
     }
 }
