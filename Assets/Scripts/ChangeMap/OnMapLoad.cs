@@ -12,6 +12,7 @@ public class OnMapLoad : MonoBehaviour
     private PlayerInputManager manager;
     private GameObject[] players;
     private TimerDisplay timer;
+    private Canvas _canvas;
 
     void Start()
     {
@@ -19,6 +20,7 @@ public class OnMapLoad : MonoBehaviour
         manager.DisableJoining();
 
         timer = GetComponent<TimerDisplay>();
+        _canvas = timer.GetComponentInParent<Canvas>();
 
         players = GameObject.FindGameObjectsWithTag("Player");
         int len = players.Length;
@@ -32,7 +34,7 @@ public class OnMapLoad : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex == 0) //si on retourne au lobby
         {
             timer.timerText.text = "";
-            Destroy(timer);
+            Destroy(_canvas);
         }
         else
         {

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     private int _score;
-    public GameObject _lastShooter;
+    private GameObject _lastShooter;
 
     public void ResetScore()
     {
