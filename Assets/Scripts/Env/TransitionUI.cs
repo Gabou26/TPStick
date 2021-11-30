@@ -16,8 +16,6 @@ public class TransitionUI : MonoBehaviour
         GetComponent<Image>().enabled = true;
         if (autoStart)
             rect.localPosition = new Vector2(0, 0);
-        if (hideStart)
-            GetComponent<Image>().enabled = false;
     }
 
     private void Start()
@@ -51,16 +49,16 @@ public class TransitionUI : MonoBehaviour
         this.posDepart = posDepart;
         this.posFin = posFin;
         rect.localPosition = posDepart;
-        if (fin)
+        /*if (fin)
         {
             yield return new WaitForSeconds(1);
             GetComponent<Image>().enabled = false;
-        }
+        }*/
     }
 
     IEnumerator LoadTrans()
     {
-        yield return new WaitForSeconds(0.1f);
-        Transition(new Vector2(0, 0), new Vector2(2000, 0), true);
+        yield return new WaitForSeconds(0.26f);
+        Transition(new Vector2(0, 0), new Vector2(0, -2000), true);
     }
 }

@@ -60,49 +60,49 @@ public class Third_person_mvmnt : MonoBehaviour
         */
     }
 
-    //public void Ragdoll()
-    //{
-    //    dead = !dead;
-    //    charController.enabled = !charController.enabled;
-    //    capsCollider.isTrigger = !capsCollider.isTrigger;
-    //    animator.enabled = !animator.enabled;
-    //    GetComponent<MysteryBoxScript>().initialisePlayerProperties();
-    //    GetComponent<ActiveWeapon>().deactivateCurrentWeapon();
-    //    /*
-    //    if (weapon)
-    //        weapon.SetActive(!dead);
-    //    */
-    //    cameraController.deadChar = dead;
-    //}
-
     public void Ragdoll()
     {
-        dead = true;
-        charController.enabled = false;
-        capsCollider.isTrigger = false;
-        animator.enabled = false;
+        dead = !dead;
+        charController.enabled = !charController.enabled;
+        capsCollider.isTrigger = !capsCollider.isTrigger;
+        animator.enabled = !animator.enabled;
         GetComponent<MysteryBoxScript>().initialisePlayerProperties();
         GetComponent<ActiveWeapon>().deactivateCurrentWeapon();
         /*
         if (weapon)
             weapon.SetActive(!dead);
         */
-        cameraController.deadChar = true;
+        cameraController.deadChar = dead;
     }
 
-    public void Unragdoll()
-    {
-        dead = false;
-        charController.enabled = true;
-        capsCollider.isTrigger = true;
-        animator.enabled = true;
-        GetComponent<ActiveWeapon>().activateCurrentWeapon();
-        /*
-        if (weapon)
-            weapon.SetActive(!dead);
-        */
-        cameraController.deadChar = false;
-    }
+    //public void Ragdoll()
+    //{
+    //    dead = true;
+    //    charController.enabled = false;
+    //    capsCollider.isTrigger = false;
+    //    animator.enabled = false;
+    //    GetComponent<MysteryBoxScript>().initialisePlayerProperties();
+    //    GetComponent<ActiveWeapon>().deactivateCurrentWeapon();
+    //    /*
+    //    if (weapon)
+    //        weapon.SetActive(!dead);
+    //    */
+    //    cameraController.deadChar = true;
+    //}
+
+    //public void Unragdoll()
+    //{
+    //    dead = false;
+    //    charController.enabled = true;
+    //    capsCollider.isTrigger = true;
+    //    animator.enabled = true;
+    //    GetComponent<ActiveWeapon>().activateCurrentWeapon();
+    //    /*
+    //    if (weapon)
+    //        weapon.SetActive(!dead);
+    //    */
+    //    cameraController.deadChar = false;
+    //}
 
 
     // Update is called once per frame
