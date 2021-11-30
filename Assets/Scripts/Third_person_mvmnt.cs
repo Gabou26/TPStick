@@ -34,6 +34,7 @@ public class Third_person_mvmnt : MonoBehaviour
     private FixedJoint joint;
     public GameObject grappleObject;
     private Grappling grapple;
+    private float timedown;
 
     //Test Ragdoll
     public GameObject weapon;
@@ -54,14 +55,15 @@ public class Third_person_mvmnt : MonoBehaviour
         //GetComponent<ActiveWeapon>().restorePreviousWeapon();
         dead = false;
         grapple = grappleObject.GetComponent<Grappling>();
+        timedown = 2f;
         /*
         if (weapon)
             weapon.SetActive(!dead);
         */
     }
 
-    //public void Ragdoll()
-    //{
+    // public void Ragdoll()
+    // {
     //    dead = !dead;
     //    charController.enabled = !charController.enabled;
     //    capsCollider.isTrigger = !capsCollider.isTrigger;
@@ -73,7 +75,7 @@ public class Third_person_mvmnt : MonoBehaviour
     //        weapon.SetActive(!dead);
     //    */
     //    cameraController.deadChar = dead;
-    //}
+    // }
 
     public void Ragdoll()
     {
@@ -88,10 +90,23 @@ public class Third_person_mvmnt : MonoBehaviour
             weapon.SetActive(!dead);
         */
         cameraController.deadChar = true;
+
+        if(timedown < 10f) timedown++;
+
+        Invoke("Unragdoll", timedown);
     }
 
     public void Unragdoll()
     {
+        if (!controller.isGrounded)
+        {
+            Invoke("Unragdoll", 0.2f);
+            return;
+        }
+        var maxHealth = GetComponent<HealthBar>().getMaxHealth();
+        UIHealth healthBar = GetComponent<HealthBar>().getUIHealth();
+        healthBar.SetHealth(maxHealth);
+        GetComponent<HealthBar>().ResetHealth();
         dead = false;
         charController.enabled = true;
         capsCollider.isTrigger = true;
@@ -354,6 +369,7 @@ public class Third_person_mvmnt : MonoBehaviour
             var maxHealth = GetComponent<HealthBar>().getMaxHealth();
             GetComponent<HealthBar>().ResetHealth();
             healthBar.SetHealth(maxHealth);
+            timedown = 2f;
             if(!ragdoll){
                 sM.ScoreDown(); //diminue le score du joueur qui tombe, utilisé lors d'une chute sans ragdoll
                 //sM.GetLastShooter().GetComponentInParent(typeof(ScoreManager)).GetComponent<ScoreManager>().ScoreUp();

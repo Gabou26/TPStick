@@ -38,8 +38,11 @@ public class HealthBar : MonoBehaviour
 
     public virtual void Death(GameObject killer)
     {
-        GetComponent<Third_person_mvmnt>().Ragdoll();
-        GetComponent<activePowerImage>().resetAllSprite();
+        if(!GetComponent<Third_person_mvmnt>().dead) 
+        {
+            GetComponent<Third_person_mvmnt>().Ragdoll();
+            GetComponent<activePowerImage>().resetAllSprite();
+        }
     }
 
     public void Recover(int iteration)
