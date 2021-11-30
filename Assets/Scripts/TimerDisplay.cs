@@ -9,13 +9,15 @@ using UnityEngine.SceneManagement;
 public class TimerDisplay : MonoBehaviour
 {
     public Text timerText;
-    public float timeLimit;
+    private float timeLimit = 10; //fixe la durée d'une partie à 5 minutes
 
     private float _startTime;
 
     private GameObject parent;
+    
+    private bool _end = false;
+    
 
-    private bool end = false;
 
     private void EndGame(Dictionary<GameObject, int> scoreBoard)
     {
@@ -27,6 +29,7 @@ public class TimerDisplay : MonoBehaviour
         }
         timerText.text = "The winner is :";
         timerText.text += $"{winner.Key.GetComponentInChildren<UIHealth>().getPlayerName()} : {winner.Value}, ";
+        
     }
     
     
@@ -35,13 +38,14 @@ public class TimerDisplay : MonoBehaviour
     {
         this._startTime = Time.time;
         parent = GameObject.Find("Global UI");
-
+        DontDestroyOnLoad(parent);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!end)
+
+        if (!_end)
         {
             if (this.timeLimit <= 0)
             {
@@ -69,15 +73,14 @@ public class TimerDisplay : MonoBehaviour
 
                 //Empeche la destruction des joueurs et du timer
                 DontDestroyOnLoad(parent);
-                foreach (KeyValuePair<GameObject, int> kv in scoreBoard)
+                /*foreach (KeyValuePair<GameObject, int> kv in scoreBoard)
                 {
                     DontDestroyOnLoad(kv.Key);
-                }
+                }*/
 
                 timerText.text = "Switched !!!";
-                //SceneManager.LoadScene(5); //Debug: téléportation sur une scène vide
                 SceneManager.LoadScene(0); //téléportation sur le lobby
-                end = true;
+                _end = true;
                 EndGame(scoreBoard);
 
 
@@ -96,8 +99,9 @@ public class TimerDisplay : MonoBehaviour
         }
         else
         {
-            
+
         }
+        
 
 
 
