@@ -114,8 +114,8 @@ public class Third_person_mvmnt : MonoBehaviour
 
         if (dead)
         {
-            print(joint);
-            joint.connectedAnchor = spine.transform.position;
+            //print(joint);
+            //joint.connectedAnchor = spine.transform.position;
             //gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, spine.transform.position, 50f * Time.deltaTime);
             return;
         }
@@ -333,26 +333,22 @@ public class Third_person_mvmnt : MonoBehaviour
                 sM.GetLastShooter().GetComponentInParent(typeof(ScoreManager)).GetComponent<ScoreManager>().ScoreUp();//ligne pour augmenter le score du joueur qui a tiré en dernier sur la victime
 
             }
-            
-            
+        }
+
+        //Box-Mystere
+        Velocity = VelocityZero;
+
+        if (other.gameObject.tag == "MisteryBox")
+        {
+            Destroy(other.gameObject);
+            var nbPower = listMisteryPower.Count;
+            var randomPower = listMisteryPower[Random.Range(0, nbPower)];
+            GetComponent<MysteryBoxScript>().activePower(randomPower);
         }
     }
     private void stopVelocity()
     {
         yvelocity = 0;
-    }
-
-
-    void OnCollisionEnter(Collision collision)
-    {
-        Velocity = VelocityZero;
-
-        if(collision.gameObject.tag == "MisteryBox"){
-            Destroy(collision.gameObject);
-            var nbPower = listMisteryPower.Count;
-            var randomPower = listMisteryPower[Random.Range(0,nbPower)];
-            GetComponent<MysteryBoxScript>().activePower(randomPower);
-        }
     }
 
     GameObject GetDefaultWeapon()

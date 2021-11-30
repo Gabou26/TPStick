@@ -12,9 +12,10 @@ public class BulletWeapon : GunWeapon
         Vector3 bulletPos = rayOrigin.position;
         Vector3 bulletDir = (raycastAimTarget.position - rayOrigin.position).normalized;
 
-        Transform bullet = Instantiate(bulletPrefab).transform;
-        bullet.position = bulletPos;
-        bullet.rotation = Quaternion.LookRotation(bulletDir, Vector3.up);
-        bullet.GetComponent<BaseBullet>().weaponDamage = weaponDamage;
+        BaseBullet bullet = Instantiate(bulletPrefab).GetComponent<BaseBullet>();
+        bullet.transform.position = bulletPos;
+        bullet.transform.rotation = Quaternion.LookRotation(bulletDir, Vector3.up);
+        bullet.weaponDamage = weaponDamage;
+        bullet.player = player;
     }
 }

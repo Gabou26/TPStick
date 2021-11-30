@@ -36,14 +36,17 @@ public class BombBullet : BaseBullet
             return;
 
         isDestroying = true;
-        RaycastHit[] targets = Physics.SphereCastAll(transform.position, explosionRadius, transform.forward, playerTrigger);
+        Collider[] targets = Physics.OverlapSphere(transform.position, explosionRadius, playerTrigger);
         foreach (var target in targets)
         {
+            if (target.isTrigger)
+                continue;
+
            // target.transform.GetComponent<ScoreManager>().SetLastShooter(player);
             HealthBar bar = target.transform.GetComponent<HealthBar>();
-            print("TARGER");
-            //if (player.activeSelf && bar)
-               // bar.TakeDamage(player, weaponDamage);
+            print("OKOKOK");
+            if (player.activeSelf && bar)
+                bar.TakeDamage(player, weaponDamage);
         }
         StartCoroutine(Exploser());
     }
