@@ -109,7 +109,7 @@ public class Third_person_mvmnt : MonoBehaviour
         GetComponent<HealthBar>().ResetHealth();
         dead = false;
         charController.enabled = true;
-        capsCollider.isTrigger = true;
+        capsCollider.isTrigger = false;
         animator.enabled = true;
         GetComponent<ActiveWeapon>().activateCurrentWeapon();
         /*
