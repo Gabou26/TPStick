@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 4597349579659510991}
   - component: {fileID: 2488106091400113161}
   - component: {fileID: 7706018545643386212}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ChangeGunPowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,7 +457,7 @@ GameObject:
   m_Component:
   - component: {fileID: 423177292309949170}
   - component: {fileID: 1921313501615194799}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WeaponPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -569,7 +569,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.3555123, y: 0.00000037418252, z: 0.00000042828498}
+  m_ConnectedAnchor: {x: -0.3555124, y: -0.00000016222286, z: 0.0000003086583}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -1222,7 +1222,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.5916796, y: 0.00000003097557, z: -0.00000010430813}
+  m_ConnectedAnchor: {x: -0.5916796, y: 0.00000015053774, z: 0.00000037252903}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -1327,7 +1327,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2613643569539971577}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WeaponHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1426,7 +1426,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.35551235, y: 0.0000003657395, z: 0.00000033959128}
+  m_ConnectedAnchor: {x: -0.3555121, y: -0.00000029002797, z: 0.00000034012496}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -1814,7 +1814,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: -1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.5490924, y: -0.014909571, z: 0.32506394}
+  m_ConnectedAnchor: {x: -0.5490924, y: -0.014909511, z: 0.32506382}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -1860,7 +1860,7 @@ GameObject:
   - component: {fileID: 3964900912384487816}
   - component: {fileID: 8785210775272684166}
   - component: {fileID: 8596632990356627384}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CanvasHealth
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -2160,7 +2160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4075422623366679673
 Transform:
   m_ObjectHideFlags: 0
@@ -2168,14 +2168,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4453569116854223152}
-  m_LocalRotation: {x: -0.50000036, y: 0.49999967, z: 0.49999967, w: 0.50000036}
-  m_LocalPosition: {x: -0.0000000099258495, y: 0, z: -0.0017328988}
+  m_LocalRotation: {x: -0.33290526, y: -0.6238381, z: -0.62383825, w: 0.33290535}
+  m_LocalPosition: {x: 0.019548588, y: 0, z: -0.055342395}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9092042009001662705}
   m_Father: {fileID: 5682184082449528957}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -123.828}
 --- !u!1 &4550203467617573960
 GameObject:
   m_ObjectHideFlags: 0
@@ -2283,7 +2283,7 @@ GameObject:
   - component: {fileID: 2473072724867388291}
   - component: {fileID: 7013982920864965164}
   - component: {fileID: 4090618329088960162}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CanvasCursorAim
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -2475,7 +2475,7 @@ GameObject:
   - component: {fileID: 8822185727131683694}
   - component: {fileID: 9096125369563410148}
   - component: {fileID: 164051214794049384}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: HealthPowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2672,7 +2672,7 @@ GameObject:
   - component: {fileID: 1668401226997014153}
   - component: {fileID: 2683445596648315195}
   - component: {fileID: 6274960841050415134}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ArmorPowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2779,7 +2779,7 @@ GameObject:
   - component: {fileID: 8731542298458623409}
   - component: {fileID: 2679773262529706509}
   - component: {fileID: 1389184073688340818}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: AttackPowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3126,7 +3126,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000047683716, y: 0.00000051409006, z: 0.11652334}
+  m_ConnectedAnchor: {x: 0.00000047683716, y: 0.00000055134296, z: 0.11652298}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -3236,7 +3236,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000047683716, y: 0.00000017136335, z: -0.11652355}
+  m_ConnectedAnchor: {x: 0.00000047683716, y: 0.000000052154064, z: -0.11652355}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -3312,7 +3312,7 @@ GameObject:
   - component: {fileID: 4620991181658823151}
   - component: {fileID: 1429848591914469960}
   - component: {fileID: 3691039875446530396}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3665,8 +3665,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6533920303846371470}
-  m_LocalRotation: {x: 0, y: 0.99987787, z: -0, w: -0.015628666}
-  m_LocalPosition: {x: 4.1517363, y: 10.48, z: 8.27}
+  m_LocalRotation: {x: -0, y: 0.43695262, z: -0, w: -0.8994846}
+  m_LocalPosition: {x: -2.2938557, y: 10.48, z: 10.827422}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5468381693612180260}
@@ -3680,7 +3680,7 @@ Transform:
   - {fileID: 176180679977125827}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 181.791, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 308.181, z: 0}
 --- !u!95 &8465077677939018925
 Animator:
   serializedVersion: 3
@@ -3712,7 +3712,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2.45
-  m_Radius: 0.4
+  m_Radius: 0.66
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -3726,12 +3726,12 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6533920303846371470}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.4
+  m_Radius: 0.66
   m_Height: 3.05
   m_Direction: 1
-  m_Center: {x: 0, y: 1.3, z: 0}
+  m_Center: {x: 0, y: 1.11, z: 0}
 --- !u!114 &1931720277191644298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3793,7 +3793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 64000000500000003c00000028000000
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 2506739206228935058}
 --- !u!114 &2898639499544506263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4007,7 +4007,7 @@ GameObject:
   - component: {fileID: 6131481098187961981}
   - component: {fileID: 5033484967582633354}
   - component: {fileID: 4457958403739152468}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CanvasPowerUps
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -4175,7 +4175,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.5916796, y: 0.00000024520887, z: -0.00000010430813}
+  m_ConnectedAnchor: {x: -0.5916796, y: 0.00000021500637, z: 0.00000043213367}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -4285,7 +4285,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: -1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.54909194, y: -0.014912004, z: -0.3250638}
+  m_ConnectedAnchor: {x: -0.54909205, y: -0.014911408, z: -0.32506356}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -4395,7 +4395,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.092605114, y: 0.0339558, z: 0.00000014156103}
+  m_ConnectedAnchor: {x: -0.092605114, y: 0.03395607, z: 0.00000014156103}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -4736,7 +4736,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.8737758, y: -0.033483688, z: -0.00000018443748}
+  m_ConnectedAnchor: {x: -0.8737758, y: -0.03348329, z: -0.00000018444297}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -4911,7 +4911,7 @@ GameObject:
   - component: {fileID: 2658871185950221253}
   - component: {fileID: 463833114471597031}
   - component: {fileID: 215575194084139118}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SpeedPowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5156,16 +5156,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 176180679977125827}
     m_Modifications:
-    - target: {fileID: 3432911675695250135, guid: 681d65df9b4ab3f45836c4d50d5503dc,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3432911676091033830, guid: 681d65df9b4ab3f45836c4d50d5503dc,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3432911676091033831, guid: 681d65df9b4ab3f45836c4d50d5503dc,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -5174,11 +5164,6 @@ PrefabInstance:
     - target: {fileID: 3432911676091033831, guid: 681d65df9b4ab3f45836c4d50d5503dc,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3432911676227702619, guid: 681d65df9b4ab3f45836c4d50d5503dc,
-        type: 3}
-      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3432911676661127620, guid: 681d65df9b4ab3f45836c4d50d5503dc,
@@ -5301,16 +5286,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BarreVies
       objectReference: {fileID: 0}
-    - target: {fileID: 3432911676661127623, guid: 681d65df9b4ab3f45836c4d50d5503dc,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3432911676938336392, guid: 681d65df9b4ab3f45836c4d50d5503dc,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 681d65df9b4ab3f45836c4d50d5503dc, type: 3}
 --- !u!224 &86275072347430515 stripped
@@ -5319,3 +5294,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3357051183822800823}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2506739206228935058 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 891464533804189221, guid: 681d65df9b4ab3f45836c4d50d5503dc,
+    type: 3}
+  m_PrefabInstance: {fileID: 3357051183822800823}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28a85c7200557ce45af27c3dfd2cb20b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

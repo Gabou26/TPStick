@@ -37,6 +37,7 @@ public class Third_person_mvmnt : MonoBehaviour
 
     //Test Ragdoll
     public GameObject weapon;
+    Vector3 direction;
     //Paused Lorsque menu est ouvert
     [HideInInspector] public static bool paused = false;
 
@@ -73,6 +74,35 @@ public class Third_person_mvmnt : MonoBehaviour
         */
         cameraController.deadChar = dead;
     }
+
+    //public void Ragdoll()
+    //{
+    //    dead = true;
+    //    charController.enabled = false;
+    //    capsCollider.isTrigger = false;
+    //    animator.enabled = false;
+    //    GetComponent<MysteryBoxScript>().initialisePlayerProperties();
+    //    GetComponent<ActiveWeapon>().deactivateCurrentWeapon();
+    //    /*
+    //    if (weapon)
+    //        weapon.SetActive(!dead);
+    //    */
+    //    cameraController.deadChar = true;
+    //}
+
+    //public void Unragdoll()
+    //{
+    //    dead = false;
+    //    charController.enabled = true;
+    //    capsCollider.isTrigger = true;
+    //    animator.enabled = true;
+    //    GetComponent<ActiveWeapon>().activateCurrentWeapon();
+    //    /*
+    //    if (weapon)
+    //        weapon.SetActive(!dead);
+    //    */
+    //    cameraController.deadChar = false;
+    //}
 
 
     // Update is called once per frame
@@ -114,8 +144,8 @@ public class Third_person_mvmnt : MonoBehaviour
 
         if (dead)
         {
-            //print(joint);
-            //joint.connectedAnchor = spine.transform.position;
+            print(joint);
+            joint.connectedAnchor = spine.transform.position;
             //gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, spine.transform.position, 50f * Time.deltaTime);
             return;
         }
@@ -188,7 +218,7 @@ public class Third_person_mvmnt : MonoBehaviour
 
 
         //Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
-        Vector3 direction = (cam.forward * vertical) + (cam.right * horizontal); 
+        direction = (cam.forward * vertical) + (cam.right * horizontal); 
         //Vector3 directionTEMP = (cam.forward * verticalTEMP) + (cam.right * horizontalTEMP); 
         direction.Normalize();
         //directionTEMP.Normalize();
@@ -238,7 +268,7 @@ public class Third_person_mvmnt : MonoBehaviour
         transform.position += Velocity;
         //transform.position += directionTEMP * Time.deltaTime;
 
-        Velocity = Vector3.Lerp(Velocity, VelocityZero, .001f * Time.deltaTime) ;
+        Velocity = Vector3.Lerp(Velocity, VelocityZero, 1f * Time.deltaTime) ;
 
         //controller.Move(direction * Time.deltaTime);
 
@@ -333,22 +363,30 @@ public class Third_person_mvmnt : MonoBehaviour
                 sM.GetLastShooter().GetComponentInParent(typeof(ScoreManager)).GetComponent<ScoreManager>().ScoreUp();//ligne pour augmenter le score du joueur qui a tiré en dernier sur la victime
 
             }
-        }
-
-        //Box-Mystere
-        Velocity = VelocityZero;
-
-        if (other.gameObject.tag == "MisteryBox")
-        {
-            Destroy(other.gameObject);
-            var nbPower = listMisteryPower.Count;
-            var randomPower = listMisteryPower[Random.Range(0, nbPower)];
-            GetComponent<MysteryBoxScript>().activePower(randomPower);
+            
+            
         }
     }
     private void stopVelocity()
     {
         yvelocity = 0;
+    }
+
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(Velocity != VelocityZero)
+        {
+            Velocity = VelocityZero;
+            direction = VelocityZero;
+        }
+
+        if(collision.gameObject.tag == "MisteryBox"){
+            Destroy(collision.gameObject);
+            var nbPower = listMisteryPower.Count;
+            var randomPower = listMisteryPower[Random.Range(0,nbPower)];
+            GetComponent<MysteryBoxScript>().activePower(randomPower);
+        }
     }
 
     GameObject GetDefaultWeapon()
