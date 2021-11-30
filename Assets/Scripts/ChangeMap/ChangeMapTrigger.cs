@@ -9,6 +9,10 @@ public class ChangeMapTrigger : MonoBehaviour
     private int playerCount;
     public PlayerInputManager manager;
 
+    public void Start() {
+        manager = GameObject.FindObjectOfType<PlayerInputManager>();
+    }
+
     public void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player")) {
 
