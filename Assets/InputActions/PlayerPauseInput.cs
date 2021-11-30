@@ -59,9 +59,25 @@ public class @PlayerPauseInput : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""CameraCV"",
+                    ""type"": ""Value"",
+                    ""id"": ""7c3d4b6d-b91e-4c48-9bac-b9e5e0180cee"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""CameraH"",
                     ""type"": ""Value"",
                     ""id"": ""d33e5a20-154d-45c6-a27b-0e9378d191aa"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""CameraCH"",
+                    ""type"": ""Value"",
+                    ""id"": ""cb1a1589-5b55-41d9-b603-e3118b92325f"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -184,33 +200,11 @@ public class @PlayerPauseInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""05d4e650-91b6-47ca-a906-cf9adc6f7584"",
-                    ""path"": ""<Gamepad>/rightStick/y"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""CameraV"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""d07560ec-153d-4627-a44a-a93091e58526"",
                     ""path"": ""<Mouse>/delta/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""CameraH"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ce88ba56-eeca-4bc2-8d66-1187410d54ae"",
-                    ""path"": ""<Gamepad>/rightStick/x"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
                     ""action"": ""CameraH"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -456,6 +450,28 @@ public class @PlayerPauseInput : IInputActionCollection, IDisposable
                     ""action"": ""GrapplePress"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""414a3967-585c-46d7-928a-e80370addcdd"",
+                    ""path"": ""<Gamepad>/rightStick/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""CameraCH"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0610b285-3668-4884-a814-694107b8c30a"",
+                    ""path"": ""<Gamepad>/rightStick/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""CameraCV"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -497,7 +513,9 @@ public class @PlayerPauseInput : IInputActionCollection, IDisposable
         m_Player_JumpPress = m_Player.FindAction("JumpPress", throwIfNotFound: true);
         m_Player_JumpRelease = m_Player.FindAction("JumpRelease", throwIfNotFound: true);
         m_Player_CameraV = m_Player.FindAction("CameraV", throwIfNotFound: true);
+        m_Player_CameraCV = m_Player.FindAction("CameraCV", throwIfNotFound: true);
         m_Player_CameraH = m_Player.FindAction("CameraH", throwIfNotFound: true);
+        m_Player_CameraCH = m_Player.FindAction("CameraCH", throwIfNotFound: true);
         m_Player_FirePress = m_Player.FindAction("FirePress", throwIfNotFound: true);
         m_Player_FireRelease = m_Player.FindAction("FireRelease", throwIfNotFound: true);
         m_Player_Ragdoll = m_Player.FindAction("Ragdoll", throwIfNotFound: true);
@@ -558,7 +576,9 @@ public class @PlayerPauseInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_JumpPress;
     private readonly InputAction m_Player_JumpRelease;
     private readonly InputAction m_Player_CameraV;
+    private readonly InputAction m_Player_CameraCV;
     private readonly InputAction m_Player_CameraH;
+    private readonly InputAction m_Player_CameraCH;
     private readonly InputAction m_Player_FirePress;
     private readonly InputAction m_Player_FireRelease;
     private readonly InputAction m_Player_Ragdoll;
@@ -574,7 +594,9 @@ public class @PlayerPauseInput : IInputActionCollection, IDisposable
         public InputAction @JumpPress => m_Wrapper.m_Player_JumpPress;
         public InputAction @JumpRelease => m_Wrapper.m_Player_JumpRelease;
         public InputAction @CameraV => m_Wrapper.m_Player_CameraV;
+        public InputAction @CameraCV => m_Wrapper.m_Player_CameraCV;
         public InputAction @CameraH => m_Wrapper.m_Player_CameraH;
+        public InputAction @CameraCH => m_Wrapper.m_Player_CameraCH;
         public InputAction @FirePress => m_Wrapper.m_Player_FirePress;
         public InputAction @FireRelease => m_Wrapper.m_Player_FireRelease;
         public InputAction @Ragdoll => m_Wrapper.m_Player_Ragdoll;
@@ -605,9 +627,15 @@ public class @PlayerPauseInput : IInputActionCollection, IDisposable
                 @CameraV.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraV;
                 @CameraV.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraV;
                 @CameraV.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraV;
+                @CameraCV.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraCV;
+                @CameraCV.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraCV;
+                @CameraCV.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraCV;
                 @CameraH.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraH;
                 @CameraH.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraH;
                 @CameraH.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraH;
+                @CameraCH.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraCH;
+                @CameraCH.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraCH;
+                @CameraCH.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraCH;
                 @FirePress.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFirePress;
                 @FirePress.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFirePress;
                 @FirePress.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFirePress;
@@ -645,9 +673,15 @@ public class @PlayerPauseInput : IInputActionCollection, IDisposable
                 @CameraV.started += instance.OnCameraV;
                 @CameraV.performed += instance.OnCameraV;
                 @CameraV.canceled += instance.OnCameraV;
+                @CameraCV.started += instance.OnCameraCV;
+                @CameraCV.performed += instance.OnCameraCV;
+                @CameraCV.canceled += instance.OnCameraCV;
                 @CameraH.started += instance.OnCameraH;
                 @CameraH.performed += instance.OnCameraH;
                 @CameraH.canceled += instance.OnCameraH;
+                @CameraCH.started += instance.OnCameraCH;
+                @CameraCH.performed += instance.OnCameraCH;
+                @CameraCH.canceled += instance.OnCameraCH;
                 @FirePress.started += instance.OnFirePress;
                 @FirePress.performed += instance.OnFirePress;
                 @FirePress.canceled += instance.OnFirePress;
@@ -695,7 +729,9 @@ public class @PlayerPauseInput : IInputActionCollection, IDisposable
         void OnJumpPress(InputAction.CallbackContext context);
         void OnJumpRelease(InputAction.CallbackContext context);
         void OnCameraV(InputAction.CallbackContext context);
+        void OnCameraCV(InputAction.CallbackContext context);
         void OnCameraH(InputAction.CallbackContext context);
+        void OnCameraCH(InputAction.CallbackContext context);
         void OnFirePress(InputAction.CallbackContext context);
         void OnFireRelease(InputAction.CallbackContext context);
         void OnRagdoll(InputAction.CallbackContext context);

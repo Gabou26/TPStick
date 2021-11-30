@@ -223,14 +223,13 @@ public class Third_person_mvmnt : MonoBehaviour
     }
 
     public void OnMove(InputValue value) {
-        if (paused)
+        i_movement = value.Get<Vector2>();
+
+        if (paused || (Mathf.Abs(i_movement.x) <= 0.2f && Mathf.Abs(i_movement.y) <= 0.2f))
         {
             i_movement = new Vector2(0, 0);
             return;
         }
-
-
-        i_movement = value.Get<Vector2>();
     }
 
     public void OnMoveKey(InputValue value) {
@@ -254,16 +253,34 @@ public class Third_person_mvmnt : MonoBehaviour
         jumped = false;
     }
 
-    public void OnCameraH(InputValue value) {
+    public void OnCameraH(InputValue value)
+    {
         if (paused)
             return;
         cameraController.OnCameraH(value);
     }
 
-    public void OnCameraV(InputValue value) {
+    public void OnCameraCH(InputValue value)
+    {
+        if (paused)
+            return;
+
+        cameraController.OnCameraCH(value);
+    }
+
+    public void OnCameraV(InputValue value)
+    {
         if (paused)
             return;
         cameraController.OnCameraV(value);
+    }
+
+    public void OnCameraCV(InputValue value)
+    {
+        if (paused)
+            return;
+
+        cameraController.OnCameraCV(value);
     }
 
     private void OnGrapplePress() {

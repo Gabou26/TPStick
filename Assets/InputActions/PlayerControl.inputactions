@@ -46,9 +46,25 @@
                     "interactions": ""
                 },
                 {
+                    "name": "CameraCV",
+                    "type": "Value",
+                    "id": "7c3d4b6d-b91e-4c48-9bac-b9e5e0180cee",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "CameraH",
                     "type": "Value",
                     "id": "d33e5a20-154d-45c6-a27b-0e9378d191aa",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "CameraCH",
+                    "type": "Value",
+                    "id": "cb1a1589-5b55-41d9-b603-e3118b92325f",
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
@@ -171,33 +187,11 @@
                 },
                 {
                     "name": "",
-                    "id": "05d4e650-91b6-47ca-a906-cf9adc6f7584",
-                    "path": "<Gamepad>/rightStick/y",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "CameraV",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "d07560ec-153d-4627-a44a-a93091e58526",
                     "path": "<Mouse>/delta/x",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "CameraH",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ce88ba56-eeca-4bc2-8d66-1187410d54ae",
-                    "path": "<Gamepad>/rightStick/x",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
                     "action": "CameraH",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -441,6 +435,28 @@
                     "processors": "",
                     "groups": "Controller",
                     "action": "GrapplePress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "414a3967-585c-46d7-928a-e80370addcdd",
+                    "path": "<Gamepad>/rightStick/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "CameraCH",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0610b285-3668-4884-a814-694107b8c30a",
+                    "path": "<Gamepad>/rightStick/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "CameraCV",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
