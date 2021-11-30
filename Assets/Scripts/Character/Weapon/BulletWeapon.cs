@@ -11,6 +11,7 @@ public class BulletWeapon : GunWeapon
     {
         Vector3 bulletPos = rayOrigin.position;
         Vector3 bulletDir = (raycastAimTarget.position - rayOrigin.position).normalized;
+        //Vector3 bulletDir = Vector3.forward;
 
         BaseBullet bullet = Instantiate(bulletPrefab).GetComponent<BaseBullet>();
         bullet.transform.position = bulletPos;

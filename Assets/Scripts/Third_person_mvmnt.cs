@@ -34,6 +34,7 @@ public class Third_person_mvmnt : MonoBehaviour
     private FixedJoint joint;
     public GameObject grappleObject;
     private Grappling grapple;
+    private float timedown;
 
     //Test Ragdoll
     public GameObject weapon;
@@ -54,11 +55,27 @@ public class Third_person_mvmnt : MonoBehaviour
         //GetComponent<ActiveWeapon>().restorePreviousWeapon();
         dead = false;
         grapple = grappleObject.GetComponent<Grappling>();
+        timedown = 2f;
         /*
         if (weapon)
             weapon.SetActive(!dead);
         */
     }
+
+    // public void Ragdoll()
+    // {
+    //    dead = !dead;
+    //    charController.enabled = !charController.enabled;
+    //    capsCollider.isTrigger = !capsCollider.isTrigger;
+    //    animator.enabled = !animator.enabled;
+    //    GetComponent<MysteryBoxScript>().initialisePlayerProperties();
+    //    GetComponent<ActiveWeapon>().deactivateCurrentWeapon();
+    //    /*
+    //    if (weapon)
+    //        weapon.SetActive(!dead);
+    //    */
+    //    cameraController.deadChar = dead;
+    // }
 
     public void Ragdoll()
     {
@@ -72,37 +89,35 @@ public class Third_person_mvmnt : MonoBehaviour
         if (weapon)
             weapon.SetActive(!dead);
         */
-        cameraController.deadChar = dead;
+        cameraController.deadChar = true;
+
+        if(timedown < 10f) timedown++;
+
+        Invoke("Unragdoll", timedown);
     }
 
-    //public void Ragdoll()
-    //{
-    //    dead = true;
-    //    charController.enabled = false;
-    //    capsCollider.isTrigger = false;
-    //    animator.enabled = false;
-    //    GetComponent<MysteryBoxScript>().initialisePlayerProperties();
-    //    GetComponent<ActiveWeapon>().deactivateCurrentWeapon();
-    //    /*
-    //    if (weapon)
-    //        weapon.SetActive(!dead);
-    //    */
-    //    cameraController.deadChar = true;
-    //}
-
-    //public void Unragdoll()
-    //{
-    //    dead = false;
-    //    charController.enabled = true;
-    //    capsCollider.isTrigger = true;
-    //    animator.enabled = true;
-    //    GetComponent<ActiveWeapon>().activateCurrentWeapon();
-    //    /*
-    //    if (weapon)
-    //        weapon.SetActive(!dead);
-    //    */
-    //    cameraController.deadChar = false;
-    //}
+    public void Unragdoll()
+    {
+        if (!controller.isGrounded)
+        {
+            Invoke("Unragdoll", 0.2f);
+            return;
+        }
+        var maxHealth = GetComponent<HealthBar>().getMaxHealth();
+        UIHealth healthBar = GetComponent<HealthBar>().getUIHealth();
+        healthBar.SetHealth(maxHealth);
+        GetComponent<HealthBar>().ResetHealth();
+        dead = false;
+        charController.enabled = true;
+        capsCollider.isTrigger = true;
+        animator.enabled = true;
+        GetComponent<ActiveWeapon>().activateCurrentWeapon();
+        /*
+        if (weapon)
+            weapon.SetActive(!dead);
+        */
+        cameraController.deadChar = false;
+    }
 
 
     // Update is called once per frame
@@ -223,14 +238,13 @@ public class Third_person_mvmnt : MonoBehaviour
     }
 
     public void OnMove(InputValue value) {
-        if (paused)
+        i_movement = value.Get<Vector2>();
+
+        if (paused || (Mathf.Abs(i_movement.x) <= 0.2f && Mathf.Abs(i_movement.y) <= 0.2f))
         {
             i_movement = new Vector2(0, 0);
             return;
         }
-
-
-        i_movement = value.Get<Vector2>();
     }
 
     public void OnMoveKey(InputValue value) {
@@ -254,16 +268,34 @@ public class Third_person_mvmnt : MonoBehaviour
         jumped = false;
     }
 
-    public void OnCameraH(InputValue value) {
+    public void OnCameraH(InputValue value)
+    {
         if (paused)
             return;
         cameraController.OnCameraH(value);
     }
 
-    public void OnCameraV(InputValue value) {
+    public void OnCameraCH(InputValue value)
+    {
+        if (paused)
+            return;
+
+        cameraController.OnCameraCH(value);
+    }
+
+    public void OnCameraV(InputValue value)
+    {
         if (paused)
             return;
         cameraController.OnCameraV(value);
+    }
+
+    public void OnCameraCV(InputValue value)
+    {
+        if (paused)
+            return;
+
+        cameraController.OnCameraCV(value);
     }
 
     private void OnGrapplePress() {
@@ -298,6 +330,7 @@ public class Third_person_mvmnt : MonoBehaviour
             var maxHealth = GetComponent<HealthBar>().getMaxHealth();
             GetComponent<HealthBar>().ResetHealth();
             healthBar.SetHealth(maxHealth);
+            timedown = 2f;
             if(!ragdoll){
                 sM.ScoreDown(); //diminue le score du joueur qui tombe, utilisé lors d'une chute sans ragdoll
                 //sM.GetLastShooter().GetComponentInParent(typeof(ScoreManager)).GetComponent<ScoreManager>().ScoreUp();
