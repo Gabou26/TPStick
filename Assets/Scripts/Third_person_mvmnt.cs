@@ -79,10 +79,10 @@ public class Third_person_mvmnt : MonoBehaviour
 
     public void Ragdoll()
     {
-        dead = true;
-        charController.enabled = false;
-        capsCollider.isTrigger = false;
-        animator.enabled = false;
+        dead = !dead;
+        charController.enabled = !charController.enabled;
+        capsCollider.isTrigger = !capsCollider.isTrigger;
+        animator.enabled = !animator.enabled;
         GetComponent<MysteryBoxScript>().initialisePlayerProperties();
         GetComponent<ActiveWeapon>().deactivateCurrentWeapon();
         /*
@@ -126,9 +126,6 @@ public class Third_person_mvmnt : MonoBehaviour
         if (paused)
             jumped = false;
 
-        //TEMP keyboard movement
-        //float horizontalTEMP = Input.GetAxisRaw("Horizontal");
-        //float verticalTEMP = Input.GetAxisRaw("Vertical");
         if (ragdoll)
         {
             charController.enabled = !charController.enabled;
@@ -167,37 +164,6 @@ public class Third_person_mvmnt : MonoBehaviour
         float horizontal = i_movement.x;
         float vertical = i_movement.y;
 
-        //if(vertical > 0 || verticalTEMP > 0)
-        //{
-        //    animator.SetBool("IsRunning", true);
-        //    animator.SetBool("IsBacking", false);
-        //}
-        //else if(vertical < 0 || verticalTEMP < 0)
-        //{
-        //    animator.SetBool("IsBacking", true);
-        //    animator.SetBool("IsRunning", false);
-        //}
-        //else
-        //{
-        //    animator.SetBool("IsRunning", false);
-        //    animator.SetBool("IsBacking", false);
-        //}
-
-        //if (horizontal > 0 || horizontalTEMP > 0)
-        //{
-        //    animator.SetBool("IsRight", true);
-        //    animator.SetBool("IsLeft", false);
-        //}
-        //else if (horizontal < 0 || horizontalTEMP < 0)
-        //{
-        //    animator.SetBool("IsLeft", true);
-        //    animator.SetBool("IsRight", false);
-        //}
-        //else
-        //{
-        //    animator.SetBool("IsRight", false);
-        //    animator.SetBool("IsLeft", false);
-        //}
         if (vertical > 0)
         {
             animator.SetBool("IsRunning", true);
@@ -232,14 +198,10 @@ public class Third_person_mvmnt : MonoBehaviour
 
 
 
-        //Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
         direction = (cam.forward * vertical) + (cam.right * horizontal); 
-        //Vector3 directionTEMP = (cam.forward * verticalTEMP) + (cam.right * horizontalTEMP); 
         direction.Normalize();
-        //directionTEMP.Normalize();
         float speedPowerFactor = GetComponent<MysteryBoxScript>().getSpeedPowerFactor();
         direction = direction * (speed*speedPowerFactor);
-        //directionTEMP = directionTEMP * speed;
 
         if (direction.magnitude >= 0.1f)
         {
@@ -247,12 +209,6 @@ public class Third_person_mvmnt : MonoBehaviour
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
         }
-        //else if (directionTEMP.magnitude >= 0.1f)
-        //{
-        //    float targetAngle = Mathf.Atan2(directionTEMP.x, directionTEMP.z) * Mathf.Rad2Deg;
-        //    float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-        //    transform.rotation = Quaternion.Euler(0f, angle, 0f);
-        //}
 
 
         if (controller.isGrounded)
@@ -261,13 +217,7 @@ public class Third_person_mvmnt : MonoBehaviour
             if (jumped)
             {
                 yvelocity = jumpForce;
-                //Invoke("stopVelocity", 0.6f);
             }
-            //else if (Input.GetKey("space"))
-            //{
-            //    yvelocity = jumpForce;
-            //    //Invoke("stopVelocity", 0.6f);
-            //}
             else yvelocity = 0;
         }
         else
@@ -276,12 +226,10 @@ public class Third_person_mvmnt : MonoBehaviour
         }
 
         direction.y = yvelocity;
-        //directionTEMP.y = yvelocity;
         
         //ceci enleve le jitter du saut
         transform.position += direction * Time.deltaTime;
         transform.position += Velocity;
-        //transform.position += directionTEMP * Time.deltaTime;
 
         Velocity = Vector3.Lerp(Velocity, VelocityZero, 1f * Time.deltaTime) ;
 
@@ -324,28 +272,24 @@ public class Third_person_mvmnt : MonoBehaviour
     public void OnCameraH(InputValue value) {
         if (paused)
             return;
-
         cameraController.OnCameraH(value);
     }
 
     public void OnCameraV(InputValue value) {
         if (paused)
             return;
-
         cameraController.OnCameraV(value);
     }
 
     private void OnGrapplePress() {
         if (paused)
             return;
-        
         grapple.OnGrapplePress();
     }
 
     private void OnGrappleRelease() {
         if (paused)
             return;
-        
         grapple.OnGrappleRelease();
     }
 

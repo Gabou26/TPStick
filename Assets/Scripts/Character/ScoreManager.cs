@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    public int _score;
-    public GameObject _lastShooter;
+    private int _score;
+    private GameObject _lastShooter;
+
+    public void ResetScore()
+    {
+        _score = 0;
+    }
 
     public void ScoreUp()
     {

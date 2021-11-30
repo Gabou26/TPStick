@@ -18,14 +18,13 @@ public class HealthBar : MonoBehaviour
 
     public void TakeDamage(GameObject killer, float damage)
     {
+        print("OUCH  : " + currentHealth);
         //GameObject playerHit = this.gameObject;
         var armorFactor = GetComponent<MysteryBoxScript>().getArmorPowerFactor();
         var attackFactor = killer.GetComponentInParent<MysteryBoxScript>().getAttackPowerFactor();
         damage /= armorFactor;  // On divise les dégats par l'armure du joueur touché
         damage *= attackFactor;
-        print(damage);
         currentHealth -= damage;
-        print(currentHealth);
         if (currentHealth <= 0)
         {
             currentHealth = 0;

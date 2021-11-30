@@ -46,7 +46,7 @@ public class Grappling : MonoBehaviour
 
         if(IsGrappling)
         {
-            if(Vector3.Distance(grappleTip.position, grapplePoint) > 6.0f)
+            if(Vector3.Distance(grappleTip.position, grapplePoint) > 6.0f)
             {
                 float dist = .5f + (Vector3.Distance(player.transform.position, grapplePoint) / maxDistance);
                 //Debug.Log(dist);

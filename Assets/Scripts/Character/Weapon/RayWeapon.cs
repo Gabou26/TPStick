@@ -19,6 +19,7 @@ public class RayWeapon : GunWeapon
     {
         ray.origin = rayOrigin.position;
         ray.direction = (raycastAimTarget.position - rayOrigin.position).normalized;
+       // print(ray.direction + " | " + raycastAimTarget.position + " | " + rayOrigin.position);
 
         TrailRenderer tracer = Instantiate(tracerEffect, ray.origin, Quaternion.identity);
         tracer.AddPosition(ray.origin);
