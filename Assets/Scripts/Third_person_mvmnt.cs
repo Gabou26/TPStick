@@ -156,8 +156,9 @@ public class Third_person_mvmnt : MonoBehaviour
 
         if (dead)
         {
-            print(joint);
-            joint.connectedAnchor = spine.transform.position;
+            if (joint != null) {
+                joint.connectedAnchor = spine.transform.position;
+            }
             //gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, spine.transform.position, 50f * Time.deltaTime);
             return;
         }

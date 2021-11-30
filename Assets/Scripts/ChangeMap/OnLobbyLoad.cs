@@ -19,6 +19,8 @@ public class OnLobbyLoad : MonoBehaviour
         int len = players.Length;
         for (int i = 0; i < len; i++) {
             players[i].transform.position = new Vector3(0 , 15, 0);
+            players[i].GetComponent<ScoreManager>().ResetScore();
+            players[i].GetComponent<HealthBar>().ResetHealth();
         }
     }
 
