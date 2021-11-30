@@ -59,15 +59,15 @@ MonoBehaviour:
   player: {fileID: 0}
   vitesse: 110
   weaponDamage: 10
-  explosion: {fileID: 8908412931017105221}
-  explosionRadius: 8
-  explosionTrigger:
-    serializedVersion: 2
-    m_Bits: 66048
   playerTrigger:
     serializedVersion: 2
     m_Bits: 8
   lifeLength: 2
+  explosion: {fileID: 8908412931017105221}
+  explosionRadius: 8
+  explosionTrigger:
+    serializedVersion: 2
+    m_Bits: 66056
 --- !u!23 &8746959071104969777
 MeshRenderer:
   m_ObjectHideFlags: 0

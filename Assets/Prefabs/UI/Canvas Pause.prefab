@@ -1209,9 +1209,29 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7393191291924165553, guid: b0f60033d96f3454e8fa5bf6ba2abd73,
+        type: 3}
+      propertyPath: autoStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393191291924165553, guid: b0f60033d96f3454e8fa5bf6ba2abd73,
+        type: 3}
+      propertyPath: hideStart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393191291924165556, guid: b0f60033d96f3454e8fa5bf6ba2abd73,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -2000
+      objectReference: {fileID: 0}
     - target: {fileID: 7393191291924165559, guid: b0f60033d96f3454e8fa5bf6ba2abd73,
         type: 3}
       propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393191291924165559, guid: b0f60033d96f3454e8fa5bf6ba2abd73,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7865700316176377609, guid: b0f60033d96f3454e8fa5bf6ba2abd73,
