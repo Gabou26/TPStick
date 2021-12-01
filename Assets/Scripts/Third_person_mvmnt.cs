@@ -81,7 +81,6 @@ public class Third_person_mvmnt : MonoBehaviour
     {
         dead = !dead;
         charController.enabled = !charController.enabled;
-        capsCollider.isTrigger = !capsCollider.isTrigger;
         animator.enabled = !animator.enabled;
         GetComponent<MysteryBoxScript>().initialisePlayerProperties();
         GetComponent<ActiveWeapon>().deactivateCurrentWeapon();
@@ -109,7 +108,6 @@ public class Third_person_mvmnt : MonoBehaviour
         GetComponent<HealthBar>().ResetHealth();
         dead = false;
         charController.enabled = true;
-        capsCollider.isTrigger = true;
         animator.enabled = true;
         GetComponent<ActiveWeapon>().activateCurrentWeapon();
         /*
@@ -128,12 +126,8 @@ public class Third_person_mvmnt : MonoBehaviour
 
         if (ragdoll)
         {
-            charController.enabled = !charController.enabled;
-            capsCollider.enabled = !capsCollider.enabled;
-            animator.enabled = !animator.enabled;
-            dead = !dead;
-            cameraController.deadChar = dead;
             Ragdoll();
+            cameraController.deadChar = dead;
 
             if (dead)
             {
