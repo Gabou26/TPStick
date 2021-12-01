@@ -92,7 +92,7 @@ public class Third_person_mvmnt : MonoBehaviour
 
         if(timedown < 10f) timedown++;
 
-        Invoke("Unragdoll", timedown);
+        Invoke("OnRagdoll", timedown);
     }
 
     public void Unragdoll()
@@ -138,6 +138,10 @@ public class Third_person_mvmnt : MonoBehaviour
             }
             else
             {
+                var maxHealth = GetComponent<HealthBar>().getMaxHealth();
+                UIHealth healthBar = GetComponent<HealthBar>().getUIHealth();
+                healthBar.SetHealth(maxHealth);
+                GetComponent<HealthBar>().ResetHealth();
                 Rigidbody r = gameObject.GetComponent(typeof(Rigidbody)) as Rigidbody;
                 Destroy(joint);
                 Destroy(r);
