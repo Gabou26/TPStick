@@ -7,16 +7,23 @@ public class GestionCam3 : MonoBehaviour
 {
 
     public PlayerInputManager manager;
+    public Camera cam3;
     private int previousNumber;
 
     public void OnPlayerJoined() {
         int newNumber = manager.playerCount;
         Debug.Log("Nombre actuel : " + previousNumber + ", nouveau nombre : " + newNumber);
 
-        if (previousNumber !=3 && newNumber == 3) {
-            // Activer les carrés noirs
+        if (previousNumber == 0) {
+            // Redimentionner Cam3 et Désactiver Cam3
+            cam3.enabled = false;
+            cam3.rect = new Rect(.5f, 0f, .5f, .5f);
+        } else if (previousNumber !=3 && newNumber == 3) {
+            // Activer Cam3
+            cam3.enabled = true;
         } else if (previousNumber == 3 && newNumber !=3) {
-            // Desactiver les carrés noirs
+            // Desactiver Cam3
+            cam3.enabled = false;
         }
 
         previousNumber = newNumber;

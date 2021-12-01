@@ -19,7 +19,7 @@ public class PauseMenu : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void DisconnectEveryone()
@@ -54,6 +54,6 @@ public class PauseMenu : MonoBehaviour
     {
         trans.Transition(new Vector2(0, 1200), new Vector2(0, 0), false);
         yield return new WaitForSeconds(0.6f);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }
