@@ -62,7 +62,7 @@ public class Third_person_mvmnt : MonoBehaviour
     public void Ragdoll()
     {
         charController.enabled = false;
-        capsCollider.isTrigger = false;
+        //capsCollider.isTrigger = false;
         animator.enabled = false;
         dead = true;
 
@@ -73,7 +73,7 @@ public class Third_person_mvmnt : MonoBehaviour
     public void Unragdoll()
     {
         charController.enabled = true;
-        capsCollider.isTrigger = true;
+        //capsCollider.isTrigger = true;
         animator.enabled = true;
         dead = false;
 
@@ -96,7 +96,7 @@ public class Third_person_mvmnt : MonoBehaviour
         {
             GetComponent<MysteryBoxScript>().initialisePlayerProperties();
             charController.enabled = !charController.enabled;
-            capsCollider.enabled = !capsCollider.enabled;
+            //capsCollider.enabled = !capsCollider.enabled;
             animator.enabled = !animator.enabled;
             dead = !dead;
             cameraController.deadChar = dead;
