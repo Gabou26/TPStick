@@ -1,12 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
-using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
-public class OnMapLoad : MonoBehaviour
+public class OnLobbyLoad : MonoBehaviour
 {
     
     private PlayerInputManager manager;
@@ -15,16 +13,12 @@ public class OnMapLoad : MonoBehaviour
     void Start()
     {
         manager = GameObject.FindObjectOfType<PlayerInputManager>();
-        manager.DisableJoining();
+        manager.EnableJoining();
 
         players = GameObject.FindGameObjectsWithTag("Player");
         int len = players.Length;
         for (int i = 0; i < len; i++) {
-            float x = Convert.ToSingle(20*Math.Cos(2*Math.PI*i/len));
-            float z = Convert.ToSingle(20*Math.Sin(2*Math.PI*i/len));
-            Debug.Log("Respawning player " + i + " at " + x + ", 15, " + z);
-            players[i].transform.position = new Vector3(x , 15, z);
-            players[i].GetComponent<ScoreManager>().ResetScore();
+            players[i].transform.position = new Vector3(0 , 15, 0);
         }
     }
 

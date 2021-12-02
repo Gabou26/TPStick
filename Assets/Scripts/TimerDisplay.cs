@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class TimerDisplay : MonoBehaviour
 {
     public Text timerText;
-    private float timeLimit = 10; //fixe la durée d'une partie à 5 minutes
+    private float timeLimit = 10; //fixe la durï¿½e d'une partie ï¿½ 5 minutes
 
     private float _startTime;
 
@@ -79,7 +79,7 @@ public class TimerDisplay : MonoBehaviour
                 }*/
 
                 timerText.text = "Switched !!!";
-                SceneManager.LoadScene(0); //téléportation sur le lobby
+                SceneManager.LoadScene(1); //tï¿½lï¿½portation sur le lobby
                 _end = true;
                 EndGame(scoreBoard);
 
@@ -90,7 +90,7 @@ public class TimerDisplay : MonoBehaviour
             {
                 this.timeLimit -= Time.deltaTime;
 
-                //formatter ajouter un 0 aux dizaines lorsqu'il ne reste que des unités
+                //formatter ajouter un 0 aux dizaines lorsqu'il ne reste que des unitï¿½s
                 string minutes = ((int) this.timeLimit / 60).ToString();
                 string seconds = Math.Round((this.timeLimit % 60), 2).ToString();
                 timerText.text = minutes + ":" + seconds;
