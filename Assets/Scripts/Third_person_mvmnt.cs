@@ -90,9 +90,12 @@ public class Third_person_mvmnt : MonoBehaviour
         */
         cameraController.deadChar = true;
 
-        if(timedown < 10f) timedown++;
+        if(dead)
+        {
+            if (timedown < 10f) timedown++;
 
-        Invoke("OnRagdoll", timedown);
+            Invoke("OnRagdoll", timedown);
+        }
     }
 
     public void Unragdoll()
