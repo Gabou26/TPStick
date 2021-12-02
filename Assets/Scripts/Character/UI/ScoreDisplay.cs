@@ -1,13 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
+
+
 
 public class ScoreDisplay : MonoBehaviour
 {
+    public static bool gotToLobby = false;
+    
+     
+    public Text scoreText;
 
-    private Text _scoreText;
+    private void ClearText()
+    {
+        scoreText.text = String.Empty;
+    }
 
     private void PrintScore()
     {
@@ -26,13 +37,13 @@ public class ScoreDisplay : MonoBehaviour
         {
             if (kv.Value > winner.Value) winner = kv;
         }
-        _scoreText.text = "The winner is :";
-        _scoreText.text += $"{winner.Key.GetComponentInChildren<UIHealth>().getPlayerName()} : {winner.Value} !\n ";
+        scoreText.text = "The winner is :";
+        scoreText.text += $"{winner.Key.GetComponentInChildren<UIHealth>().getPlayerName()} : {winner.Value} !\n ";
         foreach (KeyValuePair<GameObject, int> kv in scoreBoard)
         {
             if (kv.Key !=  winner.Key)
             {
-                _scoreText.text += $"{kv.Key.GetComponentInChildren<UIHealth>().getPlayerName()} : {kv.Value}\n";
+                scoreText.text += $"{kv.Key.GetComponentInChildren<UIHealth>().getPlayerName()} : {kv.Value}\n";
             }
         }
         
@@ -42,7 +53,14 @@ public class ScoreDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (!gotToLobby)
+        {
+            gotToLobby = true;
+        }
+        else
+        {
+            PrintScore();
+        }
     }
 
     // Update is called once per frame

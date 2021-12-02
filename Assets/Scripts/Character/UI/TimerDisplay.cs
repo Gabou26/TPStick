@@ -9,13 +9,15 @@ using UnityEngine.SceneManagement;
 public class TimerDisplay : MonoBehaviour
 {
     public Text timerText;
-    private float _timeLimit = 300; //fixe la dur�e d'une partie � 5 minutes
+    private float _timeLimit = 10; //fixe la dur�e d'une partie � 5 minutes
 
     private float _startTime;
 
     //private GameObject parent;
     
     private bool _end = false;
+    
+    
     
 
 
