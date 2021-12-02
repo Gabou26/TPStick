@@ -55,5 +55,6 @@ public class PauseMenu : MonoBehaviour
         trans.Transition(new Vector2(0, 1200), new Vector2(0, 0), false);
         yield return new WaitForSeconds(0.6f);
         SceneManager.LoadScene(0);
+        trans.Transition(new Vector2(0, 0), new Vector2(0, 1200), false);
     }
 }

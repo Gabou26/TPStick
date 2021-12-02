@@ -112,7 +112,7 @@ public class Grappling : MonoBehaviour
         if (!IsGrappling) return;
 
         movement.yvelocity = 0f;
-        var velocity = (player.transform.position - lastPosition) / (Time.deltaTime * 1000f);
+        var velocity = (player.transform.position - lastPosition) * (Time.deltaTime * 20f);
         if(!springmax) movement.Velocity = velocity;
         lr.positionCount = 0;
         IsGrappling = false;

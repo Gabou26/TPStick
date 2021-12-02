@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1973677286027605345}
   - component: {fileID: 1973677286027605357}
   - component: {fileID: 901421466610124140}
+  - component: {fileID: -7466538492531873734}
   m_Layer: 5
   m_Name: Canvas Pause
   m_TagString: Untagged
@@ -127,6 +128,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d457870787df53f489269cd9b1472003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!81 &-7466538492531873734
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973677286027605350}
+  m_Enabled: 1
 --- !u!1001 &1973677285295432418
 PrefabInstance:
   m_ObjectHideFlags: 0

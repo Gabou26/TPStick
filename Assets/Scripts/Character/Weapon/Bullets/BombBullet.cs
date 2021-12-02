@@ -44,7 +44,6 @@ public class BombBullet : BaseBullet
 
            // target.transform.GetComponent<ScoreManager>().SetLastShooter(player);
             HealthBar bar = target.transform.GetComponent<HealthBar>();
-            print("OKOKOK");
             if (player.activeSelf && bar)
                 bar.TakeDamage(player, weaponDamage);
         }
@@ -58,8 +57,16 @@ public class BombBullet : BaseBullet
         GetComponent<Rigidbody>().isKinematic = true;
         //explosif.GetComponent<AudioSource>().Stop();
         explosion.Play();
+        explosion.GetComponent<AudioSource>().Play();
 
         yield return new WaitForSeconds(2);
         Destroy(gameObject);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(transform.position, explosionRadius);
     }
 }
