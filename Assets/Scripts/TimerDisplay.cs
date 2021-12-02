@@ -92,7 +92,9 @@ public class TimerDisplay : MonoBehaviour
 
                 //formatter ajouter un 0 aux dizaines lorsqu'il ne reste que des unit�s
                 string minutes = ((int) this.timeLimit / 60).ToString();
+                minutes.PadLeft(2, '0');
                 string seconds = Math.Round((this.timeLimit % 60), 2).ToString();
+                seconds.PadLeft(2, '0');
                 timerText.text = minutes + ":" + seconds;
 
             }
