@@ -81,7 +81,6 @@ public class Third_person_mvmnt : MonoBehaviour
     {
         dead = !dead;
         charController.enabled = !charController.enabled;
-        capsCollider.isTrigger = !capsCollider.isTrigger;
         animator.enabled = !animator.enabled;
         GetComponent<MysteryBoxScript>().initialisePlayerProperties();
         GetComponent<ActiveWeapon>().deactivateCurrentWeapon();
@@ -93,7 +92,7 @@ public class Third_person_mvmnt : MonoBehaviour
 
         if(timedown < 10f) timedown++;
 
-        Invoke("Unragdoll", timedown);
+        Invoke("OnRagdoll", timedown);
     }
 
     public void Unragdoll()
@@ -128,12 +127,8 @@ public class Third_person_mvmnt : MonoBehaviour
 
         if (ragdoll)
         {
-            charController.enabled = !charController.enabled;
-            capsCollider.enabled = !capsCollider.enabled;
-            animator.enabled = !animator.enabled;
-            dead = !dead;
-            cameraController.deadChar = dead;
             Ragdoll();
+            cameraController.deadChar = dead;
 
             if (dead)
             {
@@ -144,6 +139,10 @@ public class Third_person_mvmnt : MonoBehaviour
             }
             else
             {
+                var maxHealth = GetComponent<HealthBar>().getMaxHealth();
+                UIHealth healthBar = GetComponent<HealthBar>().getUIHealth();
+                healthBar.SetHealth(maxHealth);
+                GetComponent<HealthBar>().ResetHealth();
                 Rigidbody r = gameObject.GetComponent(typeof(Rigidbody)) as Rigidbody;
                 Destroy(joint);
                 Destroy(r);

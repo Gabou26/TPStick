@@ -39,7 +39,7 @@ public class HealthBar : MonoBehaviour
     {
         if(!GetComponent<Third_person_mvmnt>().dead) 
         {
-            GetComponent<Third_person_mvmnt>().Ragdoll();
+            GetComponent<Third_person_mvmnt>().OnRagdoll();
             GetComponent<activePowerImage>().resetAllSprite();
         }
     }
