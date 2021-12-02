@@ -139,6 +139,7 @@ public class Third_person_mvmnt : MonoBehaviour
                 joint = gameObject.AddComponent<FixedJoint>();
                 joint.autoConfigureConnectedAnchor = false;
                 joint.connectedAnchor = spine.transform.position;
+                GetComponent<ActiveWeapon>().deactivateCurrentWeapon();
             }
             else
             {

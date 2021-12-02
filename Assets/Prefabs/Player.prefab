@@ -3519,7 +3519,7 @@ MonoBehaviour:
   RotationSpeedY: 1
   Target: {fileID: 7435430997959115579}
   Player: {fileID: 5682184082449528957}
-  RagdollTarget: {fileID: 0}
+  RagdollTarget: {fileID: 9092042009001662705}
   CamFocus: {fileID: 8995693294838611018}
   deadChar: 0
   camDist: 7
