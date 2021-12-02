@@ -149,6 +149,7 @@ public class Third_person_mvmnt : MonoBehaviour
                 Rigidbody r = gameObject.GetComponent(typeof(Rigidbody)) as Rigidbody;
                 Destroy(joint);
                 Destroy(r);
+                GetComponent<ActiveWeapon>().activateCurrentWeapon();
                 cameraController.CamFocus = cameraController.Target;
                 gameObject.transform.position = spine.transform.position;
             }
