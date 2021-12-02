@@ -28,7 +28,7 @@ public class TimerDisplay : MonoBehaviour
             if (kv.Value > winner.Value) winner = kv;
         }
         timerText.text = "The winner is :";
-        timerText.text += $"{winner.Key.GetComponentInChildren<UIHealth>().getPlayerName()} : {winner.Value}, ";
+        timerText.text += $"{winner.Key.GetComponentInChildren<UIHealth>().getPlayerName()} : {winner.Value} ";
         
     }
     

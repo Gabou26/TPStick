@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.UI;
@@ -5,6 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SocialPlatforms.Impl;
+using Random = UnityEngine.Random;
 
 public class Third_person_mvmnt : MonoBehaviour
 {
@@ -324,17 +326,22 @@ public class Third_person_mvmnt : MonoBehaviour
             var maxHealth = GetComponent<HealthBar>().getMaxHealth();
             GetComponent<HealthBar>().ResetHealth();
             healthBar.SetHealth(maxHealth);
-            if(!ragdoll){
-                sM.ScoreDown(); //diminue le score du joueur qui tombe, utilisé lors d'une chute sans ragdoll
-                //sM.GetLastShooter().GetComponentInParent(typeof(ScoreManager)).GetComponent<ScoreManager>().ScoreUp();
+            
+            //On augmente le score du dernier joueur à avoir tiré sur le joueur
+            if (sM.GetLastShooter() != null)
+            {
+                sM.GetLastShooter().GetComponentInParent(typeof(ScoreManager)).GetComponent<ScoreManager>()
+                    .ScoreUp(); //ligne pour augmenter le score du joueur qui a tiré en dernier sur la victime
+                sM.SetLastShooter(null);
             }
             else
             {
-                sM.GetLastShooter().GetComponentInParent(typeof(ScoreManager)).GetComponent<ScoreManager>().ScoreUp();//ligne pour augmenter le score du joueur qui a tiré en dernier sur la victime
-
+                sM.ScoreDown();
             }
-            
-            
+
+
+
+
         }
     }
     private void stopVelocity()
