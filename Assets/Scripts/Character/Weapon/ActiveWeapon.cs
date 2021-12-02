@@ -20,6 +20,20 @@ public class ActiveWeapon : MonoBehaviour
     Animator animator;
     AnimatorOverrideController overrides;
 
+    //Bug Fix Aim
+    public GameObject posSuiviCurseur;
+    public GameObject posSuiviOrigin;
+    FollowTrans posOriginWeapon;
+
+    /*private void Awake()
+    {
+        //Fix Bug Curseur Visee
+        GameObject obj = Instantiate(posSuiviCurseur);
+        obj.GetComponent<FollowTrans>().trans = crossHairTarg;
+        crossHairTarg = obj.transform;
+
+        giveRandomWeapon();
+    }*/
 
     // Start is called before the first frame update
     void Start()
@@ -27,11 +41,13 @@ public class ActiveWeapon : MonoBehaviour
         animator = GetComponent<Animator>();
         overrides = animator.runtimeAnimatorController as AnimatorOverrideController;
         weaponCount = listWeaponsPrefab.Length;
-        giveRandomWeapon();
+        //giveRandomWeapon();
+
+        StartCoroutine(DelaiEquip());
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (!rayWeapon)
         {
@@ -60,6 +76,9 @@ public class ActiveWeapon : MonoBehaviour
             Destroy(rayWeapon.gameObject);
         rayWeapon = newWeapon;
         rayWeapon.raycastAimTarget = crossHairTarg;
+        posOriginWeapon.trans = rayWeapon.rayOrigin;
+        rayWeapon.rayOrigin = posOriginWeapon.transform;
+
         rayWeapon.transform.parent = weaponParent;
         rayWeapon.transform.localPosition = Vector3.zero;
         rayWeapon.transform.localRotation = Quaternion.identity;
@@ -102,5 +121,21 @@ public class ActiveWeapon : MonoBehaviour
         recorder.TakeSnapshot(0);
         recorder.SaveToClip(rayWeapon.weaponAnim);
         UnityEditor.AssetDatabase.SaveAssets();
+    }
+
+    IEnumerator DelaiEquip()
+    {
+        yield return new WaitForSeconds(0.1f);
+        //Fix Bug Curseur Visee
+        GameObject obj = Instantiate(posSuiviCurseur);
+        obj.GetComponent<FollowTrans>().trans = crossHairTarg;
+        crossHairTarg = obj.transform;
+
+        //Fix Bug Origin Visee
+        GameObject obj2 = Instantiate(posSuiviCurseur);
+        //obj.GetComponent<FollowTrans>().trans = crossHairTarg;
+        posOriginWeapon = obj2.GetComponent<FollowTrans>();
+
+        giveRandomWeapon();
     }
 }

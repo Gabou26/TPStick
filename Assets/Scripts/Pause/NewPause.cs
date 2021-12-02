@@ -61,8 +61,8 @@ public class NewPause : MonoBehaviour
         vitPauseMouv = 20f;
         posDepart = new Vector2(-300, 0);
         posFin = new Vector2(0, 0);
-        delaiCour = 0;
-        Time.timeScale = 0.3f;
+        delaiCour = 0.99f;
+        Time.timeScale = 0.001f;
 
         GetComponentInChildren<BasePause>().Open();
         GetComponentInChildren<OptionsMenu>().Close();
@@ -96,6 +96,21 @@ public class NewPause : MonoBehaviour
             //DisconnectEveryone();
         trans.Transition(new Vector2(0, 1200), new Vector2(0, 0), false);
         yield return new WaitForSeconds(0.6f);
+        this.posDepart = new Vector2(0, 0);
+        this.posFin = new Vector2(0, 0);
+        rect.localPosition = new Vector2(0, 0);
         SceneManager.LoadScene(scene);
+        this.posDepart = new Vector2(0, 0);
+        this.posFin = new Vector2(0, 0);
+        rect.localPosition = new Vector2(0, 0);
+        for (int i = 0; i < 40; i++)
+        {
+            trans.Transition(new Vector2(0, 0), new Vector2(0, 0), false);
+            yield return new WaitForSeconds(0.01f);
+            rect.localPosition = new Vector2(0, 0);
+        }
+       // yield return new WaitForSeconds(0.6f);
+        trans.Transition(new Vector2(0, 0), new Vector2(0, -1200), false);
+        print("POG");
     }
 }

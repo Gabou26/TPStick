@@ -59,10 +59,13 @@ public class RPGBullet : BaseBullet
             return;
 
         isDestroying = true;
-        RaycastHit[] targets = Physics.SphereCastAll(transform.position, explosionRadius, Vector3.zero, playerTrigger);
+        Collider[] targets = Physics.OverlapSphere(transform.position, explosionRadius, playerTrigger);
         foreach (var target in targets)
         {
-            target.transform.GetComponentInParent<ScoreManager>().SetLastShooter(player);
+            if (target.isTrigger)
+                continue;
+
+            // target.transform.GetComponent<ScoreManager>().SetLastShooter(player);
             HealthBar bar = target.transform.GetComponent<HealthBar>();
             if (player.activeSelf && bar)
                 bar.TakeDamage(player, weaponDamage);
@@ -75,8 +78,16 @@ public class RPGBullet : BaseBullet
         GetComponent<MeshRenderer>().enabled = false;
         //explosif.GetComponent<AudioSource>().Stop();
         explosion.Play();
+        explosion.GetComponent<AudioSource>().Play();
 
         yield return new WaitForSeconds(2);
         Destroy(gameObject);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(transform.position, explosionRadius);
     }
 }
