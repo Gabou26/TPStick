@@ -90,7 +90,7 @@ public class Third_person_mvmnt : MonoBehaviour
         */
         cameraController.deadChar = true;
 
-        if(dead)
+        if (dead)
         {
             if (timedown < 10f) timedown++;
 
@@ -125,6 +125,7 @@ public class Third_person_mvmnt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (paused)
             jumped = false;
 
@@ -163,6 +164,8 @@ public class Third_person_mvmnt : MonoBehaviour
             if (joint != null) {
                 joint.connectedAnchor = spine.transform.position;
             }
+
+            //Velocity = Vector3.Lerp(Velocity, VelocityZero, 1f * Time.deltaTime);
             //gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, spine.transform.position, 50f * Time.deltaTime);
             return;
         }
@@ -336,7 +339,16 @@ public class Third_person_mvmnt : MonoBehaviour
             GetComponent<HealthBar>().ResetHealth();
             healthBar.SetHealth(maxHealth);
             timedown = 2f;
-            if(!ragdoll){
+            Velocity = VelocityZero;
+            direction = VelocityZero;
+            Rigidbody point = spine.GetComponent<Rigidbody>();
+            if (point != null)
+            {
+                point.velocity = Vector3.zero;
+                point.angularVelocity = Vector3.zero;
+            }
+
+            if (!ragdoll){
                 sM.ScoreDown(); //diminue le score du joueur qui tombe, utilisé lors d'une chute sans ragdoll
                 //sM.GetLastShooter().GetComponentInParent(typeof(ScoreManager)).GetComponent<ScoreManager>().ScoreUp();
             }
