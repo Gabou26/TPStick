@@ -25,6 +25,7 @@ public class OnMapLoad : MonoBehaviour
             Debug.Log("Respawning player " + i + " at " + x + ", 15, " + z);
             players[i].transform.position = new Vector3(x , 15, z);
             players[i].GetComponent<ScoreManager>().ResetScore();
+            players[i].GetComponent<HealthBar>().ResetHealth();
         }
     }
 

@@ -81,7 +81,7 @@ public class TPCamController : MonoBehaviour
         if (Mathf.Abs(zoneVal) <= 0.2f)
             zoneVal = 0;
 
-        horizontal = zoneVal * 1.5f;
+        horizontal = zoneVal * 150f * Time.deltaTime;
     }
 
     public void OnCameraCV(InputValue value)
@@ -90,7 +90,7 @@ public class TPCamController : MonoBehaviour
         if (Mathf.Abs(zoneVal) <= 0.2f)
             zoneVal = 0;
 
-        vertical = zoneVal * 1.5f;
+        vertical = zoneVal * 130f * Time.deltaTime;
     }
 
 

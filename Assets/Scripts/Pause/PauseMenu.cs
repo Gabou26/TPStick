@@ -19,7 +19,7 @@ public class PauseMenu : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void DisconnectEveryone()
@@ -34,7 +34,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Show()
     {
-        Time.timeScale = 0f;
+        Time.timeScale = 0.001f;
         foreach (var button in buttons)
         {
             button.SetActive(true);

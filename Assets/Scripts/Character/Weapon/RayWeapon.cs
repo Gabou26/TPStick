@@ -30,9 +30,21 @@ public class RayWeapon : GunWeapon
             {
                 hit.transform.GetComponentInParent<ScoreManager>().SetLastShooter(player);
                 HealthBar bar = hit.transform.GetComponent<HealthBar>();
-                if (player.activeSelf && bar)
+                Third_person_mvmnt hitplayer = bar.gameObject.GetComponent<Third_person_mvmnt>();
+                if(hitplayer.dead)
                 {
-                    bar.TakeDamage(player, weaponDamage);
+                    Rigidbody point = hitplayer.spine.GetComponent<Rigidbody>();
+                    if (point != null)
+                    {
+                        point.AddForce(player.transform.forward * 500 + new Vector3(0,-100,0), ForceMode.Impulse);
+                    }
+                }
+                else
+                {
+                    if (player.activeSelf && bar)
+                    {
+                        bar.TakeDamage(player, weaponDamage);
+                    }
                 }
             }
 
