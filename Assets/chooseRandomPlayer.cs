@@ -7,7 +7,7 @@ public class chooseRandomPlayer : MonoBehaviour
     private Dictionary<Color,string> listPlayerColor_Name = new Dictionary<Color,string>();
     private Color pink = new Color(1f, 0.3f, 0.5f, 1f);
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         listPlayerColor_Name.Add(pink,"Le Garde du corps");
         listPlayerColor_Name.Add(Color.red,"Le Sumo");

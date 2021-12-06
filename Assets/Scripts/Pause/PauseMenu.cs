@@ -31,7 +31,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Show()
     {
-        Time.timeScale = 0f;
+        Time.timeScale = 0.001f;
         foreach (var button in buttons)
         {
             button.SetActive(true);
