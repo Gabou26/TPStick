@@ -1,10 +1,10 @@
-using System.Collections;
+
 using System.Collections.Generic;
-using UnityEditor.UI;
+
 using UnityEngine;
-using UnityEngine.EventSystems;
+
 using UnityEngine.InputSystem;
-using UnityEngine.SocialPlatforms.Impl;
+
 
 public class Third_person_mvmnt : MonoBehaviour
 {
