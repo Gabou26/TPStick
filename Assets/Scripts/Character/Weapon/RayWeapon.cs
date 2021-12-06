@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class RayWeapon : GunWeapon
 {
@@ -17,9 +14,12 @@ public class RayWeapon : GunWeapon
 
     protected override void Shoot()
     {
+        //raycastAimTarget.position = rayOrigin.position + new Vector3(0, 0, 20);
         ray.origin = rayOrigin.position;
-        ray.direction = (raycastAimTarget.position - rayOrigin.position).normalized;
-       // print(ray.direction + " | " + raycastAimTarget.position + " | " + rayOrigin.position);
+        //ray.origin = new Vector3(0,0,5);
+        ray.direction = (raycastAimTarget.position - ray.origin).normalized;
+
+        // print(ray.direction + " | " + raycastAimTarget.position + " | " + rayOrigin.position);
 
         TrailRenderer tracer = Instantiate(tracerEffect, ray.origin, Quaternion.identity);
         tracer.AddPosition(ray.origin);
@@ -30,9 +30,21 @@ public class RayWeapon : GunWeapon
             {
                 hit.transform.GetComponentInParent<ScoreManager>().SetLastShooter(player);
                 HealthBar bar = hit.transform.GetComponent<HealthBar>();
-                if (player.activeSelf && bar)
+                Third_person_mvmnt hitplayer = bar.gameObject.GetComponent<Third_person_mvmnt>();
+                if(hitplayer.dead)
                 {
-                    bar.TakeDamage(player, weaponDamage);
+                    Rigidbody point = hitplayer.spine.GetComponent<Rigidbody>();
+                    if (point != null)
+                    {
+                        point.AddForce(player.transform.forward * 500 + new Vector3(0,-100,0), ForceMode.Impulse);
+                    }
+                }
+                else
+                {
+                    if (player.activeSelf && bar)
+                    {
+                        bar.TakeDamage(player, weaponDamage);
+                    }
                 }
             }
 
@@ -42,6 +54,7 @@ public class RayWeapon : GunWeapon
             hitEffect.Emit(1);
 
             tracer.transform.position = hit.point;
+            GetComponent<AudioSource>().Play();
         }
         else
             tracer.transform.position = ray.origin + (ray.direction * 30);

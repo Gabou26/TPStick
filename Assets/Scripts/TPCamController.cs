@@ -68,13 +68,35 @@ public class TPCamController : MonoBehaviour
 
         transform.position = CamFocus.position + (camRot * camNewDist);
     }
-    
-    public void OnCameraH(InputValue value) {
-        horizontal = value.Get<float>() / 3;
+
+    public void OnCameraH(InputValue value)
+    {
+        float zoneVal = value.Get<float>();
+        horizontal = zoneVal / 3;
     }
 
+    public void OnCameraCH(InputValue value)
+    {
+        float zoneVal = value.Get<float>();
+        if (Mathf.Abs(zoneVal) <= 0.2f)
+            zoneVal = 0;
+
+        horizontal = zoneVal * 150f * Time.deltaTime;
+    }
+
+    public void OnCameraCV(InputValue value)
+    {
+        float zoneVal = -value.Get<float>();
+        if (Mathf.Abs(zoneVal) <= 0.2f)
+            zoneVal = 0;
+
+        vertical = zoneVal * 130f * Time.deltaTime;
+    }
+
+
     public void OnCameraV(InputValue value) {
-        vertical = -value.Get<float>() / 3;
+        float zoneVal = -value.Get<float>();
+        vertical = zoneVal / 3;
     }
 
 }

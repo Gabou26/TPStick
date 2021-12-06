@@ -24,6 +24,7 @@ public class OnMapLoad : MonoBehaviour
             float z = Convert.ToSingle(20*Math.Sin(2*Math.PI*i/len));
             players[i].transform.position = new Vector3(x , 15, z);
             players[i].GetComponent<ScoreManager>().ResetScore();
+            players[i].GetComponent<HealthBar>().ResetHealth();
         }
     }
 

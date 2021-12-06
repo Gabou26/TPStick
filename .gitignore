@@ -71,5 +71,3 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 .vscode/settings.json
 ProjectSettings/Packages/com.unity.probuilder/Settings.json
-ProjectSettings/EditorBuildSettings.asset
-ProjectSettings/Packages/com.unity.probuilder/Settings.json
