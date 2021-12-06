@@ -6,32 +6,41 @@ using UnityEngine.SceneManagement;
 
 public class ChangeMapTrigger : MonoBehaviour
 {
-    private int playerCount;
     public PlayerInputManager manager;
+    public string mapName;
+    public int playerCount = 0;
 
     public void Start() {
         manager = GameObject.FindObjectOfType<PlayerInputManager>();
+
     }
 
     public void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player")) {
+            int i = 0;
+
+            switch(this.name) {
+                case "Trigger1":
+                    i = 1;
+                    break;
+                case "Trigger2":
+                    i = 2;
+                    break;
+                case "Trigger3":
+                    i = 3;
+                    break;
+                case "Trigger4":
+                    i = 4;
+                    break;
+                case "Trigger5":
+                    i = 5;
+                    break;
+            }
 
             playerCount++;
-            if (playerCount > 1 && playerCount == manager.playerCount) {
-                switch(this.name) {
-                    case "Trigger1":
-                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-                        break;
-                    case "Trigger2":
-                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
-                        break;
-                    case "Trigger3":
-                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
-                        break;
-                    case "Trigger4":
-                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 4);
-                        break;
-                }
+            
+            if (manager.playerCount > 1 && playerCount == manager.playerCount) {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + i);
             }
         }
     }
