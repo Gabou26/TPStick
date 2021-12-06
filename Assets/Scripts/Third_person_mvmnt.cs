@@ -128,6 +128,8 @@ public class Third_person_mvmnt : MonoBehaviour
 
         if (paused)
             jumped = false;
+        if (transform.position.y < -20f)
+            Respawn();
 
         if (ragdoll)
         {
@@ -279,31 +281,45 @@ public class Third_person_mvmnt : MonoBehaviour
     public void OnCameraH(InputValue value)
     {
         if (paused)
+        {
+            cameraController.OnCameraH(0);
             return;
-        cameraController.OnCameraH(value);
+        }
+
+        cameraController.OnCameraH(value.Get<float>());
     }
 
     public void OnCameraCH(InputValue value)
     {
         if (paused)
+        {
+            cameraController.OnCameraCH(0);
             return;
+        }
 
-        cameraController.OnCameraCH(value);
+        cameraController.OnCameraCH(value.Get<float>());
     }
 
     public void OnCameraV(InputValue value)
     {
         if (paused)
+        {
+            cameraController.OnCameraV(0);
             return;
-        cameraController.OnCameraV(value);
+        }
+
+        cameraController.OnCameraV(value.Get<float>());
     }
 
     public void OnCameraCV(InputValue value)
     {
         if (paused)
+        {
+            cameraController.OnCameraCV(0);
             return;
+        }       
 
-        cameraController.OnCameraCV(value);
+        cameraController.OnCameraCV(value.Get<float>());
     }
 
     private void OnGrapplePress() {
@@ -326,39 +342,7 @@ public class Third_person_mvmnt : MonoBehaviour
     {
         if (other.CompareTag("Respawn"))
         {
-            GetComponent<MysteryBoxScript>().initialisePlayerProperties();
-            GetComponent<ActiveWeapon>().giveRandomWeapon();
-            Transform location = respawnPoint.transform;
-            float rangex = Random.Range(-(location.localScale.x / 2), location.localScale.x / 2);
-            float rangez = Random.Range(-(location.localScale.z / 2), location.localScale.z / 2);
-            Vector3 spawnPoint = new Vector3(location.position.x + rangex, location.position.y, location.position.z + rangez);
-            transform.position = spawnPoint;
-            ScoreManager sM = GetComponent<ScoreManager>();
-            UIHealth healthBar = GetComponent<HealthBar>().getUIHealth();
-            var maxHealth = GetComponent<HealthBar>().getMaxHealth();
-            GetComponent<HealthBar>().ResetHealth();
-            healthBar.SetHealth(maxHealth);
-            timedown = 2f;
-            Velocity = VelocityZero;
-            direction = VelocityZero;
-            Rigidbody point = spine.GetComponent<Rigidbody>();
-            if (point != null)
-            {
-                point.velocity = Vector3.zero;
-                point.angularVelocity = Vector3.zero;
-            }
-
-            if (!ragdoll){
-                sM.ScoreDown(); //diminue le score du joueur qui tombe, utilisé lors d'une chute sans ragdoll
-                //sM.GetLastShooter().GetComponentInParent(typeof(ScoreManager)).GetComponent<ScoreManager>().ScoreUp();
-            }
-            else
-            {
-                sM.GetLastShooter().GetComponentInParent(typeof(ScoreManager)).GetComponent<ScoreManager>().ScoreUp();//ligne pour augmenter le score du joueur qui a tiré en dernier sur la victime
-
-            }
-            
-            
+            Respawn();
         }
     }
     private void stopVelocity()
@@ -380,6 +364,42 @@ public class Third_person_mvmnt : MonoBehaviour
             var nbPower = listMisteryPower.Count;
             var randomPower = listMisteryPower[Random.Range(0,nbPower)];
             GetComponent<MysteryBoxScript>().activePower(randomPower);
+        }
+    }
+
+    void Respawn()
+    {
+        GetComponent<MysteryBoxScript>().initialisePlayerProperties();
+        GetComponent<ActiveWeapon>().giveRandomWeapon();
+        Transform location = respawnPoint.transform;
+        float rangex = Random.Range(-(location.localScale.x / 2), location.localScale.x / 2);
+        float rangez = Random.Range(-(location.localScale.z / 2), location.localScale.z / 2);
+        Vector3 spawnPoint = new Vector3(location.position.x + rangex, location.position.y, location.position.z + rangez);
+        transform.position = spawnPoint;
+        ScoreManager sM = GetComponent<ScoreManager>();
+        UIHealth healthBar = GetComponent<HealthBar>().getUIHealth();
+        var maxHealth = GetComponent<HealthBar>().getMaxHealth();
+        GetComponent<HealthBar>().ResetHealth();
+        healthBar.SetHealth(maxHealth);
+        timedown = 2f;
+        Velocity = VelocityZero;
+        direction = VelocityZero;
+        Rigidbody point = spine.GetComponent<Rigidbody>();
+        if (point != null)
+        {
+            point.velocity = Vector3.zero;
+            point.angularVelocity = Vector3.zero;
+        }
+
+        if (!ragdoll)
+        {
+            sM.ScoreDown(); //diminue le score du joueur qui tombe, utilisé lors d'une chute sans ragdoll
+                            //sM.GetLastShooter().GetComponentInParent(typeof(ScoreManager)).GetComponent<ScoreManager>().ScoreUp();
+        }
+        else
+        {
+            sM.GetLastShooter().GetComponentInParent(typeof(ScoreManager)).GetComponent<ScoreManager>().ScoreUp();//ligne pour augmenter le score du joueur qui a tiré en dernier sur la victime
+
         }
     }
 

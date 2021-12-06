@@ -10,15 +10,36 @@ public class HealthBar : MonoBehaviour
     private int reviveIndex = 0;
     private float currentHealth;
 
+    //Flash Blanc
+    Material mat;
+    Color coulMat;
+    float delaiCour = 1;
+
     // Start is called before the first frame update
     void Start()
     {
         ResetHealth();
+        mat = GetComponentInChildren<SkinnedMeshRenderer>().material;
+        coulMat = mat.color;
+    }
+
+    //Gestion Flash Lorsque Hit
+    private void Update()
+    {
+        if (delaiCour >= 1)
+            return;
+        delaiCour += Time.deltaTime * 4;
+
+        if (delaiCour > 1)
+            delaiCour = 1;
+
+        Color coul = Color.Lerp(Color.white, coulMat, delaiCour);
+        mat.color = coul;
     }
 
     public void TakeDamage(GameObject killer, float damage)
     {
-        print("OUCH  : " + currentHealth);
+        //print("OUCH  : " + currentHealth);
         //GameObject playerHit = this.gameObject;
         var armorFactor = GetComponent<MysteryBoxScript>().getArmorPowerFactor();
         var attackFactor = killer.GetComponentInParent<MysteryBoxScript>().getAttackPowerFactor();
@@ -33,6 +54,9 @@ public class HealthBar : MonoBehaviour
 
         if (healthBar)
             healthBar.SetHealth(currentHealth);
+
+        //Flash Blanc
+        delaiCour = 0;
     }
 
     public virtual void Death(GameObject killer)

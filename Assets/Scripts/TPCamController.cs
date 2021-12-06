@@ -19,6 +19,9 @@ public class TPCamController : MonoBehaviour
     public float camDist = 7;
     public LayerMask colliderCamMask;
 
+    //Cam Mouv
+    public Vector2 camVitesse = new Vector2(120, 50);
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,33 +72,34 @@ public class TPCamController : MonoBehaviour
         transform.position = CamFocus.position + (camRot * camNewDist);
     }
 
-    public void OnCameraH(InputValue value)
+    public void OnCameraH(float value)
     {
-        float zoneVal = value.Get<float>();
+        float zoneVal = value;
         horizontal = zoneVal / 3;
     }
 
-    public void OnCameraCH(InputValue value)
+    public void OnCameraCH(float value)
     {
-        float zoneVal = value.Get<float>();
+        float zoneVal = value;
         if (Mathf.Abs(zoneVal) <= 0.2f)
             zoneVal = 0;
 
-        horizontal = zoneVal * 150f * Time.deltaTime;
+        horizontal = zoneVal * camVitesse.x * Time.deltaTime;
     }
 
-    public void OnCameraCV(InputValue value)
+    public void OnCameraCV(float value)
     {
-        float zoneVal = -value.Get<float>();
+        float zoneVal = -value;
         if (Mathf.Abs(zoneVal) <= 0.2f)
             zoneVal = 0;
 
-        vertical = zoneVal * 130f * Time.deltaTime;
+        vertical = zoneVal * camVitesse.y * Time.deltaTime;
     }
 
 
-    public void OnCameraV(InputValue value) {
-        float zoneVal = -value.Get<float>();
+    public void OnCameraV(float value)
+    {
+        float zoneVal = -value;
         vertical = zoneVal / 3;
     }
 
