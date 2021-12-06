@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
-using UnityEditor.Animations;
 
 public class ActiveWeapon : MonoBehaviour
 {
@@ -16,7 +15,7 @@ public class ActiveWeapon : MonoBehaviour
     private GunWeapon currentWeaponObject; // weapon clone instancié
     //Editeur
     public Transform gripLeft, gripRight;
-    Animator animator;
+    public Animator animator;
     AnimatorOverrideController overrides;
 
     //Bug Fix Aim
@@ -111,16 +110,16 @@ public class ActiveWeapon : MonoBehaviour
         overrides["weapon_anim_empty"] = rayWeapon.weaponAnim;
     }
 
-    [ContextMenu("Save Weapon Pose")]
-    void SaveWeaponPose() {
-        GameObjectRecorder recorder = new GameObjectRecorder(gameObject);
-        recorder.BindComponentsOfType<Transform>(weaponParent.gameObject, false);
-        recorder.BindComponentsOfType<Transform>(gripLeft.gameObject, false);
-        recorder.BindComponentsOfType<Transform>(gripRight.gameObject, false);
-        recorder.TakeSnapshot(0);
-        recorder.SaveToClip(rayWeapon.weaponAnim);
-        UnityEditor.AssetDatabase.SaveAssets();
-    }
+    //[ContextMenu("Save Weapon Pose")]
+    //void SaveWeaponPose() {
+    //    GameObjectRecorder recorder = new GameObjectRecorder(gameObject);
+    //    recorder.BindComponentsOfType<Transform>(weaponParent.gameObject, false);
+    //    recorder.BindComponentsOfType<Transform>(gripLeft.gameObject, false);
+    //    recorder.BindComponentsOfType<Transform>(gripRight.gameObject, false);
+    //    recorder.TakeSnapshot(0);
+    //    recorder.SaveToClip(rayWeapon.weaponAnim);
+    //    UnityEditor.AssetDatabase.SaveAssets();
+    //}
 
     IEnumerator DelaiEquip()
     {
