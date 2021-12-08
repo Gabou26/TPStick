@@ -3,7 +3,7 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     private int _score;
-    private GameObject _lastShooter;
+    private GameObject _lastShooter = null;
 
     public void ResetScore()
     {
@@ -22,6 +22,11 @@ public class ScoreManager : MonoBehaviour
     public int GetScore()
     {
         return _score;
+    }
+
+    public void ResetLastShooter()
+    {
+        SetLastShooter(null);
     }
 
     public void SetLastShooter(GameObject lastShooter)
