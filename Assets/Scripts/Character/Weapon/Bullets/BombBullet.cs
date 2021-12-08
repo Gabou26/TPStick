@@ -38,8 +38,15 @@ public class BombBullet : BaseBullet
         Collider[] targets = Physics.OverlapSphere(transform.position, explosionRadius, playerTrigger);
         foreach (var target in targets)
         {
+            if (target.GetType() != typeof(CharacterController)) {
+                continue;
+            }
+
             if (target.isTrigger)
                 continue;
+
+            float w = 1-Vector3.Distance(transform.position,target.transform.position)/explosionRadius;
+            float x = Mathf.Max(w, .2f);
 
            // target.transform.GetComponent<ScoreManager>().SetLastShooter(player);
             HealthBar bar = target.transform.GetComponent<HealthBar>();
@@ -52,14 +59,14 @@ public class BombBullet : BaseBullet
                     Rigidbody point = hitplayer.spine.GetComponent<Rigidbody>();
                     if (point != null)
                     {
-                        point.AddForce(dir * 500, ForceMode.Impulse);
+                        point.AddForce(dir * 10 * weaponDamage * x + new Vector3(0,-100,0), ForceMode.Impulse);
                     }
                 }
                 else
                 {
                     if (player.activeSelf && bar)
                     {
-                        bar.TakeDamage(player, weaponDamage);
+                        bar.TakeDamage(player, weaponDamage * x);
                     }
                 }
             }

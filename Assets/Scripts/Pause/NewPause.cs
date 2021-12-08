@@ -30,7 +30,7 @@ public class NewPause : MonoBehaviour
         if (delaiCour > 1)
         {
             if (open)
-                Time.timeScale = 0.03f;
+                Time.timeScale = 0.000001f;
             delaiCour = 1;
         }
             

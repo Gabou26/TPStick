@@ -50,7 +50,7 @@ MonoBehaviour:
   rayOrigin: {fileID: 1905492658952547189}
   raycastAimTarget: {fileID: 0}
   weaponAnim: {fileID: 0}
-  weaponDamage: 12
+  weaponDamage: 60
   interTir: 0.9
   bulletPrefab: {fileID: 8746959071106904817, guid: 8bcf2201aaf4089499726a5d10187d53,
     type: 3}

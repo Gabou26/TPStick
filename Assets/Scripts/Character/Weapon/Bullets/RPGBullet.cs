@@ -61,10 +61,17 @@ public class RPGBullet : BaseBullet
         Collider[] targets = Physics.OverlapSphere(transform.position, explosionRadius, playerTrigger);
         foreach (var target in targets)
         {
+            if (target.GetType() != typeof(CharacterController)) {
+                continue;
+            }
+
             if (target.isTrigger)
                 continue;
-
             // target.transform.GetComponent<ScoreManager>().SetLastShooter(player);
+
+            float w = 1-Vector3.Distance(transform.position,target.transform.position)/explosionRadius;
+            float x = Mathf.Max(w, .2f);
+
             HealthBar bar = target.transform.GetComponent<HealthBar>();
             if (player.activeSelf && bar)
             {
@@ -75,14 +82,14 @@ public class RPGBullet : BaseBullet
                     Rigidbody point = hitplayer.spine.GetComponent<Rigidbody>();
                     if (point != null)
                     {
-                        point.AddForce(dir * 500, ForceMode.Impulse);
+                        point.AddForce(dir * 10 * weaponDamage * x + new Vector3(0,-100,0), ForceMode.Impulse);
                     }
                 }
                 else
                 {
                     if (player.activeSelf && bar)
                     {
-                        bar.TakeDamage(player, weaponDamage);
+                        bar.TakeDamage(player, weaponDamage * x);
                     }
                 }
             }

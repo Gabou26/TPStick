@@ -80,7 +80,8 @@ public class Third_person_mvmnt : MonoBehaviour
     public void Ragdoll()
     {
         dead = !dead;
-        charController.enabled = !charController.enabled;
+        //charController.enabled = !charController.enabled;
+        capsCollider.enabled = !capsCollider.enabled;
         animator.enabled = !animator.enabled;
         GetComponent<MysteryBoxScript>().initialisePlayerProperties();
         GetComponent<ActiveWeapon>().deactivateCurrentWeapon();
@@ -387,6 +388,7 @@ public class Third_person_mvmnt : MonoBehaviour
         Rigidbody point = spine.GetComponent<Rigidbody>();
         if (point != null)
         {
+            Debug.Log("Le player reset sa velocite");
             point.velocity = Vector3.zero;
             point.angularVelocity = Vector3.zero;
         }
@@ -400,6 +402,12 @@ public class Third_person_mvmnt : MonoBehaviour
             sM.GetLastShooter().GetComponentInParent<ScoreManager>()
                 .ScoreUp(); //ligne pour augmenter le score du joueur qui a tiré en dernier sur la victime
             sM.ResetLastShooter();
+        }
+
+        if (dead)
+        {
+            CancelInvoke("OnRagdoll");
+            OnRagdoll();
         }
     }
 

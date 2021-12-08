@@ -51,7 +51,7 @@ MonoBehaviour:
   rayOrigin: {fileID: 1905492658952547189}
   raycastAimTarget: {fileID: 0}
   weaponAnim: {fileID: 7400000, guid: 52f74b1b2cc0450458e93c5afd2b385f, type: 2}
-  weaponDamage: 6
+  weaponDamage: 12
   interTir: 0.15
   hitEffect: {fileID: 1779766955019556216}
   tracerEffect: {fileID: 9198307897857253529, guid: 99e195dcb2652ca4e9fb348544066e57,
