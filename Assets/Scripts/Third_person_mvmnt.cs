@@ -391,15 +391,15 @@ public class Third_person_mvmnt : MonoBehaviour
             point.angularVelocity = Vector3.zero;
         }
 
-        if (!ragdoll)
+        if (sM.GetLastShooter() == null)
         {
             sM.ScoreDown(); //diminue le score du joueur qui tombe, utilisé lors d'une chute sans ragdoll
-                            //sM.GetLastShooter().GetComponentInParent(typeof(ScoreManager)).GetComponent<ScoreManager>().ScoreUp();
         }
         else
         {
-            sM.GetLastShooter().GetComponentInParent(typeof(ScoreManager)).GetComponent<ScoreManager>().ScoreUp();//ligne pour augmenter le score du joueur qui a tiré en dernier sur la victime
-
+            sM.GetLastShooter().GetComponentInParent<ScoreManager>()
+                .ScoreUp(); //ligne pour augmenter le score du joueur qui a tiré en dernier sur la victime
+            sM.ResetLastShooter();
         }
     }
 

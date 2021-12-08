@@ -36,7 +36,7 @@ public class RayWeapon : GunWeapon
                     Rigidbody point = hitplayer.spine.GetComponent<Rigidbody>();
                     if (point != null)
                     {
-                        point.AddForce(player.transform.forward * 500 + new Vector3(0,-100,0), ForceMode.Impulse);
+                        point.AddForce(player.transform.forward * 50 * weaponDamage + new Vector3(0,-100,0), ForceMode.Impulse);
                     }
                 }
                 else
