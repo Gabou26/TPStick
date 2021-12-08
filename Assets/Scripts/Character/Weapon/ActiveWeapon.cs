@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
+using UnityEngine.SceneManagement;
 
 public class ActiveWeapon : MonoBehaviour
 {
@@ -61,7 +62,9 @@ public class ActiveWeapon : MonoBehaviour
     }
 
     public void OnFirePress() {
-        pressed = true;
+        if (SceneManager.GetActiveScene().buildIndex != 1) {
+            pressed = true;
+        } 
     }
 
     public void OnFireRelease() {

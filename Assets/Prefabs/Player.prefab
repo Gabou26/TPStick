@@ -457,7 +457,7 @@ GameObject:
   m_Component:
   - component: {fileID: 423177292309949170}
   - component: {fileID: 1921313501615194799}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: WeaponPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1344,7 +1344,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2613643569539971577}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: WeaponHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3875,6 +3875,7 @@ MonoBehaviour:
   - {fileID: 1905492659546039487, guid: c65ca877c14c7944eb1976eb1e625e4b, type: 3}
   gripLeft: {fileID: 3554726781242938225}
   gripRight: {fileID: 9116611163528703242}
+  animator: {fileID: 0}
   posSuiviCurseur: {fileID: 5556695795673464697, guid: ba279b05da875184eadd748ba5309f30,
     type: 3}
   posSuiviOrigin: {fileID: 0}
