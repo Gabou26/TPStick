@@ -102,6 +102,7 @@ public class ActiveWeapon : MonoBehaviour
         {
             randomWeaponPrefab = listWeaponsPrefab[Random.Range(0,weaponCount)];
         } while(randomWeaponPrefab == currentWeapon);
+        currentWeapon = randomWeaponPrefab;
         GunWeapon newWeapon = Instantiate(randomWeaponPrefab);
         if (newWeapon)
             Equip(newWeapon);
