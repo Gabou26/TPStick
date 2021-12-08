@@ -22,10 +22,8 @@ public class MapManager : MonoBehaviour
         int max = maxTab(counts);
         if (counts[max] > 0) {
             countText.text = maps[max] + " : " + counts[max] + "/" + manager.playerCount;
-            Debug.Log("Setting text");
         } else {
             countText.text = "";
-            Debug.Log("Deleting text");
         }
     }
 
