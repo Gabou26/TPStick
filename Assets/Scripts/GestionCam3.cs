@@ -10,7 +10,6 @@ public class GestionCam3 : MonoBehaviour
 
     public void OnPlayerJoined() {
         int newNumber = manager.playerCount;
-        Debug.Log("Nombre actuel : " + previousNumber + ", nouveau nombre : " + newNumber);
 
         if (previousNumber == 0) {
             // Redimentionner Cam3 et Désactiver Cam3
