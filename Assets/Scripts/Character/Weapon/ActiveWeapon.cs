@@ -8,8 +8,8 @@ public class ActiveWeapon : MonoBehaviour
     public Transform crossHairTarg;
     public Transform weaponParent;
     public Rig hankIk;
-    GunWeapon rayWeapon;
-    private bool pressed;
+    public GunWeapon rayWeapon;
+    public bool pressed;
     public GunWeapon[] listWeaponsPrefab;
     private int weaponCount;
     private GunWeapon currentWeapon; // Non instancié

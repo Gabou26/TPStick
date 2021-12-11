@@ -12,5 +12,8 @@ public class WeaponPickup : MonoBehaviour
             GunWeapon weapon = Instantiate(weaponPrefab);
             activeW.Equip(weapon);
         }
+
+        HealthBar hb = other.GetComponent<HealthBar>();
+        hb.ResetHealth();
     }
 }

@@ -42,6 +42,10 @@ public class Third_person_mvmnt : MonoBehaviour
     //Paused Lorsque menu est ouvert
     [HideInInspector] public static bool paused = false;
 
+    private int countDeSesMorts = 0;
+    private Vector3 lastPos;
+    private Quaternion lastQuat;
+
     private void Awake()
     {
         VelocityZero = new Vector3(0,0,0);
@@ -93,9 +97,13 @@ public class Third_person_mvmnt : MonoBehaviour
 
         if (dead)
         {
-            if (timedown < 10f) timedown++;
-
+            lastPos = transform.position;
+            lastQuat = transform.rotation;
             Invoke("OnRagdoll", timedown);
+
+        } else {
+            transform.position = lastPos;
+            transform.rotation = lastQuat;
         }
     }
 
@@ -362,9 +370,8 @@ public class Third_person_mvmnt : MonoBehaviour
 
         if(collision.gameObject.tag == "MisteryBox"){
             Destroy(collision.gameObject);
-            var nbPower = listMisteryPower.Count;
-            var randomPower = listMisteryPower[Random.Range(0,nbPower)];
-            GetComponent<MysteryBoxScript>().activePower(randomPower);
+            GetComponent<MysteryBoxScript>().activePower(listMisteryPower[countDeSesMorts]);
+            countDeSesMorts++;
         }
     }
 
