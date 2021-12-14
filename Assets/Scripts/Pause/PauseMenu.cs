@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Gestion des différentes options du menu pause
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject[] buttons;
@@ -21,11 +22,6 @@ public class PauseMenu : MonoBehaviour
 
     public void DisconnectEveryone()
     {
-        //foreach (var player in FindObjectsOfType<PlayerInput>())
-        //{
-        //    Destroy(player.gameObject);
-        //}
-        //PlayerManager.instance.players.Clear();
         ReturnMainMenu();
     }
 

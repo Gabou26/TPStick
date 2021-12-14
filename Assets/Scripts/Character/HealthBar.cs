@@ -1,5 +1,10 @@
 using UnityEngine;
 
+/* Gestion de la barre de vie du joueur
+Initialisée à 100% en début de partie et après un ragdoll et un re-spawn
+La vie d'un joueur baisse si il se fait tirer dessus ou bien qu'il active aléatoirement le pouvoir de bombe.
+La vie d'un joueur retourne à 100% si il active aléatoirement le pouvoir de vie supplémentaire.
+*/
 public class HealthBar : MonoBehaviour
 {
     public int[] maxHealth = new int[4] { 100, 80, 60, 40 };
@@ -35,10 +40,9 @@ public class HealthBar : MonoBehaviour
         mat.color = coul;
     }
 
+    // Méthode activé lorsque le joueur est touché, prenant en paramètre l'origine du tir et la valeur de dégat associé au tir.
     public void TakeDamage(GameObject killer, float damage)
     {
-        //print("OUCH  : " + currentHealth);
-        //GameObject playerHit = this.gameObject;
         var armorFactor = GetComponent<MysteryBoxScript>().getArmorPowerFactor();
         var attackFactor = killer.GetComponentInParent<MysteryBoxScript>().getAttackPowerFactor();
         damage /= armorFactor;  // On divise les dégats par l'armure du joueur touché

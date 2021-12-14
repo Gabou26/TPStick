@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// Script appelé au chargement du lobby
 public class OnLobbyLoad : MonoBehaviour
 {
     

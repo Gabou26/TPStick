@@ -4,7 +4,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
+// Script appelé au charment de chaque map
 public class OnMapLoad : MonoBehaviour
 {
     

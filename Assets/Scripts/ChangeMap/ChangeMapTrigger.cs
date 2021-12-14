@@ -2,7 +2,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-
+/*
+    Script associé au lobby permettant de changer de scène lorsque tous les joueurs actuellement présent se retrouvent sous 
+    le même arche ( 1 arche par carte différente ).
+*/
 public class ChangeMapTrigger : MonoBehaviour
 {
     public PlayerInputManager manager;

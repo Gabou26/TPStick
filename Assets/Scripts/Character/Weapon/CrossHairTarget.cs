@@ -24,6 +24,5 @@ public class CrossHairTarget : MonoBehaviour
             transform.position = hit.point;
         }
 
-        //transform.position = new Vector3(5, 1, 0);
     }
 }

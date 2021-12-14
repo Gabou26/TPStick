@@ -1,6 +1,6 @@
 using UnityEngine;
 
-
+// Paramètre de l'arme: Damage et intervalle de tir défini dans le prefab de l'arme.
 public class GunWeapon : MonoBehaviour
 {
     protected GameObject player;

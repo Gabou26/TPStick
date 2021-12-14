@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+// Gère la transition avec entre les différentes scène
 public class TransitionUI : MonoBehaviour
 {
     [SerializeField] private bool autoStart = true, hideStart = true;
@@ -48,11 +49,6 @@ public class TransitionUI : MonoBehaviour
         this.posDepart = posDepart;
         this.posFin = posFin;
         rect.localPosition = posDepart;
-        /*if (fin)
-        {
-            yield return new WaitForSeconds(1);
-            GetComponent<Image>().enabled = false;
-        }*/
     }
 
     IEnumerator LoadTrans()

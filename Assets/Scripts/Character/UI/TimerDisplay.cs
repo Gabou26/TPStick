@@ -3,42 +3,25 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/* Gestion du  timer pour une partie, il est affiché en haut de l'UI global
+ le temps d'une partie est une variable qui pourra facilement être modifiée à l'avenir.
+ Lorsque le temps est écoulé, les joueurs sont redirigé vers le lobby et les scores de la partie apparaissent.
+*/
 public class TimerDisplay : MonoBehaviour
 {
     public Text timerText;
-    private float _timeLimit = 300; //fixe la dur�e d'une partie � 5 minutes
+    private float _timeLimit = 120; //fixe la dur�e d'une partie � 5 minutes
 
     private float _startTime;
-
-    //private GameObject parent;
     
     private bool _end = false;
     
-    
-    
-
-
-    /* private void EndGame(Dictionary<GameObject, int> scoreBoard)
-    {
-        int bestScore;
-        KeyValuePair<GameObject, int> winner = scoreBoard.First();
-        foreach (KeyValuePair<GameObject, int> kv in scoreBoard)
-        {
-            if (kv.Value > winner.Value) winner = kv;
-        }
-        timerText.text = "The winner is :";
-        timerText.text += $"{winner.Key.GetComponentInChildren<UIHealth>().getPlayerName()} : {winner.Value}, ";
-        
-    }
-    */
     
     
     // Start is called before the first frame update
     void Start()
     {
         this._startTime = Time.time;
-        //parent = GameObject.Find("Global UI");
-        //DontDestroyOnLoad(parent);
     }
 
     // Update is called once per frame
@@ -50,35 +33,9 @@ public class TimerDisplay : MonoBehaviour
             if (this._timeLimit <= 0)
             {
                 timerText.text = "Time's Up !!!\n";
-                /*
-                GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
-                Dictionary<GameObject, int> scoreBoard = new Dictionary<GameObject, int>();
-                foreach (GameObject gameObject in allObjects)
-                {
-                    if (gameObject.name == "Player(Clone)")
-                    {
-                        scoreBoard.Add(gameObject, gameObject.GetComponent<ScoreManager>().GetScore());
-                    }
-                }
-                */
-
-
-
-                /* Debug: print the scoreboard
-                timerText.text += "\n";
-                foreach (KeyValuePair<GameObject, int> kv in scoreBoard)
-                {
-                    timerText.text += $"{kv.Key.GetComponentInChildren<UIHealth>().getPlayerName()} : {kv.Value}, ";
-                }
-                */
-
                 timerText.text = "Switched !!!";
                 SceneManager.LoadScene(1); //t�l�portation sur le lobby
                 _end = true;
-                //EndGame(scoreBoard);
-
-
-
             }
             else
             {

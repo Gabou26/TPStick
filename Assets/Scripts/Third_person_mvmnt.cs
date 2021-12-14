@@ -5,7 +5,10 @@ using UnityEngine;
 
 using UnityEngine.InputSystem;
 
-
+/*
+    Script associé au joueur qui permet de gérer son mouvement ainsi que son intéraction avec l'environnement externe:
+    Collision boîte mystère, re-spawn
+*/
 public class Third_person_mvmnt : MonoBehaviour
 {
     public CharacterController controller;
@@ -46,49 +49,26 @@ public class Third_person_mvmnt : MonoBehaviour
     {
         VelocityZero = new Vector3(0,0,0);
         Velocity = VelocityZero;
-        respawnPoint = GameObject.Find("RespawnCube").transform; // Peut être changer ça car trop sale
+        respawnPoint = GameObject.Find("RespawnCube").transform;
         animator = GetComponent<Animator>();
         charController = GetComponent<CharacterController>();
         capsCollider = GetComponent<CapsuleCollider>();
         cameraController = cam.GetComponent<TPCamController>();
         GetComponent<MysteryBoxScript>().initialisePlayerProperties();
-        //GetComponent<ActiveWeapon>().restorePreviousWeapon();
         dead = false;
         grapple = grappleObject.GetComponent<Grappling>();
         timedown = 2f;
-        /*
-        if (weapon)
-            weapon.SetActive(!dead);
-        */
     }
 
-    // public void Ragdoll()
-    // {
-    //    dead = !dead;
-    //    charController.enabled = !charController.enabled;
-    //    capsCollider.isTrigger = !capsCollider.isTrigger;
-    //    animator.enabled = !animator.enabled;
-    //    GetComponent<MysteryBoxScript>().initialisePlayerProperties();
-    //    GetComponent<ActiveWeapon>().deactivateCurrentWeapon();
-    //    /*
-    //    if (weapon)
-    //        weapon.SetActive(!dead);
-    //    */
-    //    cameraController.deadChar = dead;
-    // }
 
+    // Méthode appelée lorsqu'un joueur n'a plus de vie est qu'il tombre en ragdoll
     public void Ragdoll()
     {
         dead = !dead;
-        //charController.enabled = !charController.enabled;
-        capsCollider.enabled = !capsCollider.enabled;
-        animator.enabled = !animator.enabled;
+        capsCollider.enabled = !capsCollider.enabled; 
+        animator.enabled = !animator.enabled; // On désactive l'animator ce qui donne cette impression de ragdoll
         GetComponent<MysteryBoxScript>().initialisePlayerProperties();
         GetComponent<ActiveWeapon>().deactivateCurrentWeapon();
-        /*
-        if (weapon)
-            weapon.SetActive(!dead);
-        */
         cameraController.deadChar = true;
 
         if (dead)
@@ -99,6 +79,7 @@ public class Third_person_mvmnt : MonoBehaviour
         }
     }
 
+    // Méthode appelé quand le temps de ragdoll du joueur est terminé
     public void Unragdoll()
     {
         if (!controller.isGrounded)
@@ -115,10 +96,6 @@ public class Third_person_mvmnt : MonoBehaviour
         capsCollider.isTrigger = false;
         animator.enabled = true;
         GetComponent<ActiveWeapon>().activateCurrentWeapon();
-        /*
-        if (weapon)
-            weapon.SetActive(!dead);
-        */
         cameraController.deadChar = false;
     }
 
@@ -167,14 +144,11 @@ public class Third_person_mvmnt : MonoBehaviour
             if (joint != null) {
                 joint.connectedAnchor = spine.transform.position;
             }
-
-            //Velocity = Vector3.Lerp(Velocity, VelocityZero, 1f * Time.deltaTime);
-            //gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, spine.transform.position, 50f * Time.deltaTime);
             return;
         }
         float horizontal = i_movement.x;
         float vertical = i_movement.y;
-
+        /// Les boucles suivante permettent de gérer l'animation du personnage (courir - droite - gauche - stop)
         if (vertical > 0)
         {
             animator.SetBool("IsRunning", true);
@@ -244,7 +218,6 @@ public class Third_person_mvmnt : MonoBehaviour
 
         Velocity = Vector3.Lerp(Velocity, VelocityZero, 1f * Time.deltaTime) ;
 
-        //controller.Move(direction * Time.deltaTime);
 
     }
 
@@ -339,6 +312,7 @@ public class Third_person_mvmnt : MonoBehaviour
         ragdoll = !ragdoll;
     }
 
+    // Si le joueur tombe de la carte, cette méthode est appelée
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Respawn"))
@@ -351,7 +325,7 @@ public class Third_person_mvmnt : MonoBehaviour
         yvelocity = 0;
     }
 
-
+    // Lorsqu'un joueur rentre en collision avec une boîte mystère, un pouvoir aléatoire est activé.
     void OnCollisionEnter(Collision collision)
     {
         if(Velocity != VelocityZero)
@@ -367,7 +341,7 @@ public class Third_person_mvmnt : MonoBehaviour
             GetComponent<MysteryBoxScript>().activePower(randomPower);
         }
     }
-
+    // Méthode activée lorsqu'un joueur est tombé de la carte et qu'il re-spawn
     void Respawn()
     {
         GetComponent<MysteryBoxScript>().initialisePlayerProperties();

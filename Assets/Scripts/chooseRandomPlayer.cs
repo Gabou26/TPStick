@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Distribue aléatoirement un personnage avec nom + couleur pour chaque joueur
 public class chooseRandomPlayer : MonoBehaviour
 {
     private Dictionary<Color,string> listPlayerColor_Name = new Dictionary<Color,string>();

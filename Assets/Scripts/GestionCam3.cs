@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+ 
+// Affichage de la 4ème caméra avec une vue globale sur la carte lorsqu'il y a seulement 3 joueurs
 public class GestionCam3 : MonoBehaviour
 {
 

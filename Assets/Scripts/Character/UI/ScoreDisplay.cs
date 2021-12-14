@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-
+// Affichage des scores en fin de partie, le gagnant apparé en haut et les autres joueurs sont à la suite.
 public class ScoreDisplay : MonoBehaviour
 {
     public static bool gotToLobby = false;

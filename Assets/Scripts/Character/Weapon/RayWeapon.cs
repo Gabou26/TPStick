@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// Script permettant de générer un raycast entre l'arme d'origine et les différents élément de l'environnement.
+// Si le raycast rentre en collsion avec un joueur, celui-ci reçoit des dégats.
 public class RayWeapon : GunWeapon
 {
     public ParticleSystem hitEffect;
@@ -14,18 +16,14 @@ public class RayWeapon : GunWeapon
 
     protected override void Shoot()
     {
-        //raycastAimTarget.position = rayOrigin.position + new Vector3(0, 0, 20);
         ray.origin = rayOrigin.position;
-        //ray.origin = new Vector3(0,0,5);
         ray.direction = (raycastAimTarget.position - ray.origin).normalized;
 
-        // print(ray.direction + " | " + raycastAimTarget.position + " | " + rayOrigin.position);
 
         TrailRenderer tracer = Instantiate(tracerEffect, ray.origin, Quaternion.identity);
         tracer.AddPosition(ray.origin);
         if (Physics.Raycast(ray, out hit, distTir))
         {
-            //Debug.DrawLine(ray.origin, hit.point, Color.yellow, 1.0f);
             if (hit.transform.gameObject.layer == 3)
             {
                 hit.transform.GetComponentInParent<ScoreManager>().SetLastShooter(player);

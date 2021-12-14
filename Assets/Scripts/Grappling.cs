@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Comportement du grappin
 public class Grappling : MonoBehaviour
 {
     private LineRenderer lr;
@@ -47,7 +48,6 @@ public class Grappling : MonoBehaviour
             if(Vector3.Distance(grappleTip.position, grapplePoint) > 6.0f)
             {
                 float dist = .5f + (Vector3.Distance(player.transform.position, grapplePoint) / maxDistance);
-                //Debug.Log(dist);
                 Speed = Mathf.Clamp(Speed * dist, grappleSpeed, grappleSpeed * 1.5f);
                 lastPosition = player.transform.position;
                 player.transform.position = Vector3.MoveTowards(player.transform.position, grapplePoint, Speed * Time.deltaTime);

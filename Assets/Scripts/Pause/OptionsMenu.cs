@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
+
+// Script gérant le sous menu option du menu pause
 public class OptionsMenu : MonoBehaviour
 {
     [SerializeField] private Button defaultButton;

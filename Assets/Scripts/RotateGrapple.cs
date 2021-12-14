@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Gestion de la rotation lors de l'utilisation du grappin
 public class RotateGrapple : MonoBehaviour
 {
     public Grappling theGrapple;

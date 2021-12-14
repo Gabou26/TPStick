@@ -1,5 +1,8 @@
 using UnityEngine;
 
+// Gestion du score:
+// Un joueur gagne un point lorsqu'il touche un joueur et que cet autre joueur tombe de la carte
+// Un joueur perd un point lorsqu'il tombe de la carte sans avoir était touché par aucun joueur.
 public class ScoreManager : MonoBehaviour
 {
     private int _score;

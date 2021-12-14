@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Script permettant de gèrer l'affichage des images correspondant à chaque pouvoir
 public class activePowerImage : MonoBehaviour
 {
     public Image speedImage;

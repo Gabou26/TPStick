@@ -1,6 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/*
+    Script permet de gérer la position et le déplacement de la caméra en fonction du joueur afin
+    d'avoir une belle vue à la 3ème personne qui s'adapte en fonction de l'environnement autour du joueur.
+*/
 public class TPCamController : MonoBehaviour
 {
     public float RotationSpeedX = 1;

@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+// Script gérant l'affichage de la barre de vie du joueur qui se trouve en bas au centre de son écran.
 public class UIHealth : MonoBehaviour
 {
     private Slider slider;
@@ -12,16 +13,6 @@ public class UIHealth : MonoBehaviour
     private UIHealth[] listUIHealth;
     private void Start()
     {
-        /*
-        var nbPlayer = 0;
-        GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>() ;
-        foreach(GameObject go in allObjects){
-            if(go.name == "PlayerName"){
-                nbPlayer += 1;
-            }
-        }
-        playerName.text = "Player "+nbPlayer;
-        */
     }
     private void Awake()
     {

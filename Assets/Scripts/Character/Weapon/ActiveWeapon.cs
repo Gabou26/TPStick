@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.SceneManagement;
 
+// Script permettant d'activer et de désactiver l'arme d'un joueur,
+// de distribuer une nouvelle arme ou bien de remplacer l'arme actuelle par
+// une nouvelle arme ne pouvant pas être la même que la précédente.
 public class ActiveWeapon : MonoBehaviour
 {
     public Transform crossHairTarg;
@@ -24,15 +27,6 @@ public class ActiveWeapon : MonoBehaviour
     public GameObject posSuiviOrigin;
     FollowTrans posOriginWeapon;
 
-    /*private void Awake()
-    {
-        //Fix Bug Curseur Visee
-        GameObject obj = Instantiate(posSuiviCurseur);
-        obj.GetComponent<FollowTrans>().trans = crossHairTarg;
-        crossHairTarg = obj.transform;
-
-        giveRandomWeapon();
-    }*/
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +34,6 @@ public class ActiveWeapon : MonoBehaviour
         animator = GetComponent<Animator>();
         overrides = animator.runtimeAnimatorController as AnimatorOverrideController;
         weaponCount = listWeaponsPrefab.Length;
-        //giveRandomWeapon();
 
         StartCoroutine(DelaiEquip());
     }
@@ -71,6 +64,8 @@ public class ActiveWeapon : MonoBehaviour
         pressed = false;
     }
 
+    // Détruit l'objet associé à l'arme actuel  du joueur si  il possède déjà une arme et équipe
+    // le joueur avec l'arme passé en paramètre issu de la méthode giveRandomWeapon()
     public void Equip(GunWeapon newWeapon)
     {
         if (rayWeapon)
@@ -88,6 +83,7 @@ public class ActiveWeapon : MonoBehaviour
         Invoke(nameof(SetAnimationDelayed), 0.001f);
     }
 
+    // Désactive l'arme pendant un état de ragdoll
     public void deactivateCurrentWeapon(){
         currentWeaponObject.gameObject.SetActive(false);
     }
@@ -96,6 +92,7 @@ public class ActiveWeapon : MonoBehaviour
         currentWeaponObject.gameObject.SetActive(true);
     }
 
+    // Equipe le joueur avec une arme aléatoire ne pouvant pas être la même que l'arme précédente.
     public void giveRandomWeapon(){
         var randomWeaponPrefab = currentWeapon;
         do
@@ -114,17 +111,15 @@ public class ActiveWeapon : MonoBehaviour
         overrides["weapon_anim_empty"] = rayWeapon.weaponAnim;
     }
 
+    // Equipe le joueur avec une arme aléatoire en début de partie
     IEnumerator DelaiEquip()
     {
         yield return new WaitForSeconds(0.1f);
-        //Fix Bug Curseur Visee
         GameObject obj = Instantiate(posSuiviCurseur);
         obj.GetComponent<FollowTrans>().trans = crossHairTarg;
         crossHairTarg = obj.transform;
 
-        //Fix Bug Origin Visee
         GameObject obj2 = Instantiate(posSuiviCurseur);
-        //obj.GetComponent<FollowTrans>().trans = crossHairTarg;
         posOriginWeapon = obj2.GetComponent<FollowTrans>();
 
         giveRandomWeapon();
