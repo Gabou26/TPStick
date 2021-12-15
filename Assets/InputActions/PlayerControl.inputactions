@@ -86,14 +86,6 @@
                     "interactions": "Press(behavior=1)"
                 },
                 {
-                    "name": "Ragdoll",
-                    "type": "Button",
-                    "id": "0e8e056b-6fb7-45e4-8b07-acdde1b65c3d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press"
-                },
-                {
                     "name": "Pause",
                     "type": "Button",
                     "id": "a98f7fd2-8fff-4693-90de-d75f93ba0f53",
@@ -347,28 +339,6 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "FireRelease",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e14dafee-4758-48cd-b14b-37a55be088ac",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "Ragdoll",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "969b1827-4d39-46c5-8eec-55d399878a39",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Ragdoll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

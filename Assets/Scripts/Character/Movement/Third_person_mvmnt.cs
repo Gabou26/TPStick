@@ -38,9 +38,6 @@ public class Third_person_mvmnt : MonoBehaviour
     public GameObject grappleObject;
     private Grappling grapple;
     private float timedown;
-
-    //Test Ragdoll
-    public GameObject weapon;
     Vector3 direction;
     //Paused Lorsque menu est ouvert
     [HideInInspector] public static bool paused = false;
@@ -79,7 +76,14 @@ public class Third_person_mvmnt : MonoBehaviour
         }
     }
 
-    // Méthode appelé quand le temps de ragdoll du joueur est terminé
+    // Fonction appelée à la fin d'un partie (avant le retour au lobby) qui retire l'état ragdoll des joueurs
+    public void UnRagdoll() {
+        CancelInvoke("OnRagdoll");
+        OnRagdoll();
+    }
+
+/*
+    // Méthode appelé quand le temps de ragdoll du joueur est terminé 
     public void Unragdoll()
     {
         if (!controller.isGrounded)
@@ -97,7 +101,7 @@ public class Third_person_mvmnt : MonoBehaviour
         animator.enabled = true;
         GetComponent<ActiveWeapon>().activateCurrentWeapon();
         cameraController.deadChar = false;
-    }
+    }*/
 
 
     // Update is called once per frame
@@ -362,7 +366,6 @@ public class Third_person_mvmnt : MonoBehaviour
         Rigidbody point = spine.GetComponent<Rigidbody>();
         if (point != null)
         {
-            Debug.Log("Le player reset sa velocite");
             point.velocity = Vector3.zero;
             point.angularVelocity = Vector3.zero;
         }
@@ -377,6 +380,7 @@ public class Third_person_mvmnt : MonoBehaviour
                 .ScoreUp(); //ligne pour augmenter le score du joueur qui a tiré en dernier sur la victime
             sM.ResetLastShooter();
         }
+        
 
         if (dead)
         {

@@ -99,14 +99,6 @@ public class @PlayerPauseInput : IInputActionCollection, IDisposable
                     ""interactions"": ""Press(behavior=1)""
                 },
                 {
-                    ""name"": ""Ragdoll"",
-                    ""type"": ""Button"",
-                    ""id"": ""0e8e056b-6fb7-45e4-8b07-acdde1b65c3d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
-                },
-                {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""a98f7fd2-8fff-4693-90de-d75f93ba0f53"",
@@ -365,28 +357,6 @@ public class @PlayerPauseInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e14dafee-4758-48cd-b14b-37a55be088ac"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""Ragdoll"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""969b1827-4d39-46c5-8eec-55d399878a39"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Ragdoll"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""010766a6-eb05-4d01-b3e9-6610d423d138"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
@@ -518,7 +488,6 @@ public class @PlayerPauseInput : IInputActionCollection, IDisposable
         m_Player_CameraCH = m_Player.FindAction("CameraCH", throwIfNotFound: true);
         m_Player_FirePress = m_Player.FindAction("FirePress", throwIfNotFound: true);
         m_Player_FireRelease = m_Player.FindAction("FireRelease", throwIfNotFound: true);
-        m_Player_Ragdoll = m_Player.FindAction("Ragdoll", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_GrapplePress = m_Player.FindAction("GrapplePress", throwIfNotFound: true);
         m_Player_GrappleRelease = m_Player.FindAction("GrappleRelease", throwIfNotFound: true);
@@ -581,7 +550,6 @@ public class @PlayerPauseInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_CameraCH;
     private readonly InputAction m_Player_FirePress;
     private readonly InputAction m_Player_FireRelease;
-    private readonly InputAction m_Player_Ragdoll;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_GrapplePress;
     private readonly InputAction m_Player_GrappleRelease;
@@ -599,7 +567,6 @@ public class @PlayerPauseInput : IInputActionCollection, IDisposable
         public InputAction @CameraCH => m_Wrapper.m_Player_CameraCH;
         public InputAction @FirePress => m_Wrapper.m_Player_FirePress;
         public InputAction @FireRelease => m_Wrapper.m_Player_FireRelease;
-        public InputAction @Ragdoll => m_Wrapper.m_Player_Ragdoll;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @GrapplePress => m_Wrapper.m_Player_GrapplePress;
         public InputAction @GrappleRelease => m_Wrapper.m_Player_GrappleRelease;
@@ -642,9 +609,6 @@ public class @PlayerPauseInput : IInputActionCollection, IDisposable
                 @FireRelease.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireRelease;
                 @FireRelease.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireRelease;
                 @FireRelease.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireRelease;
-                @Ragdoll.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRagdoll;
-                @Ragdoll.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRagdoll;
-                @Ragdoll.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRagdoll;
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
@@ -688,9 +652,6 @@ public class @PlayerPauseInput : IInputActionCollection, IDisposable
                 @FireRelease.started += instance.OnFireRelease;
                 @FireRelease.performed += instance.OnFireRelease;
                 @FireRelease.canceled += instance.OnFireRelease;
-                @Ragdoll.started += instance.OnRagdoll;
-                @Ragdoll.performed += instance.OnRagdoll;
-                @Ragdoll.canceled += instance.OnRagdoll;
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
@@ -734,7 +695,6 @@ public class @PlayerPauseInput : IInputActionCollection, IDisposable
         void OnCameraCH(InputAction.CallbackContext context);
         void OnFirePress(InputAction.CallbackContext context);
         void OnFireRelease(InputAction.CallbackContext context);
-        void OnRagdoll(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnGrapplePress(InputAction.CallbackContext context);
         void OnGrappleRelease(InputAction.CallbackContext context);

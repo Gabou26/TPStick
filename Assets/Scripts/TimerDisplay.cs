@@ -10,13 +10,9 @@ using UnityEngine.SceneManagement;
 public class TimerDisplay : MonoBehaviour
 {
     public Text timerText;
-    private float _timeLimit = 120; //fixe la dur�e d'une partie � 5 minutes
-
+    private float _timeLimit = 30; //fixe la dur�e d'une partie � 5 minutes
     private float _startTime;
-    
     private bool _end = false;
-    
-    
     
     // Start is called before the first frame update
     void Start()
@@ -34,7 +30,20 @@ public class TimerDisplay : MonoBehaviour
             {
                 timerText.text = "Time's Up !!!\n";
                 timerText.text = "Switched !!!";
-                SceneManager.LoadScene(1); //t�l�portation sur le lobby
+
+                /* Cette partie du code sert à retirer l'état de ragdoll de tous les joueurs avant le changement 
+                de carte, car sinon l'état persiste à ce changement, et cela engendre de nombreux bugs pour le
+                joueur en question. */
+                GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+                int len = players.Length;
+                for (int i = 0; i < len; i++) {
+                    Third_person_mvmnt player = players[i].GetComponent<Third_person_mvmnt>();
+                    if (player.dead) {
+                        player.UnRagdoll();
+                    }
+                }
+
+                SceneManager.LoadScene(1); //teleportation sur le lobby
                 _end = true;
             }
             else
@@ -50,14 +59,5 @@ public class TimerDisplay : MonoBehaviour
 
             }
         }
-        else
-        {
-
-        }
-        
-
-
-
-
     }
 }

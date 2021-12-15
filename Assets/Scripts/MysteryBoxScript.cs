@@ -109,7 +109,6 @@ public class MysteryBoxScript : MonoBehaviour
         powerUpEffectTime = 10f; // Temps d'effet d'un pouvoir
         powerUpHealthEffectTime = 2f;
         powerUpChangeGunEffectTime = 4f;
-        print(powerName);
         switch (powerName){
             case "SpeedUp": // Augmente le facteur de vitesse du joueur
             {   

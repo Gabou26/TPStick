@@ -107,6 +107,5 @@ public class NewPause : MonoBehaviour
         }
        // yield return new WaitForSeconds(0.6f);
         trans.Transition(new Vector2(0, 0), new Vector2(0, -1200), false);
-        print("POG");
     }
 }
