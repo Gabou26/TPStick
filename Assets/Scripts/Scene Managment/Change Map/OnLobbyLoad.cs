@@ -21,7 +21,6 @@ public class OnLobbyLoad : MonoBehaviour
             players[i].GetComponent<ScoreManager>().ResetScore();
             players[i].GetComponent<HealthBar>().ResetHealth();
             players[i].GetComponent<ActiveWeapon>().OnFireRelease();
-            Third_person_mvmnt player = players[i].GetComponent<Third_person_mvmnt>();
         }
     }
 
