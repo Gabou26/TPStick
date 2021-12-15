@@ -14,7 +14,7 @@ public class OnMapLoad : MonoBehaviour
     void Start()
     {
         manager = GameObject.FindObjectOfType<PlayerInputManager>();
-        manager.DisableJoining();
+        //manager.DisableJoining();
 
         players = GameObject.FindGameObjectsWithTag("Player");
         int len = players.Length;
