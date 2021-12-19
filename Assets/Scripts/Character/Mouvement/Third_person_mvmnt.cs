@@ -57,7 +57,6 @@ public class Third_person_mvmnt : MonoBehaviour
         timedown = 2f;
     }
 
-
     // Méthode appelée lorsqu'un joueur n'a plus de vie est qu'il tombre en ragdoll
     public void Ragdoll()
     {
@@ -82,29 +81,6 @@ public class Third_person_mvmnt : MonoBehaviour
         OnRagdoll();
     }
 
-/*
-    // Méthode appelé quand le temps de ragdoll du joueur est terminé 
-    public void Unragdoll()
-    {
-        if (!controller.isGrounded)
-        {
-            Invoke("Unragdoll", 0.2f);
-            return;
-        }
-        var maxHealth = GetComponent<HealthBar>().getMaxHealth();
-        UIHealth healthBar = GetComponent<HealthBar>().getUIHealth();
-        healthBar.SetHealth(maxHealth);
-        GetComponent<HealthBar>().ResetHealth();
-        dead = false;
-        charController.enabled = true;
-        capsCollider.isTrigger = false;
-        animator.enabled = true;
-        GetComponent<ActiveWeapon>().activateCurrentWeapon();
-        cameraController.deadChar = false;
-    }*/
-
-
-    // Update is called once per frame
     void Update()
     {
 
@@ -185,8 +161,6 @@ public class Third_person_mvmnt : MonoBehaviour
             animator.SetBool("IsLeft", false);
         }
 
-
-
         direction = (cam.forward * vertical) + (cam.right * horizontal); 
         direction.Normalize();
         float speedPowerFactor = GetComponent<MysteryBoxScript>().getSpeedPowerFactor();
@@ -198,7 +172,6 @@ public class Third_person_mvmnt : MonoBehaviour
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
         }
-
 
         if (controller.isGrounded)
         {
@@ -221,8 +194,6 @@ public class Third_person_mvmnt : MonoBehaviour
         transform.position += Velocity;
 
         Velocity = Vector3.Lerp(Velocity, VelocityZero, 1f * Time.deltaTime) ;
-
-
     }
 
     public void OnMove(InputValue value) {
@@ -387,10 +358,5 @@ public class Third_person_mvmnt : MonoBehaviour
             CancelInvoke("OnRagdoll");
             OnRagdoll();
         }
-    }
-
-    GameObject GetDefaultWeapon()
-    {
-        return null;
     }
 }

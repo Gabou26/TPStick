@@ -12,16 +12,6 @@ public class activePowerImage : MonoBehaviour
     public Image changeGunImage;
     public Sprite[] spritePowerList;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
     public void ChangeSpriteSpeed(string motCle)
     {
         if(motCle == "Down") speedImage.sprite = spritePowerList[1];

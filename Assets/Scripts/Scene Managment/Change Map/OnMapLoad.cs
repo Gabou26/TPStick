@@ -1,6 +1,3 @@
-
-using System;
-
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,17 +16,9 @@ public class OnMapLoad : MonoBehaviour
         players = GameObject.FindGameObjectsWithTag("Player");
         int len = players.Length;
         for (int i = 0; i < len; i++) {
-            float x = Convert.ToSingle(20*Math.Cos(2*Math.PI*i/len));
-            float z = Convert.ToSingle(20*Math.Sin(2*Math.PI*i/len));
-            players[i].transform.position = new Vector3(x , 15, z);
+            players[i].transform.position = new Vector3(20*Mathf.Cos(2*Mathf.PI*i/len) , 15, 20*Mathf.Sin(2*Mathf.PI*i/len));
             players[i].GetComponent<ScoreManager>().ResetScore();
             players[i].GetComponent<HealthBar>().ResetHealth();
         }
-    }
-
-    
-    void Update()
-    {
-        
     }
 }

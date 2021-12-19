@@ -20,7 +20,9 @@ public class MapManager : MonoBehaviour
         int[] counts = {map1.playerCount, map2.playerCount, map3.playerCount, map4.playerCount,  map5.playerCount};
         string[] maps = {map1.mapName, map2.mapName, map3.mapName, map4.mapName,  map5.mapName};
         int max = maxTab(counts);
-        if (counts[max] > 0) {
+        if (counts[max] == 1 && manager.playerCount == 1) {
+            countText.text = "Il faut 2 joueurs au moins pour lancer une partie";
+        } else if (counts[max] > 0) {
             countText.text = maps[max] + " : " + counts[max] + "/" + manager.playerCount;
         } else {
             countText.text = "";

@@ -47,10 +47,4 @@ public class ScoreManager : MonoBehaviour
         _score = 0;
 
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

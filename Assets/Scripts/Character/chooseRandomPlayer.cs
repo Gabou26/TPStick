@@ -33,10 +33,4 @@ public class chooseRandomPlayer : MonoBehaviour
         GetComponentInChildren<SkinnedMeshRenderer>().material.color = newColor;
         GetComponentInChildren<UIHealth>().setPlayerName(newName);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

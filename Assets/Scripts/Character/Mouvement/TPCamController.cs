@@ -98,7 +98,6 @@ public class TPCamController : MonoBehaviour
         vertical = zoneVal * camVitesse.y * Time.deltaTime;
     }
 
-
     public void OnCameraV(float value)
     {
         float zoneVal = -value;

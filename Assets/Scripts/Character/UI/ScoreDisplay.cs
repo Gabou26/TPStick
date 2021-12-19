@@ -62,10 +62,4 @@ public class ScoreDisplay : MonoBehaviour
             PrintScore();
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

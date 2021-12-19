@@ -8,9 +8,4 @@ public class DontDestroy : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
     }
-
-    void Update()
-    {
-        
-    }
 }

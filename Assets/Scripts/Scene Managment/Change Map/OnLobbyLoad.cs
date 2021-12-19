@@ -23,10 +23,4 @@ public class OnLobbyLoad : MonoBehaviour
             players[i].GetComponent<ActiveWeapon>().OnFireRelease();
         }
     }
-
-    
-    void Update()
-    {
-        
-    }
 }

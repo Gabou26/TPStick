@@ -24,13 +24,6 @@ public class SpawnCrates : MonoBehaviour
         Invoke("SpawnBoxes", Random.Range(min,max));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
     void SpawnBoxes()
     {
         Transform location = objectsSpawnZone.transform;

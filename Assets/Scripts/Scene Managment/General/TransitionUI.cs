@@ -24,7 +24,6 @@ public class TransitionUI : MonoBehaviour
             StartCoroutine(LoadTrans());
     }
 
-    // Update is called once per frame
     void LateUpdate()
     {
         if (distCour < 1)
